@@ -1,0 +1,24 @@
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Editors ---
+.vscode/
+.idea/
+
+# --- R / RStudio ---
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+pipeline/renv/library/
+pipeline/renv/staging/
+pipeline/raw/          # cached raw API responses (re-downloadable)
+
+# --- Node / web ---
+web/node_modules/
+web/dist/
+
+# --- Secrets ---
+.env
+.Renviron
