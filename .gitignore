@@ -22,3 +22,4 @@ web/dist/
 # --- Secrets ---
 .env
 .Renviron
+.Rproj.user
