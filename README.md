@@ -129,4 +129,3 @@ Economic bloc memberships (Mercosur, EU, BRICS, etc.) are maintained manually in
 
 ## License
 
-Code released under the [MIT License](LICENSE). Data remains subject to the licenses of its original sources.
