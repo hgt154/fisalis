@@ -1,0 +1,159 @@
+code,view,group,order
+SP.DYN.LE00.IN,overview,Social,1
+SI.POV.DDAY,overview,Social,2
+SP.POP.TOTL,overview,Social,3
+SP.POP.GROW,overview,Social,4
+SM.POP.NETM,overview,Social,5
+NY.GDP.MKTP.CD,overview,Economic,1
+NY.GDP.PCAP.CD,overview,Economic,2
+NY.GDP.MKTP.KD.ZG,overview,Economic,3
+SL.UEM.TOTL.ZS,overview,Economic,4
+FP.CPI.TOTL.ZG,overview,Economic,5
+EG.ELC.ACCS.ZS,overview,Environment,1
+AG.LND.FRST.ZS,overview,Environment,2
+EN.GHG.CO2.PC.CE.AR5,overview,Environment,3
+ER.H2O.FWTL.ZS,overview,Environment,4
+EG.ELC.RNWX.ZS,overview,Environment,5
+SH.STA.SMSS.ZS,overview,Environment,6
+IT.NET.USER.ZS,overview,Institutions,1
+VC.IHR.PSRC.P5,overview,Institutions,2
+SG.GEN.PARL.ZS,overview,Institutions,3
+GC.DOD.TOTL.GD.ZS,overview,Institutions,4
+IQ.SPI.OVRL,overview,Institutions,5
+BX.KLT.DINV.WD.GD.ZS,overview,Institutions,6
+AG.PRD.CROP.XD,theme,Agriculture,1
+AG.PRD.LVSK.XD,theme,Agriculture,2
+AG.LND.ARBL.ZS,theme,Agriculture,3
+NV.AGR.TOTL.ZS,theme,Agriculture,4
+EN.GHG.ALL.PC.CE.AR5,theme,Climate Change,1
+EG.FEC.RNEW.ZS,theme,Climate Change,2
+AG.LND.EL5M.ZS,theme,Climate Change,3
+IT.NET.USER.ZS,theme,Digital Development,1
+IT.CEL.SETS.P2,theme,Digital Development,2
+IT.NET.BBND.P2,theme,Digital Development,3
+SE.PRM.ENRR,theme,Education,1
+SE.ADT.LITR.ZS,theme,Education,2
+SE.XPD.TOTL.GB.ZS,theme,Education,3
+EG.USE.COMM.CL.ZS,theme,Energy,1
+EG.ELC.ACCS.ZS,theme,Energy,2
+EG.USE.ELEC.KH.PC,theme,Energy,3
+EG.CFT.ACCS.ZS,theme,Energy,4
+AG.LND.FRST.ZS,theme,Environment & Natural Resources,1
+EN.GHG.CO2.PC.CE.AR5,theme,Environment & Natural Resources,2
+ER.PTD.TOTL.ZS,theme,Environment & Natural Resources,3
+IC.FRM.BNKS.ZS,theme,"Finance, Competitiveness & Innovation",1
+LP.LPI.ITRN.XQ,theme,"Finance, Competitiveness & Innovation",2
+TX.VAL.TECH.MF.ZS,theme,"Finance, Competitiveness & Innovation",3
+CM.MKT.TRAD.GD.ZS,theme,"Finance, Competitiveness & Innovation",4
+VC.IHR.PSRC.P5,theme,"Fragility, Conflict and Violence",1
+SM.POP.FDIP,theme,"Fragility, Conflict and Violence",2
+MS.MIL.TOTL.TF.ZS,theme,"Fragility, Conflict and Violence",3
+SE.ENR.PRSC.FM.ZS,theme,Gender,1
+SG.GEN.PARL.ZS,theme,Gender,2
+SP.DYN.CONU.ZS,theme,Gender,3
+SH.STA.MMRT,theme,Gender,4
+GC.DOD.TOTL.GD.ZS,theme,Governance,1
+IQ.SPI.OVRL,theme,Governance,2
+MS.MIL.XPND.GD.ZS,theme,Governance,3
+SP.DYN.LE00.IN,theme,"Health, Nutrition & Population",1
+SH.IMM.MEAS,theme,"Health, Nutrition & Population",2
+SH.SGR.CRSK.ZS,theme,"Health, Nutrition & Population",3
+SH.DYN.AIDS.ZS,theme,"Health, Nutrition & Population",4
+IS.RRS.GOOD.MT.K6,theme,Infrastructure and Public-Private Partnerships,1
+IE.PPI.ENGY.CD,theme,Infrastructure and Public-Private Partnerships,2
+IE.PPI.TRAN.CD,theme,Infrastructure and Public-Private Partnerships,3
+IE.PPI.WATR.CD,theme,Infrastructure and Public-Private Partnerships,4
+SL.TLF.CACT.ZS,theme,Jobs & Development,1
+SL.GDP.PCAP.EM.KD,theme,Jobs & Development,2
+SL.EMP.TOTL.SP.ZS,theme,Jobs & Development,3
+NY.GNP.MKTP.CD,theme,"Macroeconomics, Trade & Investment",1
+NY.GNP.PCAP.KD.ZG,theme,"Macroeconomics, Trade & Investment",2
+BN.GSR.GNFS.CD,theme,"Macroeconomics, Trade & Investment",3
+BN.KLT.DINV.CD,theme,"Macroeconomics, Trade & Investment",4
+SI.POV.DDAY,theme,Poverty & Inequality,1
+SI.DST.FRST.20,theme,Poverty & Inequality,2
+SI.POV.GINI,theme,Poverty & Inequality,3
+EN.POP.SLUM.UR.ZS,theme,Poverty & Inequality,4
+SL.TLF.0714.ZS,theme,Social Protection,1
+SL.FAM.0714.ZS,theme,Social Protection,2
+per_allsp.cov_pop_tot,theme,Social Protection,3
+GC.REV.SOCL.ZS,theme,Social Protection,4
+IS.RRS.PASG.KM,theme,Transport,1
+EN.GHG.CO2.TR.MT.CE.AR5,theme,Transport,2
+SH.STA.TRAF.P5,theme,Transport,3
+VC.IDP.NWDS,theme,"Urban, Disaster Risk, Resilience, and Land",1
+AG.LND.EL5M.UR.K2,theme,"Urban, Disaster Risk, Resilience, and Land",2
+SP.URB.TOTL.IN.ZS,theme,"Urban, Disaster Risk, Resilience, and Land",3
+ER.H2O.FWTL.ZS,theme,Water,1
+SH.H2O.BASW.ZS,theme,Water,2
+SH.STA.HYGN.ZS,theme,Water,3
+ER.MRN.PTMR.ZS,theme,Water,4
+SI.POV.DDAY,sdg,SDG 1 - No Poverty,1
+SI.POV.NAHC,sdg,SDG 1 - No Poverty,2
+SH.STA.STNT.ZS,sdg,SDG 2 - Zero Hunger,1
+SN.ITK.DEFC.ZS,sdg,SDG 2 - Zero Hunger,2
+SN.ITK.SVFI.ZS,sdg,SDG 2 - Zero Hunger,3
+SH.STA.STNT.FE.ZS,sdg,SDG 2 - Zero Hunger,4
+SH.STA.STNT.MA.ZS,sdg,SDG 2 - Zero Hunger,5
+SH.STA.MMRT,sdg,SDG 3 - Good Health and Well-being,1
+SH.DYN.MORT,sdg,SDG 3 - Good Health and Well-being,2
+SH.HIV.INCD.ZS,sdg,SDG 3 - Good Health and Well-being,3
+SH.DYN.MORT.FE,sdg,SDG 3 - Good Health and Well-being,4
+SH.DYN.MORT.MA,sdg,SDG 3 - Good Health and Well-being,5
+SP.ADO.TFRT,sdg,SDG 3 - Good Health and Well-being,6
+SE.ENR.PRSC.FM.ZS,sdg,SDG 4 - Quality Education,1
+SE.SEC.CMPT.LO.ZS,sdg,SDG 4 - Quality Education,2
+SE.ADT.1524.LT.ZS,sdg,SDG 4 - Quality Education,3
+SE.SEC.CMPT.LO.FE.ZS,sdg,SDG 4 - Quality Education,4
+SE.SEC.CMPT.LO.MA.ZS,sdg,SDG 4 - Quality Education,5
+SG.GEN.PARL.ZS,sdg,SDG 5 - Gender Equality,1
+SL.EMP.SMGT.FE.ZS,sdg,SDG 5 - Gender Equality,2
+IC.FRM.FEMM.ZS,sdg,SDG 5 - Gender Equality,3
+SH.H2O.BASW.ZS,sdg,SDG 6 - Clean Water and Sanitation,1
+SH.STA.SMSS.ZS,sdg,SDG 6 - Clean Water and Sanitation,2
+SH.STA.BASS.ZS,sdg,SDG 6 - Clean Water and Sanitation,3
+ER.H2O.FWST.ZS,sdg,SDG 6 - Clean Water and Sanitation,4
+SH.H2O.SMDW.ZS,sdg,SDG 6 - Clean Water and Sanitation,5
+EG.FEC.RNEW.ZS,sdg,SDG 7 - Affordable and Clean Energy,1
+EG.ELC.ACCS.ZS,sdg,SDG 7 - Affordable and Clean Energy,2
+EG.CFT.ACCS.ZS,sdg,SDG 7 - Affordable and Clean Energy,3
+EG.ELC.ACCS.RU.ZS,sdg,SDG 7 - Affordable and Clean Energy,4
+EG.ELC.ACCS.UR.ZS,sdg,SDG 7 - Affordable and Clean Energy,5
+SL.GDP.PCAP.EM.KD,sdg,SDG 8 - Decent Work and Economic Growth,1
+NY.GDP.MKTP.KD.ZG,sdg,SDG 8 - Decent Work and Economic Growth,2
+NY.GDP.PCAP.KD.ZG,sdg,SDG 8 - Decent Work and Economic Growth,3
+FX.OWN.TOTL.ZS,sdg,SDG 8 - Decent Work and Economic Growth,4
+EN.GHG.CO2.PC.CE.AR5,sdg,"SDG 9 - Industry, Innovation and Infrastructure",1
+NV.IND.MANF.ZS,sdg,"SDG 9 - Industry, Innovation and Infrastructure",2
+GB.XPD.RSDV.GD.ZS,sdg,"SDG 9 - Industry, Innovation and Infrastructure",3
+SI.SPR.PC40.ZG,sdg,SDG 10 - Reduced Inequalities,1
+SI.SPR.PCAP.ZG,sdg,SDG 10 - Reduced Inequalities,2
+SI.DST.50MD,sdg,SDG 10 - Reduced Inequalities,3
+SI.RMT.COST.IB.ZS,sdg,SDG 10 - Reduced Inequalities,4
+SI.RMT.COST.OB.ZS,sdg,SDG 10 - Reduced Inequalities,5
+EN.POP.SLUM.UR.ZS,sdg,SDG 11 - Sustainable Cities and Communities,1
+SP.URB.GROW,sdg,SDG 11 - Sustainable Cities and Communities,2
+EN.ATM.PM25.MC.M3,sdg,SDG 11 - Sustainable Cities and Communities,3
+NY.ADJ.SVNX.GN.ZS,sdg,SDG 12 - Responsible Consumption and Production,1
+NY.GDP.TOTL.RT.ZS,sdg,SDG 12 - Responsible Consumption and Production,2
+EN.CLC.MDAT.ZS,sdg,SDG 12 - Responsible Consumption and Production,3
+EN.CLC.DRSK.XQ,sdg,SDG 13 - Climate Action,1
+EN.GHG.ALL.MT.CE.AR5,sdg,SDG 13 - Climate Action,2
+ER.MRN.PTMR.ZS,sdg,SDG 14 - Life Below Water,1
+ER.FSH.PROD.MT,sdg,SDG 14 - Life Below Water,2
+ER.FSH.AQUA.MT,sdg,SDG 14 - Life Below Water,3
+ER.FSH.CAPT.MT,sdg,SDG 14 - Life Below Water,4
+AG.LND.FRST.ZS,sdg,SDG 15 - Life on Land,1
+ER.PTD.TOTL.ZS,sdg,SDG 15 - Life on Land,2
+ER.LND.PTLD.ZS,sdg,SDG 15 - Life on Land,3
+GF.XPD.BUDG.ZS,sdg,"SDG 16 - Peace, Justice and Strong Institutions",1
+IC.FRM.BRIB.ZS,sdg,"SDG 16 - Peace, Justice and Strong Institutions",2
+SP.REG.BRTH.ZS,sdg,"SDG 16 - Peace, Justice and Strong Institutions",3
+SP.REG.BRTH.RU.ZS,sdg,"SDG 16 - Peace, Justice and Strong Institutions",4
+SP.REG.BRTH.UR.ZS,sdg,"SDG 16 - Peace, Justice and Strong Institutions",5
+IT.NET.USER.ZS,sdg,SDG 17 - Partnerships for the Goals,1
+BX.TRF.PWKR.DT.GD.ZS,sdg,SDG 17 - Partnerships for the Goals,2
+BX.KLT.DINV.WD.GD.ZS,sdg,SDG 17 - Partnerships for the Goals,3
+DT.TDS.DECT.EX.ZS,sdg,SDG 17 - Partnerships for the Goals,4
+GC.TAX.TOTL.GD.ZS,sdg,SDG 17 - Partnerships for the Goals,5
+NE.EXP.GNFS.ZS,sdg,SDG 17 - Partnerships for the Goals,6
