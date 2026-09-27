@@ -1,0 +1,22 @@
+/* Design tokens: every color, font and spacing value lives here.
+   Placeholder values until the Figma design is ready. */
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-text: #111111;
+  --color-text-muted: #666666;
+  --color-border: #dddddd;
+  --color-accent: #b7791f;
+
+  --font-heading: Georgia, serif;
+  --font-body: system-ui, sans-serif;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+
+  --radius: 6px;
+  --max-width: 1200px;
+}
