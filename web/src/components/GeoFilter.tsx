@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router'
 import type { Country } from '../lib/types'
-import { filtersToParams, options, parseFilters, type GeoFilters } from '../lib/filters'
+import { FILTER_KEYS, filtersToParams, options, parseFilters, type GeoFilters } from '../lib/filters'
 
 interface Props {
   countries: Country[]
@@ -14,8 +14,14 @@ export default function GeoFilter({ countries }: Props) {
   const filters = parseFilters(params)
   const [search, setSearch] = useState('')
 
-  const update = (changes: Partial<GeoFilters>) => setParams(filtersToParams({ ...filters, ...changes }))
+  // Rebuild the URL from the filters, keeping any other parameters (like the map's ?sel=BRA)
+  const withOtherParams = (next: URLSearchParams) => {
+    for (const [key, value] of params) if (!FILTER_KEYS.includes(key)) next.set(key, value)
+    return next
+  }
 
+  const update = (changes: Partial<GeoFilters>) =>
+    setParams(withOtherParams(filtersToParams({ ...filters, ...changes })))
   const addCountry = (name: string) => {
     const match = countries.find((c) => c.name_en.toLowerCase() === name.toLowerCase())
     if (match && !filters.countries.includes(match.iso3)) {
@@ -60,7 +66,7 @@ export default function GeoFilter({ countries }: Props) {
       {select('Região', 'region', options(countries, (c) => c.region))}
       {select('Renda', 'income', options(countries, (c) => c.income))}
 
-      <button onClick={() => setParams(new URLSearchParams())}>Limpar filtros</button>
+      <button onClick={() => setParams(withOtherParams(new URLSearchParams()))}>Limpar filtros</button>
     </div>
   )
 }

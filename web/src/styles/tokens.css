@@ -19,4 +19,16 @@
 
   --radius: 6px;
   --max-width: 1200px;
+
+  /* Map colors (placeholders until the Figma design) */
+
+  --map-water: #e8eef3;
+  --map-border: #ffffff;
+  --map-no-data: #e3e3e3;
+  --map-selected-stroke: #111111;
+  --income-high: #2c6fa6;
+  --income-upper-middle: #6aaed6;
+  --income-lower-middle: #c6dbef;
+  --income-low: #fde0c5;
+
 }

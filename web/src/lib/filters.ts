@@ -12,6 +12,9 @@ export interface GeoFilters {
 }
 
 // URL  ->  filters     (?paises=BRA,ARG&bloco=Mercosur)
+// URL parameter names used by the filters
+export const FILTER_KEYS = ['paises', 'bloco', 'continente', 'regiao', 'renda']
+
 export function parseFilters(params: URLSearchParams): GeoFilters {
   const list = params.get('paises')
   return {
@@ -36,7 +39,7 @@ export function filtersToParams(filters: GeoFilters): URLSearchParams {
 
 // Which countries match the current filters?
 // Selected countries always match; the other filters must ALL match.
-export function applyFilters(all: Country[], filters: GeoFilters): Country[] {
+export function applyFilters<T extends Country>(all: T[], filters: GeoFilters): T[] {
   const noGroupFilter = !filters.bloc && !filters.continent && !filters.region && !filters.income
   if (noGroupFilter && filters.countries.length === 0) return all
 

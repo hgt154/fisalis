@@ -19,10 +19,13 @@ interface State<T> {
 }
 
 // React hook: const { data, loading, error } = useJson<Country[]>('countries.json')
-export function useJson<T>(path: string) {
+// React hook: const { data, loading, error } = useJson<Country[]>('countries.json')
+// Pass null to skip loading (e.g. until the user picks something)
+export function useJson<T>(path: string | null) {
   const [state, setState] = useState<State<T>>({ path: null, data: null, error: null })
 
   useEffect(() => {
+    if (path === null) return
     let cancelled = false
     loadJson<T>(path)
       .then((data) => { if (!cancelled) setState({ path, data, error: null }) })
@@ -30,10 +33,10 @@ export function useJson<T>(path: string) {
     return () => { cancelled = true }
   }, [path])
 
-  const current = state.path === path
+  const current = path !== null && state.path === path
   return {
     data: current ? state.data : null,
     error: current ? state.error : null,
-    loading: !current,
+    loading: path !== null && !current,
   }
 }
