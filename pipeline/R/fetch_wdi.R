@@ -29,6 +29,7 @@ fetch_one <- function(code, start = START_YEAR, tries = 3) {
 
 # Download every indicator in the catalog, with a local cache.
 fetch_all <- function(codes, use_cache = TRUE) {
+  options(timeout = 180)   # give slow API responses more time
   dir.create(PATH_RAW, showWarnings = FALSE)
   cache_file <- file.path(PATH_RAW, "wdi_long.rds")
   
