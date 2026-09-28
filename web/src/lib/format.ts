@@ -35,3 +35,19 @@ export function formatValue(value: number | null | undefined, format: IndicatorF
       return Math.abs(value) >= 100 ? integer.format(value) : decimal1.format(value)
   }
 }
+
+
+
+const short = new Intl.NumberFormat(LOCALE, { notation: 'compact', compactDisplay: 'short', maximumFractionDigits: 1 })
+
+// Short numbers for chart axes: 33 bi, 500 mi, 2,5 mil
+export function formatShort(value: number): string {
+  return short.format(value)
+}
+
+// Year-over-year change with an arrow: ↑ 12,2%  /  ↓ 3,4%
+export function formatChange(ratio: number | null | undefined): string {
+  if (ratio === null || ratio === undefined || Number.isNaN(ratio)) return '—'
+  const arrow = ratio > 0 ? '↑' : ratio < 0 ? '↓' : '='
+  return `${arrow} ${decimal1.format(Math.abs(ratio * 100))}%`
+}

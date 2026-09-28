@@ -37,4 +37,23 @@
   --series-3: #2f8f5b;
   --series-4: #8a4fa3;
   --series-aggregate: #777777;
+
+
+    /* Trade page colors (placeholders until the Figma design) */
+  --flow-export: #4f8a4f;
+  --flow-import: #6a4c93;
+  --flow-total: #1f5f99;
+  --flow-balance: #b7791f;
+
+  --continent-africa: #3f9c8a;
+  --continent-americas: #6b8fc7;
+  --continent-asia: #8c3f4f;
+  --continent-europe: #6f7894;
+  --continent-oceania: #d19a3f;
+  --continent-other: #9a9a9a;
+
+  --sector-agro: #d8b84a;
+  --sector-extractive: #98a4a8;
+  --sector-manufacturing: #2f3e54;
+  --sector-other: #c8604a;
 }

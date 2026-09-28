@@ -14,7 +14,7 @@ const links = [
 export default function Header() {
   return (
     <header className="container">
-      <nav style={{ display: 'flex', gap: 'var(--space-md)', padding: 'var(--space-md) 0' }}>
+            <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-md)', padding: 'var(--space-md) 0' }}>
         <strong>Fisális</strong>
         {links.map((link) => (
           <NavLink key={link.to} to={link.to} end={link.to === '/'}>
