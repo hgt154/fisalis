@@ -10,6 +10,7 @@ import TradePage from './pages/TradePage'
 import TheoriesPage from './pages/TheoriesPage'
 import NewsPage from './pages/NewsPage'
 import NotFoundPage from './pages/NotFoundPage'
+import TheoryPage from './pages/TheoryPage'
 
 export default function App() {
   return (
@@ -23,6 +24,8 @@ export default function App() {
         <Route path="teorias" element={<TheoriesPage />} />
         <Route path="noticias" element={<NewsPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="teorias" element={<TheoriesPage />} />
+        <Route path="teorias/:slug" element={<TheoryPage />} />
       </Route>
     </Routes>
   )
