@@ -1,72 +1,133 @@
 import { Link } from 'react-router'
+import HeroArt from '../components/HeroArt'
 import { useJson } from '../lib/data'
-import { formatValue } from '../lib/format'
+import { formatDate, formatShort, formatValue } from '../lib/format'
 import { THEORIES } from '../lib/theories'
-import type { Series } from '../lib/types'
-import type { TradeMeta } from '../lib/trade'
+import type { SummaryRow, TradeMeta } from '../lib/trade'
+import type { IndicatorMeta, Series } from '../lib/types'
+import './HomePage.css'
 
-const lastValue = (points?: [number, number][]) => (points && points.length ? points[points.length - 1] : null)
-
-const SECTIONS = [
-  { to: '/mapa', title: 'Mapa', text: 'Mapa-múndi interativo: passe o mouse sobre um país para ver seus números e clique para abrir o perfil completo.' },
-  { to: '/indicadores', title: 'Indicadores', text: 'Os principais indicadores do Banco Mundial por tema e por Objetivo de Desenvolvimento Sustentável, com comparação entre países.' },
-  { to: '/comercio', title: 'Comércio Exterior', text: 'Exportações e importações do Brasil: parceiros, estados, produtos e séries históricas, com dados do Comex Stat.' },
-  { to: '/teorias', title: 'Teorias', text: 'Teorias políticas, econômicas, de segurança, filosóficas e sociológicas para o estudo das Relações Internacionais.' },
-]
+const lastPoint = (points?: [number, number][]) => (points && points.length ? points[points.length - 1] : null)
 
 export default function HomePage() {
   const world = useJson<Series>('series/WLD.json')
   const meta = useJson<{ updated: string }>('meta.json')
   const trade = useJson<TradeMeta>('trade/meta.json')
+  const summary = useJson<SummaryRow[]>('trade/summary.json')
+  const indicators = useJson<IndicatorMeta[]>('indicators.json')
 
-  const population = lastValue(world.data?.['SP.POP.TOTL'])
-  const gdp = lastValue(world.data?.['NY.GDP.MKTP.CD'])
+  const population = lastPoint(world.data?.['SP.POP.TOTL'])
+  const gdp = lastPoint(world.data?.['NY.GDP.MKTP.CD'])
+  const balance = summary.data?.find((r) => r.period === 'month' && r.flow === 'saldo')
+
+  const sections = [
+    { to: '/mapa', n: '01', title: 'Mapa', color: 'var(--mata)', link: 'Abrir o mapa',
+      text: 'Um mapa-múndi por grupo de renda ou por qualquer indicador, com o perfil de cada país.' },
+    { to: '/indicadores', n: '02', title: 'Indicadores', color: 'var(--folha)', link: 'Comparar países',
+      text: `${indicators.data?.length ?? ''} indicadores do Banco Mundial, comparáveis entre até quatro países.` },
+    { to: '/comercio', n: '03', title: 'Comércio Exterior', color: 'var(--jacaranda)', link: 'Ver a balança',
+      text: 'Exportações e importações brasileiras por parceiro, estado e produto.' },
+    { to: '/teorias', n: '04', title: 'Teorias', color: '#6f9a4a', link: 'Ler as teorias',
+      text: `Uma biblioteca com ${THEORIES.length} teorias das Relações Internacionais, do Realismo às abordagens críticas.` },
+    { to: null, n: '05', title: 'Notícias', color: 'var(--ambar)', link: 'Em breve',
+      text: 'Notícias de fontes confiáveis, resumidas em três frases, sempre com link ao original.' },
+  ]
 
   return (
     <>
-      <section style={{ maxWidth: 720, margin: 'var(--space-lg) 0' }}>
-        <h1>Fisális — Global Affairs Data</h1>
-        <p style={{ fontSize: '1.15em' }}>
-          Uma plataforma aberta para estudar Relações Internacionais: dados de países, indicadores de desenvolvimento,
-          comércio exterior brasileiro e as principais teorias da área, reunidos em um só lugar.
-        </p>
-        <p style={{ color: 'var(--color-text-muted)' }}>
-          Os dados vêm de fontes públicas — Banco Mundial e Comex Stat (MDIC) — e são atualizados automaticamente.
-        </p>
+      {/* ---------- Hero ---------- */}
+      <section className="home-hero">
+        <div className="home-hero-text">
+          <span className="kicker" style={{ color: 'var(--color-accent-strong)' }}>Dados abertos · Relações Internacionais</span>
+          <h1 className="home-title">
+            O mundo em números, <em className="em">para quem estuda o mundo.</em>
+          </h1>
+          <p className="home-lead">
+            Arco reúne em uma só interface os indicadores de desenvolvimento do Banco Mundial, um mapa-múndi
+            interativo, as estatísticas do comércio exterior brasileiro e uma biblioteca de teorias de RI —
+            tudo filtrável, citável e gratuito.
+          </p>
+          <div className="home-actions">
+            <Link className="btn btn-primary btn-lg" to="/mapa">Explorar o mapa →</Link>
+            <Link className="btn btn-secondary btn-lg" to="/indicadores">Ver indicadores</Link>
+          </div>
+        </div>
+        <figure className="home-figure">
+          <div className="home-frame"><HeroArt /></div>
+          <figcaption className="muted">
+            <span>Arcada, espelho d’água e jardim — concreto aparente e vegetação</span>
+          </figcaption>
+        </figure>
       </section>
 
-      <section style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-lg)', margin: 'var(--space-lg) 0' }}>
-        <div>
-          <div style={{ color: 'var(--color-text-muted)' }}>População mundial{population && ` (${population[0]})`}</div>
-          <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>{formatValue(population?.[1], 'compact')}</div>
-        </div>
-        <div>
-          <div style={{ color: 'var(--color-text-muted)' }}>PIB mundial{gdp && ` (${gdp[0]})`}</div>
-          <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>{formatValue(gdp?.[1], 'currency')}</div>
-        </div>
-        <div>
-          <div style={{ color: 'var(--color-text-muted)' }}>Teorias na biblioteca</div>
-          <div style={{ fontSize: '1.5rem', fontWeight: 700 }}>{THEORIES.length}</div>
-        </div>
-      </section>
+      {/* ---------- Stats band ---------- */}
+      <div className="bleed">
+        <div className="frieze frieze-lg" />
+        <section className="slab home-stats num">
+          <div className="home-stat">
+            <span className="home-stat-label">População mundial</span>
+            <span className="home-stat-value">{formatValue(population?.[1], 'compact')}</span>
+            <span className="home-stat-note">Banco Mundial · {population?.[0] ?? '—'}</span>
+          </div>
+          <div className="home-stat">
+            <span className="home-stat-label">PIB mundial</span>
+            <span className="home-stat-value">{gdp ? `US$ ${formatShort(gdp[1], 2)}` : '—'}</span>
+            <span className="home-stat-note">US$ correntes · {gdp?.[0] ?? '—'}</span>
+          </div>
+          <div className="home-stat">
+            <span className="home-stat-label">Saldo comercial BR</span>
+            <span className="home-stat-value">{balance ? `US$ ${formatShort(balance.value)}` : '—'}</span>
+            <span className="home-stat-note">
+              {balance ? `${balance.value >= 0 ? 'Superávit' : 'Déficit'} · ${balance.label}` : ''}
+            </span>
+          </div>
+          <div className="home-stat">
+            <span className="home-stat-label">Última atualização</span>
+            <span className="home-stat-value">{meta.data ? formatDate(meta.data.updated) : '—'}</span>
+            <span className="home-stat-note">{trade.data ? `Comércio até ${formatDate(trade.data.latest)}` : ''}</span>
+          </div>
+        </section>
+        <div className="garden-line" />
+      </div>
 
-      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 'var(--space-md)' }}>
-        {SECTIONS.map((s) => (
-          <Link key={s.to} to={s.to} style={{ color: 'inherit', textDecoration: 'none', border: '1px solid var(--color-border)', borderRadius: 'var(--radius)', padding: 'var(--space-md)' }}>
-            <h2 style={{ marginTop: 0 }}>{s.title} →</h2>
-            <p>{s.text}</p>
-          </Link>
-        ))}
-        <div style={{ border: '1px dashed var(--color-border)', borderRadius: 'var(--radius)', padding: 'var(--space-md)', color: 'var(--color-text-muted)' }}>
-          <h2 style={{ marginTop: 0 }}>Notícias</h2>
-          <p>Em breve: notícias internacionais de fontes confiáveis, resumidas com inteligência artificial.</p>
-        </div>
-      </section>
+      {/* ---------- Five sections ---------- */}
+      <div className="home-sections-head">
+        <h2>Cinco maneiras de ler o sistema internacional</h2>
+        <span className="muted">Cinco vãos sob a mesma laje</span>
+      </div>
+      <div className="home-sections">
+        {sections.map((s) => {
+          const body = (
+            <>
+              <span className="vao-head">
+                <span className="vao-arch" style={{ right: 22 }} />
+                <span className="vao-arch" style={{ right: 84 }} />
+                <span className="vao-band" style={{ background: s.color }} />
+                <span className="vao-number">{s.n}</span>
+              </span>
+              <span className="vao-body">
+                <span className="vao-title">{s.title}</span>
+                <span className="vao-text">{s.text}</span>
+                <span className="vao-link" style={{ color: s.color }}>{s.link}{s.to && ' →'}</span>
+              </span>
+            </>
+          )
+          return s.to
+            ? <Link key={s.n} to={s.to} className="vao">{body}</Link>
+            : <div key={s.n} className="vao vao-soon" aria-disabled="true">{body}</div>
+        })}
+      </div>
 
-      <p style={{ color: 'var(--color-text-muted)', marginTop: 'var(--space-lg)' }}>
-        {meta.data && <>Indicadores atualizados em {meta.data.updated}. </>}
-        {trade.data && <>Comércio exterior até {trade.data.latest}.</>}
-      </p>
+      {/* ---------- About ---------- */}
+      <section className="home-about">
+        <h3>Sobre o projeto</h3>
+        <p><em>Para quem.</em> Estudantes e pesquisadores de Relações Internacionais, jornalistas e leitores
+          curiosos que precisam de números confiáveis sem abrir cinco portais diferentes.</p>
+        <p><em>Como funciona.</em> Os dados são coletados das fontes oficiais, padronizados em pt-BR e
+          atualizados automaticamente. Cada número informa o ano de referência e leva à definição original.</p>
+        <p><em>Código aberto.</em> Metodologia, pipelines e esta interface estão publicados no GitHub.
+          Correções e sugestões são bem-vindas.</p>
+      </section>
     </>
   )
 }

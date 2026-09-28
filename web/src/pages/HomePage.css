@@ -1,0 +1,117 @@
+/* ---------- Hero ---------- */
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 620px);
+  gap: 72px;
+  align-items: center;
+  padding: 32px 0 64px;
+}
+.home-hero-text { display: flex; flex-direction: column; gap: 28px; }
+.home-title {
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+.home-lead { font-size: 18px; line-height: 1.6; max-width: 580px; margin: 0; text-align: justify; hyphens: auto; }
+.home-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-lg { font-size: 16px; padding: 12px 20px; }
+
+.home-figure { display: flex; flex-direction: column; gap: 10px; margin: 0; }
+.home-frame { border: 10px solid var(--color-surface); outline: 1px solid rgba(60, 58, 54, 0.2); line-height: 0; }
+.home-figure figcaption { font-size: 13px; }
+
+/* ---------- Stats band ---------- */
+.home-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 40px var(--gutter);
+}
+.home-stat { display: flex; flex-direction: column; gap: 8px; padding: 0 24px; border-left: 1px solid rgba(214, 209, 199, 0.25); }
+.home-stat-label { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #a9c98a; }
+.home-stat-value { font-family: var(--font-heading); font-size: 42px; line-height: 1; font-weight: 500; }
+.home-stat-note { font-size: 12px; color: var(--color-on-slab-muted); }
+
+/* Garden line: the green "laje de jardim" under the slab */
+.garden-line { height: 14px; background: var(--folha); border-top: 6px solid var(--mata); }
+
+/* ---------- Five sections ("cartão-vão") ---------- */
+.home-sections-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-sm);
+  padding: 88px 0 36px;
+}
+.home-sections-head h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 400; margin: 0; }
+
+.home-sections { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+
+.vao {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+a.vao:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(45, 43, 43, 0.12); }
+.vao-soon { opacity: 0.75; }
+
+.vao-head {
+  height: 128px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 14px 16px 22px;
+  background-color: #cfcac0;
+  background-image: repeating-linear-gradient(rgba(60, 58, 54, 0.12) 0 1px, transparent 1px 12px);
+}
+.vao-arch {
+  position: absolute;
+  top: 26px;
+  width: 44px;
+  height: 110px;
+  border-radius: 22px 22px 0 0;
+  background: #6d7a74;
+  box-shadow: 0 0 0 6px var(--concreto);
+}
+.vao-band { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; }
+.vao-number { position: relative; font-family: var(--font-heading); font-size: 44px; line-height: 1; color: var(--concreto-escuro); }
+
+.vao-body { display: flex; flex-direction: column; gap: 10px; padding: 20px 18px 22px; flex: 1; }
+.vao-title { font-family: var(--font-heading); font-size: 28px; font-weight: 600; line-height: 1.1; }
+.vao-text { font-size: 14px; line-height: 1.5; color: var(--color-text-muted); flex: 1; }
+.vao-link { font-size: 13px; }
+[data-theme='dark'] .vao-link { filter: brightness(1.5); }
+
+/* ---------- About ---------- */
+.home-about {
+  display: grid;
+  grid-template-columns: 280px repeat(3, minmax(0, 1fr));
+  gap: 48px;
+  margin: 96px 0 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-text);
+}
+.home-about h3 { font-size: 30px; font-weight: 400; margin: 0; }
+.home-about p { font-size: 15px; line-height: 1.65; text-align: justify; hyphens: auto; margin: 0; }
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 1100px) {
+  .home-hero { grid-template-columns: 1fr; gap: 40px; }
+  .home-sections { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .home-about { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .home-stats { grid-template-columns: 1fr 1fr; row-gap: 28px; padding: 28px var(--gutter); }
+  .home-stat { padding: 0 12px; }
+  .home-stat-value { font-size: 30px; }
+  .home-sections { grid-template-columns: 1fr; }
+  .home-about { grid-template-columns: 1fr; gap: 20px; }
+}

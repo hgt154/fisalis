@@ -37,12 +37,18 @@ export function formatValue(value: number | null | undefined, format: IndicatorF
 }
 
 
+// Short numbers: 33 bi, 500 mi, 2,5 mil (axes, stat bands). `digits` = max decimals
+export function formatShort(value: number, digits = 1): string {
+  return new Intl.NumberFormat(LOCALE, { notation: 'compact', compactDisplay: 'short', maximumFractionDigits: digits }).format(value)
+}
 
-const short = new Intl.NumberFormat(LOCALE, { notation: 'compact', compactDisplay: 'short', maximumFractionDigits: 1 })
-
-// Short numbers for chart axes: 33 bi, 500 mi, 2,5 mil
-export function formatShort(value: number): string {
-  return short.format(value)
+// "2026-09-15" -> "15 set. 2026";  "2026-08" -> "ago. 2026"
+export function formatDate(iso: string): string {
+  const [y, m, d] = iso.split('-').map(Number)
+  const options: Intl.DateTimeFormatOptions = d
+    ? { day: '2-digit', month: 'short', year: 'numeric' }
+    : { month: 'short', year: 'numeric' }
+  return new Date(y, m - 1, d || 1).toLocaleDateString(LOCALE, options).replace(/ de /g, ' ')
 }
 
 // Year-over-year change with an arrow: ↑ 12,2%  /  ↓ 3,4%

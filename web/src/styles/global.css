@@ -145,3 +145,8 @@ table, .num { font-variant-numeric: tabular-nums; }
   --color-accent: var(--broto);
   --color-border: rgba(214, 209, 199, 0.2);
 }
+
+
+/* Full-width band inside the centered container (hero, stat slabs) */
+.bleed { margin-inline: calc(50% - 50vw); }
+body { overflow-x: clip; }

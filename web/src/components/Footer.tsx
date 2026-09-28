@@ -1,16 +1,11 @@
 import { useJson } from '../lib/data'
+import { formatDate } from '../lib/format'
 import type { TradeMeta } from '../lib/trade'
 import Logo from './Logo'
 import './Footer.css'
 
 const REPO_URL = 'https://github.com/hgt154/fisalis'
 
-// "2026-09-15" -> "15 set. 2026";  "2026-08" -> "ago. 2026"
-function formatDate(iso: string): string {
-  const [y, m, d] = iso.split('-').map(Number)
-  const options: Intl.DateTimeFormatOptions = d ? { day: '2-digit', month: 'short', year: 'numeric' } : { month: 'short', year: 'numeric' }
-  return new Date(y, m - 1, d || 1).toLocaleDateString('pt-BR', options).replace(/ de /g, ' ')
-}
 
 export default function Footer() {
   const { data: meta } = useJson<{ updated: string }>('meta.json')
