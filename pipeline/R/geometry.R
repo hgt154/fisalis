@@ -37,3 +37,28 @@ export_world <- function(shapes) {
   
   message("Wrote ", topo, " (", round(file.size(topo) / 1024), " KB)")
 }
+
+
+
+
+
+# Brazilian states keyed by their two-letter code (SP, MG ...)
+build_brazil_states <- function() {
+  geobr::read_state(year = 2020, showProgress = FALSE) |>
+    transmute(uf = abbrev_state)
+}
+
+export_brazil <- function(shapes) {
+  dir.create(PATH_RAW, showWarnings = FALSE)
+  geo  <- file.path(PATH_RAW, "brazil.geojson")
+  topo <- file.path(PATH_OUT, "brazil.topo.json")
+  
+  st_write(shapes, geo, delete_dsn = TRUE, quiet = TRUE)
+  
+  status <- system2("npx", c("-y", "mapshaper", shQuote(geo),
+                             "-simplify", "10%", "keep-shapes",
+                             "-rename-layers", "states",
+                             "-o", "format=topojson", "quantization=1e5", shQuote(topo)))
+  if (status != 0) stop("mapshaper failed")
+  message("Wrote ", topo, " (", round(file.size(topo) / 1024), " KB)")
+}
