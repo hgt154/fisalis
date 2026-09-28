@@ -39,4 +39,35 @@ export function useJson<T>(path: string | null) {
     error: current ? state.error : null,
     loading: path !== null && !current,
   }
+
+  
+}
+
+interface ManyState<T> {
+  key: string | null
+  data: T[]
+  error: Error | null
+}
+
+// Load several files at once, in the same order as `paths`:
+// const { data } = useJsonMany<Series>(['series/BRA.json', 'series/ARG.json'])
+export function useJsonMany<T>(paths: string[]) {
+  const key = paths.join('|')
+  const [state, setState] = useState<ManyState<T>>({ key: null, data: [], error: null })
+
+  useEffect(() => {
+    let cancelled = false
+    const list = key ? key.split('|') : []
+    Promise.all(list.map((path) => loadJson<T>(path)))
+      .then((data) => { if (!cancelled) setState({ key, data, error: null }) })
+      .catch((error: Error) => { if (!cancelled) setState({ key, data: [], error }) })
+    return () => { cancelled = true }
+  }, [key])
+
+  const current = state.key === key
+  return {
+    data: current ? state.data : [],
+    error: current ? state.error : null,
+    loading: !current,
+  }
 }

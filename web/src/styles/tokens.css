@@ -21,7 +21,6 @@
   --max-width: 1200px;
 
   /* Map colors (placeholders until the Figma design) */
-
   --map-water: #e8eef3;
   --map-border: #ffffff;
   --map-no-data: #e3e3e3;
@@ -31,4 +30,11 @@
   --income-lower-middle: #c6dbef;
   --income-low: #fde0c5;
 
+
+  /* Series colors: one per economy being compared (placeholders until the Figma design) */
+  --series-1: #1f5f99;
+  --series-2: #c2571a;
+  --series-3: #2f8f5b;
+  --series-4: #8a4fa3;
+  --series-aggregate: #777777;
 }
