@@ -13,5 +13,5 @@ export function incomeColor(income: string | null | undefined): string {
 }
 
 // Sequential colors for "color the map by indicator" (light = low, dark = high).
-// Colorblind-safe blues; move them to tokens.css when the design arrives.
-export const SEQUENTIAL = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c']
+// Sequential colors from the design: âmbar (low) → mata (high)
+export const SEQUENTIAL = ['#ece3c4', '#d9c98a', '#b3ab72', '#7d9160', '#4a7350', '#1f4a33']

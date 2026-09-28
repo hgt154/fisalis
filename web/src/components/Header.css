@@ -1,0 +1,51 @@
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  height: 76px;
+  padding: 0 var(--gutter);
+  position: relative;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; color: var(--color-text); text-decoration: none; }
+.brand-text { display: flex; flex-direction: column; line-height: 1; }
+.brand-name { font-family: var(--font-heading); font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+.brand-tag { font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; margin-top: 3px; color: var(--color-text-muted); }
+
+.site-nav { display: flex; gap: 28px; margin: 0 auto; }
+.site-nav a {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 4px 0 5px;
+  border-bottom: 1.5px solid transparent;
+}
+.site-nav a:hover { color: var(--color-text); }
+.site-nav a.active { color: var(--color-text); border-bottom-color: var(--color-accent); }
+
+.header-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+/* (.header-actions prefix: must beat .btn's display, which loads later) */
+.header-actions .menu-button { display: none; }
+
+/* Phones and small tablets: links move into a drop-down panel */
+@media (max-width: 900px) {
+  .site-header { height: 60px; }
+  .brand-tag { display: none; }
+  .header-actions .menu-button { display: inline-flex; }
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-sm) var(--gutter) var(--space-md);
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 50;
+  }
+  .site-nav.open { display: flex; }
+  .site-nav a { padding: 12px 0; border-bottom: 1px solid var(--color-border); }
+  .site-nav a.active { border-bottom-color: var(--color-border); color: var(--color-accent); }
+}

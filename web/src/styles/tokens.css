@@ -1,15 +1,30 @@
-/* Design tokens: every color, font and spacing value lives here.
-   Placeholder values until the Figma design is ready. */
+/* Arco · Concreto e mata — design tokens */
 :root {
-  --color-bg: #ffffff;
-  --color-surface: #f5f5f5;
-  --color-text: #111111;
-  --color-text-muted: #666666;
-  --color-border: #dddddd;
-  --color-accent: #b7791f;
+  /* Palette */
+  --concreto-claro: #d6d1c7;
+  --concreto: #a8a296;
+  --concreto-escuro: #3c3a36;
+  --mata: #1f4a33;
+  --folha: #2f6b45;
+  --broto: #8fb05a;
+  --jacaranda: #8a4b2a;
+  --ambar: #b68235;
 
-  --font-heading: Georgia, serif;
-  --font-body: system-ui, sans-serif;
+  /* Roles used by the components */
+  --color-bg: #ebe8e2;
+  --color-surface: #f2f0eb;
+  --color-slab: var(--concreto-escuro);      /* dark bands: stats, footer */
+  --color-on-slab: #f3f1ec;
+  --color-on-slab-muted: #c9c3b8;
+  --color-text: #201f1d;
+  --color-text-muted: #6b675f;
+  --color-border: var(--concreto-claro);
+  --color-border-strong: var(--concreto);
+  --color-accent: var(--folha);
+  --color-accent-strong: var(--mata);
+
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
 
   --space-xs: 4px;
   --space-sm: 8px;
@@ -17,43 +32,59 @@
   --space-lg: 32px;
   --space-xl: 64px;
 
-  --radius: 6px;
-  --max-width: 1200px;
+  --radius: 2px;
+  --max-width: 1328px;
+  --gutter: 56px;
 
-  /* Map colors (placeholders until the Figma design) */
-  --map-water: #e8eef3;
-  --map-border: #ffffff;
-  --map-no-data: #e3e3e3;
-  --map-selected-stroke: #111111;
-  --income-high: #2c6fa6;
-  --income-upper-middle: #6aaed6;
-  --income-lower-middle: #c6dbef;
-  --income-low: #fde0c5;
+  /* Map */
+  --map-water: #e4e0d7;
+  --map-border: var(--color-bg);
+  --map-no-data: var(--concreto-claro);
+  --map-selected-stroke: var(--ambar);
+  --income-high: #1f4a33;
+  --income-upper-middle: #3d7449;
+  --income-lower-middle: #8fb05a;
+  --income-low: #d4dcb5;
 
+  /* Series (up to 4 countries) */
+  --series-1: var(--folha);
+  --series-2: var(--ambar);
+  --series-3: var(--jacaranda);
+  --series-4: #3e5a55;
+  --series-aggregate: var(--concreto);
 
-  /* Series colors: one per economy being compared (placeholders until the Figma design) */
-  --series-1: #1f5f99;
-  --series-2: #c2571a;
-  --series-3: #2f8f5b;
-  --series-4: #8a4fa3;
-  --series-aggregate: #777777;
+  /* Trade */
+  --flow-export: var(--folha);
+  --flow-import: var(--ambar);
+  --flow-total: var(--mata);
+  --flow-balance: var(--jacaranda);
 
+  --continent-africa: var(--broto);
+  --continent-americas: var(--ambar);
+  --continent-asia: var(--folha);
+  --continent-europe: #3e5a55;
+  --continent-oceania: var(--concreto);
+  --continent-other: var(--concreto-claro);
 
-    /* Trade page colors (placeholders until the Figma design) */
-  --flow-export: #4f8a4f;
-  --flow-import: #6a4c93;
-  --flow-total: #1f5f99;
-  --flow-balance: #b7791f;
+  --sector-agro: var(--broto);
+  --sector-extractive: var(--ambar);
+  --sector-manufacturing: var(--concreto-escuro);
+  --sector-other: var(--concreto-claro);
+}
 
-  --continent-africa: #3f9c8a;
-  --continent-americas: #6b8fc7;
-  --continent-asia: #8c3f4f;
-  --continent-europe: #6f7894;
-  --continent-oceania: #d19a3f;
-  --continent-other: #9a9a9a;
-
-  --sector-agro: #d8b84a;
-  --sector-extractive: #98a4a8;
-  --sector-manufacturing: #2f3e54;
-  --sector-other: #c8604a;
+/* Dark theme: <html data-theme="dark"> (set by the theme button) */
+[data-theme='dark'] {
+  --color-bg: #22211e;
+  --color-surface: #2c2b27;
+  --color-slab: #1a1917;
+  --color-text: #ebe8e2;
+  --color-text-muted: #a8a296;
+  --color-border: #45423c;
+  --color-border-strong: #5c5850;
+  --color-accent: var(--broto);
+  --color-accent-strong: var(--broto);
+  --map-water: #2a2925;
+  --map-border: #22211e;
+  --map-no-data: #45423c;
+  color-scheme: dark;
 }

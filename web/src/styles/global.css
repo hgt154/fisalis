@@ -1,3 +1,4 @@
+/* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
@@ -5,15 +6,142 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.55;
 }
 
-h1, h2, h3 { font-family: var(--font-heading); }
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-sm);
+}
+h1 { font-size: clamp(34px, 5vw, 48px); }
+h2 { font-size: clamp(26px, 3.5vw, 32px); }
+h3 { font-size: 22px; }
 
-a { color: var(--color-accent); }
+a { color: var(--color-accent); text-underline-offset: 3px; }
+
+table, .num { font-variant-numeric: tabular-nums; }
+
+/* Emphasis in titles: italic, in the accent green ("O mundo em números, *para quem estuda*") */
+.em { font-style: italic; color: var(--color-accent); }
 
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 var(--gutter);
+}
+@media (max-width: 700px) {
+  :root { --gutter: 20px; }
+}
+
+/* Small uppercase label above titles and figures */
+.kicker {
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.muted { color: var(--color-text-muted); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+}
+.btn-primary { color: var(--color-accent); border-color: var(--color-accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.btn-secondary { border-color: var(--color-border-strong); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.btn-ghost { color: var(--color-accent); padding-inline: 6px; }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.btn-icon { width: 36px; height: 36px; padding: 0; }
+
+/* ---------- Segmented control (Toggle) ---------- */
+.seg {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+}
+.seg-opt {
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.seg-opt + .seg-opt { border-left: 1px solid var(--color-border-strong); }
+.seg-opt[aria-pressed='true'] { color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); }
+.seg-opt:not([aria-pressed='true']):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+
+/* ---------- Form fields ---------- */
+.input, select {
+  min-height: 36px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+}
+.input:focus-visible, select:focus-visible { border-color: var(--color-accent); outline: none; }
+
+/* ---------- Tags and cards ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent-strong);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* ---------- Motifs ---------- */
+/* Arcade frieze: 24 px under the header, 64 px above slabs and the footer */
+.frieze {
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='64'%3E%3Crect width='48' height='64' fill='%236d7a74'/%3E%3Cpath d='M0 8H48V64H45V30A21 21 0 0 0 3 30V64H0Z' fill='%23d6d1c7'/%3E%3Crect width='48' height='8' fill='%237a756b'/%3E%3C/svg%3E");
+  background-size: 18px 24px;
+}
+.frieze-lg { height: 64px; background-size: 48px 64px; }
+
+/* Dark concrete slab with plank texture (stats band, footer) */
+.slab {
+  background-color: var(--color-slab);
+  background-image: repeating-linear-gradient(rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 16px);
+  color: var(--color-on-slab);
+  --color-text: var(--color-on-slab);
+  --color-text-muted: var(--color-on-slab-muted);
+  --color-accent: var(--broto);
+  --color-border: rgba(214, 209, 199, 0.2);
 }
