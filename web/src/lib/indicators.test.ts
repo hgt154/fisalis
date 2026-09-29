@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { aggregateFor, buildSections } from './indicators'
+import { aggregateFor, buildSections, groupId, groupLabel } from './indicators'
 import type { IndicatorMeta } from './types'
 
 const make = (code: string, groups: IndicatorMeta['groups']): IndicatorMeta => ({
@@ -36,5 +36,24 @@ describe('aggregateFor', () => {
   })
   it('returns null without a region or income filter', () => {
     expect(aggregateFor(base, aggregates)).toBeNull()
+  })
+})
+
+describe('groupLabel', () => {
+  it('translates SDGs and adds the number and color', () => {
+    expect(groupLabel('sdg', 'SDG 13 - Climate Action')).toEqual({
+      label: 'Ação contra a mudança global do clima', kicker: 'ODS 13', color: '#3f7e44',
+    })
+  })
+
+  it('translates overview groups and falls back to the original name', () => {
+    expect(groupLabel('overview', 'Economic').label).toBe('Econômico')
+    expect(groupLabel('theme', 'Something New').label).toBe('Something New')
+  })
+})
+
+describe('groupId', () => {
+  it('builds a safe anchor id', () => {
+    expect(groupId('Health, Nutrition & Population')).toBe('g-health-nutrition-population')
   })
 })

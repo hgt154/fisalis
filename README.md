@@ -1,4 +1,4 @@
-# Fisális — Global Affairs Data
+# Arco — Global Affairs Data
 
 An open data platform for studying **International Relations**: an interactive world map, key development indicators, Brazilian foreign trade statistics, a library of IR theories, and AI-summarized news — all in one place.
 

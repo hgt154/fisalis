@@ -33,4 +33,36 @@ Sys.sleep(1) plus the comexr.retry_time option respect the API's rate limit, whi
 ## Comex Stat validation (2026-09-28)
 - August 2026 totals reproduce Comex Vis exactly: exports US$ 33.2 bn (+12.2% YoY),
   imports US$ 25.8 bn (+9.2%), trade flow US$ 58.9 bn (+10.9%), balance US$ 7.4 bn.
-  
+
+## React Markdown
+- yaml reads the data block at the top of each theory file.
+react-markdown turns the Markdown text into HTML safely.
+
+- how a file is organized
+Between the two --- lines	The frontmatter: structured data in YAML format. The page uses it for the cards, filters and search.
+subjects	Codes from this list: politica, economica, seguranca, filosofica, sociologica. A theory can have several.
+related	The file names (without .md) of other theories. They become links.
+references	Put each one in quotes. Colons and commas inside a citation would otherwise confuse YAML.
+After the second ---	Normal Markdown text: ## headings, **bold**, - lists. It becomes the page body.
+
+- Adding a theory from now on
+Copy realismo.md and rename it, e.g. construtivismo.md. Use lowercase with no accents or spaces, since the name becomes the URL (/teorias/construtivismo).
+Edit the frontmatter and the text.
+Save. The theory appears on the site right away, with no code changes.
+Commit, e.g. docs(theories): add constructivism.
+
+Two tips:
+
+If a new theory makes the page show "Missing frontmatter" or an empty card, the YAML block probably has a typo. The usual culprits are a missing --- line, or a colon inside an unquoted value (quote it).
+You can also add a new subject, e.g. historica: add one line to SUBJECTS in theories.ts.
+
+
+## Design
+- Three tricks worth knowing:
+
+The arcade frieze is a tiny SVG repeated as a background. It's the exact tile from the design, one arch 48×64 px, drawn with background-size. No images to load.
+.slab redefines the color tokens inside itself. Everything inside a slab (footer, stats band) automatically gets light text and the bright "broto" accent, because CSS variables inherit. Any component placed on a slab adapts with no special code.
+clamp(34px, 5vw, 48px) makes headings shrink smoothly on small screens, with no media queries needed.
+
+- npm test startup error
+  npm pkg set scripts.fresh="rm -rf node_modules package-lock.json && npm install"

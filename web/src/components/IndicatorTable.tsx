@@ -1,6 +1,7 @@
 import { formatValue } from '../lib/format'
-import type { Section } from '../lib/indicators'
-import type { Series } from '../lib/types'
+import { groupId, groupLabel, type Section, type View } from '../lib/indicators'
+import type { IndicatorMeta, Series } from '../lib/types'
+import InfoPopover from './InfoPopover'
 import Sparkline from './Sparkline'
 
 export interface Economy {
@@ -11,64 +12,90 @@ export interface Economy {
 }
 
 interface Props {
+  view: View
   sections: Section[]
   economies: Economy[]
   fromYear: number
   toYear: number
+  loading?: boolean
 }
 
 const lastPoint = (points?: [number, number][]) => (points && points.length ? points[points.length - 1] : null)
 
-export default function IndicatorTable({ sections, economies, fromYear, toYear }: Props) {
+export default function IndicatorTable({ view, sections, economies, fromYear, toYear, loading = false }: Props) {
+  const multi = economies.length > 1
+
   return (
-    <>
-      {sections.map((section) => (
-        <section key={section.group} id={section.group}>
-          <h2>{section.group}</h2>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr style={{ textAlign: 'left', color: 'var(--color-text-muted)' }}>
-                <th>Indicador</th>
-                {economies.map((e) => (
-                  <th key={e.iso3} style={{ textAlign: 'right', color: e.color }}>{e.name}</th>
-                ))}
-                <th style={{ textAlign: 'right' }}>Tendência ({fromYear}–{toYear})</th>
-              </tr>
-            </thead>
-            <tbody>
-              {section.items.map((indicator) => (
-                <tr key={indicator.code} style={{ borderTop: '1px solid var(--color-border)' }}>
-                  <td style={{ padding: 'var(--space-sm) 0' }}>
-                    {indicator.name_pt}{' '}
-                    {indicator.description && (
-                      <span title={indicator.description} style={{ cursor: 'help', color: 'var(--color-text-muted)' }}>ⓘ</span>
-                    )}
-                    {indicator.source_note && (
-                      <div style={{ fontSize: '0.85em', color: 'var(--color-text-muted)' }}>{indicator.source_note}</div>
-                    )}
-                  </td>
-                  {economies.map((e) => {
-                    const last = lastPoint(e.series?.[indicator.code])
-                    return (
-                      <td key={e.iso3} style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
-                        <strong>{formatValue(last?.[1], indicator.format)}</strong>
-                        {last && <span style={{ color: 'var(--color-text-muted)' }}> ({last[0]})</span>}
-                      </td>
-                    )
-                  })}
-                  <td style={{ textAlign: 'right' }}>
-                    <Sparkline
-                      fromYear={fromYear}
-                      toYear={toYear}
-                      series={economies.map((e) => ({ color: e.color, points: e.series?.[indicator.code] ?? [] }))}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
+    <div className="ind-table">
+      <div className="ind-row ind-head kicker" aria-hidden="true">
+        <span>Indicador</span>
+        <span>Valor mais recente</span>
+        <span className="ind-years"><span>{fromYear}</span><span>{toYear}</span></span>
+      </div>
+
+      {sections.map((section) => {
+        const { label, kicker, color } = groupLabel(view, section.group)
+        const count = section.items.length
+        return (
+          <section key={section.group} id={groupId(section.group)} className="ind-section">
+            <header className="ind-section-head">
+              <h2>
+                {color && <span className="sdg-square" style={{ background: color }} />}
+                {kicker && <span className="kicker">{kicker}</span>}
+                {label}
+              </h2>
+              <span className="muted">{count} {count === 1 ? 'indicador' : 'indicadores'}</span>
+            </header>
+
+            {section.items.map((indicator) => (
+              <div key={indicator.code} className={`ind-row${multi ? ' multi' : ''}`}>
+                <div className="ind-name">
+                  {indicator.name_pt}
+                  {indicator.description && <InfoPopover indicator={indicator} />}
+                </div>
+                <Values indicator={indicator} economies={economies} loading={loading} />
+                <div className="ind-spark">
+                  <Sparkline
+                    fromYear={fromYear}
+                    toYear={toYear}
+                    series={economies.map((e) => ({ color: e.color, points: e.series?.[indicator.code] ?? [] }))}
+                  />
+                </div>
+              </div>
+            ))}
+          </section>
+        )
+      })}
+    </div>
+  )
+}
+
+// One big number for a single economy; a small colored list when comparing
+function Values({ indicator, economies, loading }: { indicator: IndicatorMeta; economies: Economy[]; loading: boolean }) {
+  const cells = economies.map((e) => {
+    const last = lastPoint(e.series?.[indicator.code])
+    return { economy: e, last, text: loading && !e.series ? '…' : formatValue(last?.[1], indicator.format) }
+  })
+
+  if (cells.length === 1) {
+    const { last, text } = cells[0]
+    return (
+      <div className="ind-values">
+        <span className={last ? 'ind-value' : 'ind-empty'}>{text}</span>
+        {last && <span className="ind-year"> ({last[0]})</span>}
+      </div>
+    )
+  }
+
+  return (
+    <ul className="ind-values ind-values-multi">
+      {cells.map(({ economy, last, text }) => (
+        <li key={economy.iso3} style={{ '--c': economy.color } as React.CSSProperties}>
+          <span className="ind-code" title={economy.name}>{economy.iso3}</span>
+          <span className={last ? 'ind-value-sm' : 'ind-empty'}>{text}</span>
+          {last && <span className="ind-year"> ({last[0]})</span>}
+        </li>
       ))}
-    </>
+    </ul>
   )
 }

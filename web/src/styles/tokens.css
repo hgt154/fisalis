@@ -86,5 +86,12 @@
   --map-water: #2a2925;
   --map-border: #22211e;
   --map-no-data: #45423c;
+
+  /* Brighter series so lines stay readable on the dark background */
+  --series-1: #9cc36a;
+  --series-2: #e7bc5a;
+  --series-3: #e8836b;
+  --series-4: #8fb8b0;
+  --series-aggregate: #8a857b;
   color-scheme: dark;
 }
