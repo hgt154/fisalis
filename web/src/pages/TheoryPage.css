@@ -1,0 +1,88 @@
+/* ---------- Head ---------- */
+.theory-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px 56px;
+  align-items: end;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--color-border);
+}
+.theory-head .theory-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0 0 14px; padding: 0; }
+.theory-head .tag { text-decoration: none; }
+.theory-head h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 400; margin: 0 0 12px; }
+.theory-lead { max-width: 620px; margin: 0; font-size: 17px; font-style: italic; line-height: 1.5; }
+
+.theory-facts { margin: 0; border-top: 1.5px solid var(--color-text); font-size: 13px; }
+.theory-facts > div { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--color-border); }
+.theory-facts dt { color: var(--color-text-muted); }
+.theory-facts dd { margin: 0; }
+
+/* ---------- Three columns: contents | text | side ---------- */
+.theory-layout {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr) 280px;
+  gap: 48px;
+  padding: 32px 0 var(--space-xl);
+}
+
+.theory-toc { position: sticky; top: var(--space-md); align-self: start; font-size: 13px; }
+.theory-toc ol { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.theory-toc a { color: var(--color-text); text-decoration: none; }
+.theory-toc a:hover { color: var(--color-accent); }
+
+/* ---------- The text ---------- */
+.theory-main { min-width: 0; max-width: 680px; }
+.theory-body { font-size: 15.5px; line-height: 1.7; }
+.theory-body h2 { font-size: 28px; margin: 32px 0 10px; scroll-margin-top: var(--space-md); }
+.theory-body h2:first-child { margin-top: 0; }
+.theory-body p { margin: 0 0 14px; text-align: justify; hyphens: auto; }
+
+/* Drop cap on the first paragraph */
+.theory-body > p:first-of-type::first-letter {
+  float: left;
+  margin: 6px 10px 0 0;
+  font-family: var(--font-heading);
+  font-size: 64px;
+  line-height: 0.8;
+  color: var(--color-accent);
+}
+
+/* A quote between two rules; its last line (the source) is small */
+.theory-body blockquote { margin: 28px 0; padding: 20px 0; border-top: 1px solid var(--color-border-strong); border-bottom: 1px solid var(--color-border); }
+.theory-body blockquote p { margin: 0; font-family: var(--font-heading); font-size: 24px; font-style: italic; line-height: 1.35; text-align: left; }
+.theory-body blockquote p + p { margin-top: 10px; font-family: var(--font-body); font-size: 12px; font-style: normal; color: var(--color-text-muted); }
+
+.theory-refs { margin-top: 40px; padding-top: 16px; border-top: 1.5px solid var(--color-text); scroll-margin-top: var(--space-md); }
+.theory-refs h2 { font-size: 24px; margin: 0 0 10px; }
+.theory-refs ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
+.theory-refs li { padding-left: 24px; text-indent: -24px; }   /* hanging indent, like a bibliography */
+
+/* ---------- Side column ---------- */
+.theory-side { display: flex; flex-direction: column; gap: 28px; }
+.theory-side .kicker { margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--color-border-strong); }
+
+.side-concepts { margin: 0; }
+.side-concepts > div { padding: 10px 0; border-bottom: 1px solid var(--color-border); }
+.side-concepts dt { font-family: var(--font-heading); font-size: 17px; font-weight: 600; }
+.side-concepts dd { margin: 2px 0 0; font-size: 12.5px; color: var(--color-text-muted); }
+
+.side-authors { list-style: none; margin: 0; padding: 0; font-size: 13.5px; }
+.side-authors li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--color-border); }
+.side-authors .muted { font-size: 12px; white-space: nowrap; }
+
+.side-related { display: flex; flex-direction: column; gap: 10px; }
+.side-related .card { color: var(--color-text); text-decoration: none; gap: 4px; }
+.side-related .card:hover { border-color: var(--color-accent); }
+.side-related strong { font-family: var(--font-heading); font-size: 17px; }
+.side-related .muted { font-size: 12.5px; }
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 1100px) {
+  .theory-layout { grid-template-columns: minmax(0, 1fr) 260px; }
+  .theory-toc { display: none; }
+}
+@media (max-width: 800px) {
+  .theory-head, .theory-layout { grid-template-columns: minmax(0, 1fr); }
+  .theory-main { max-width: none; }
+  .theory-body p { text-align: left; }
+}

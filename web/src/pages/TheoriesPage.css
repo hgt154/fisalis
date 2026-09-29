@@ -1,0 +1,99 @@
+/* ---------- Head: title on the left, short intro on the right ---------- */
+.theories-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px var(--space-xl);
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+.theories-head h1 { max-width: 640px; }
+.theories-intro { max-width: 380px; margin: 0 0 24px; font-size: 14px; }
+
+.theories-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 40px;
+  padding: 28px 0 var(--space-xl);
+}
+
+/* ---------- Filters ---------- */
+.theories-filters .filters-toggle { display: none; }
+.filters-body { position: sticky; top: var(--space-md); display: flex; flex-direction: column; gap: 22px; }
+.filter-group { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.filter-group legend { padding: 0; margin-bottom: 6px; }
+.filter-group .input { width: 100%; }
+
+.check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; cursor: pointer; }
+.check span:nth-child(2) { flex: 1; }
+.check input { accent-color: var(--color-accent); margin: 0; }
+
+/* ---------- Results bar ---------- */
+.results-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid var(--color-text);
+}
+.results-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; }
+.results-summary .chip {
+  padding: 2px 10px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--color-text);
+  background: none;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.results-summary .chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.results-bar .seg { margin: 0 !important; }
+
+/* ---------- List view: years | title + summary | tags + authors ---------- */
+.theory-list { list-style: none; margin: 0; padding: 0; }
+.theory-list > li {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 230px;
+  gap: 28px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.theory-years { padding-top: 6px; font-size: 12.5px; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.theory-list h2 { font-size: 26px; margin: 0 0 6px; }
+.theory-list h2 a, .theory-card h2 { color: var(--color-text); text-decoration: none; }
+.theory-list h2 a:hover { color: var(--color-accent); }
+.theory-list p { margin: 0; font-size: 14px; }
+
+.theory-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0 0 8px; padding: 0; }
+.theory-authors { margin: 0; font-size: 12.5px; font-style: italic; color: var(--color-text-muted); }
+
+/* ---------- Card view ---------- */
+.theory-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; padding-top: 20px; }
+.theory-card { color: var(--color-text); text-decoration: none; transition: border-color 0.15s, transform 0.15s; }
+.theory-card:hover { border-color: var(--color-accent); transform: translateY(-2px); }
+.theory-card h2 { font-size: 24px; margin: 0; }
+.theory-card p { margin: 0; font-size: 13.5px; }
+.theory-card-foot { margin-top: auto; padding-top: 10px; }
+@media (prefers-reduced-motion: reduce) { .theory-card { transition: none; } .theory-card:hover { transform: none; } }
+
+/* ---------- Empty state ---------- */
+.theories-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 32px 0; }
+.theories-empty h2 { margin: 0; }
+.theories-empty p { margin: 0; }
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 1000px) {
+  .theory-list > li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .theory-years { padding: 0; }
+}
+@media (max-width: 800px) {
+  .theories-layout { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 16px; }
+  .theories-filters .filters-toggle { display: inline-flex; }
+  .filters-body { display: none; position: static; margin-top: 16px; }
+  .filters-body.open { display: flex; }
+  .theories-intro { margin-bottom: 0; }
+}
