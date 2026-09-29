@@ -13,7 +13,9 @@ Thumbs.db
 .Ruserdata
 pipeline/renv/library/
 pipeline/renv/staging/
-pipeline/raw/          # cached raw API responses (re-downloadable)
+
+# Cached raw API responses (re-downloadable)
+pipeline/raw/
 
 # --- Node / web ---
 web/node_modules/
