@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { useSearchParams } from 'react-router'
 import type { Country } from '../lib/types'
 import { FILTER_KEYS, filtersToParams, options, parseFilters, type GeoFilters } from '../lib/filters'
@@ -8,10 +8,11 @@ type GroupKey = 'bloc' | 'continent' | 'region' | 'income'
 
 interface Props {
   countries: Country[]
-  colors?: string[]   // optional dot color for each selected country, in order
+  colors?: string[]    // optional dot color for each selected country, in order
+  summary?: ReactNode  // optional text at the right end (e.g. "217 economias")
 }
 
-export default function GeoFilter({ countries, colors = [] }: Props) {
+export default function GeoFilter({ countries, colors = [], summary }: Props) {
   const [params, setParams] = useSearchParams()
   const filters = parseFilters(params)
   const [search, setSearch] = useState('')
@@ -101,6 +102,8 @@ export default function GeoFilter({ countries, colors = [] }: Props) {
           </button>
         )}
       </div>
+
+      {summary && <span className="geo-summary muted">{summary}</span>}
     </div>
   )
 }

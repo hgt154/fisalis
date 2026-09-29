@@ -1,0 +1,28 @@
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 28px;
+  padding-top: 14px;
+  margin-top: 8px;
+  font-size: 13px;
+  border-top: 1px solid var(--color-border);
+}
+
+.legend-items { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; margin: 0; padding: 0; }
+.legend-items li { display: flex; align-items: center; gap: 8px; }
+.legend-swatch { width: 13px; height: 13px; border-radius: 1px; }
+/* Diagonal hatching = no data (never confused with the lightest color) */
+.legend-no-data {
+  background: repeating-linear-gradient(45deg, var(--map-no-data) 0 2px, transparent 2px 4px);
+  outline: 1px solid var(--map-no-data);
+}
+
+.legend-steps { width: min(440px, 100%); margin: 0; }
+.legend-steps figcaption { margin-bottom: 6px; }
+.legend-bar { display: flex; height: 10px; }
+.legend-bar span { flex: 1; }
+.legend-ticks { position: relative; display: grid; margin-top: 4px; font-size: 11px; color: var(--color-text-muted); }
+.legend-last { position: absolute; right: 0; }
+
+.legend-note { margin: 0 0 0 auto; font-size: 12px; }

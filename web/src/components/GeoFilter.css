@@ -71,3 +71,5 @@
   .geo-selects { display: none; width: 100%; }
   .geo-selects.open { display: grid; grid-template-columns: 1fr 1fr; }
 }
+
+.geo-summary { margin-left: auto; font-size: 13px; white-space: nowrap; }

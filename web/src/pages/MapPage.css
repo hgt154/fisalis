@@ -1,0 +1,57 @@
+.map-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-md);
+}
+.map-color-by { display: flex; flex-direction: column; gap: 4px; padding-bottom: 24px; font-size: 13px; }
+.map-color-by select { width: 320px; max-width: 100%; }
+
+/* Map on the left, panel on the right, separated by a thin line */
+.map-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  margin-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.map-main { position: relative; min-width: 0; padding: 20px 28px 20px 0; border-right: 1px solid var(--color-border); }
+.map-side { padding: 24px 0 24px 32px; }
+.map-loading { position: absolute; top: 24px; left: 0; margin: 0; font-size: 12px; }
+
+.map-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 16px 0 var(--space-xl);
+  font-size: 12px;
+}
+
+/* Grey placeholder with a slow shine while the map loads */
+.skeleton {
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--color-border) 25%, var(--color-surface) 50%, var(--color-border) 75%);
+  background-size: 200% 100%;
+  animation: shine 1.4s ease-in-out infinite;
+}
+.map-skeleton { aspect-ratio: 960 / 500; }
+@keyframes shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
+
+/* Tablets and phones: the panel moves under the map, like a bottom sheet */
+@media (max-width: 1000px) {
+  .map-card { grid-template-columns: minmax(0, 1fr); border-bottom: 0; }
+  .map-main { padding-right: 0; border-right: 0; }
+  .map-side {
+    padding: 20px var(--gutter) 28px;
+    margin-inline: calc(-1 * var(--gutter));
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.06);
+  }
+  .map-color-by { width: 100%; padding-bottom: 16px; }
+  .map-color-by select { width: 100%; }
+}

@@ -45,6 +45,15 @@
   --income-upper-middle: #3d7449;
   --income-lower-middle: #8fb05a;
   --income-low: #d4dcb5;
+  --map-graticule: rgba(60, 58, 54, 0.08);
+
+  /* Sequential map scale: amber (low) -> forest (high) */
+  --seq-1: #ece3c4;
+  --seq-2: #d9c98a;
+  --seq-3: #b3ab72;
+  --seq-4: #7d9160;
+  --seq-5: #4a7350;
+  --seq-6: #1f4a33;
 
   /* Series (up to 4 countries) */
   --series-1: var(--folha);
@@ -86,6 +95,19 @@
   --map-water: #2a2925;
   --map-border: #22211e;
   --map-no-data: #45423c;
+  --map-graticule: rgba(235, 232, 226, 0.06);
+
+  /* On a dark background "more" reads as lighter, so both scales flip */
+  --income-high: #dfe6c4;
+  --income-upper-middle: #a9c98a;
+  --income-lower-middle: #5e9557;
+  --income-low: #2f4f38;
+  --seq-1: #3b3a2e;
+  --seq-2: #5e5b3c;
+  --seq-3: #7f824e;
+  --seq-4: #93a862;
+  --seq-5: #b2cc82;
+  --seq-6: #dfeab5;
 
   /* Brighter series so lines stay readable on the dark background */
   --series-1: #9cc36a;
