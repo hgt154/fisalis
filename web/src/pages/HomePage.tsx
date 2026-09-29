@@ -44,8 +44,8 @@ export default function HomePage() {
           </h1>
           <p className="home-lead">
             Arco reúne em uma só interface os indicadores de desenvolvimento do Banco Mundial, um mapa-múndi
-            interativo, as estatísticas do comércio exterior brasileiro e uma biblioteca de teorias de RI —
-            tudo filtrável, citável e gratuito.
+            interativo, as estatísticas do comércio exterior brasileiro e uma biblioteca de teorias de RI.
+            Tudo filtrável, citável e gratuito.
           </p>
           <div className="home-actions">
             <Link className="btn btn-primary btn-lg" to="/mapa">Explorar o mapa →</Link>
