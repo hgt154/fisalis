@@ -1,0 +1,27 @@
+name: Web CI
+
+# When to run: every push to main and every pull request that touches the website
+on:
+  push:
+    branches: [main]
+    paths: ['web/**', '.github/workflows/web-ci.yml']
+  pull_request:
+    paths: ['web/**']
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web        # every "run" step happens inside web/
+    steps:
+      - uses: actions/checkout@v5     # download the repo
+      - uses: actions/setup-node@v5   # install Node, and cache npm downloads between runs
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci                   # exact install from package-lock.json
+      - run: npm run lint
+      - run: npx vitest run
+      - run: npm run build
