@@ -1,5 +1,7 @@
 # Arco — Global Affairs Data
 
+![Web CI](https://github.com/hgt154/fisalis/actions/workflows/web-ci.yml/badge.svg)
+
 An open data platform for studying **International Relations**: an interactive world map, key development indicators, Brazilian foreign trade statistics, a library of IR theories, and AI-summarized news — all in one place.
 
 > 🚧 **Status:** in active development. See the [roadmap](#roadmap) for progress.
@@ -7,7 +9,7 @@ An open data platform for studying **International Relations**: an interactive w
 <!-- Add a screenshot or GIF here once the first page is live -->
 <!-- ![Fisális screenshot](docs/screenshot.png) -->
 
-**Live site:** _coming soon_
+**Live site:** https://arco-swart-one.vercel.app/
 
 ---
 

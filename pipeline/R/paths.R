@@ -6,7 +6,6 @@ br
 names(br)
 
 meta <- WDIcache()          # downloads the latest catalogs (takes ~30 s)
-View(meta$country)
 table(meta$country$region)
 
 

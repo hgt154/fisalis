@@ -4,6 +4,9 @@ library(purrr)
 # Be gentle with the API: wait longer after a "too many requests" error
 options(comexr.retry_time = 15, comexr.timeout = 180)
 
+MAX_ATTEMPTS  <- 6    # tries per request before giving up
+PAUSE_SECONDS <- 11   # the API asks for 10 s between requests; 11 leaves a margin
+
 # Column names the API returns -> the names we use everywhere else.
 # CHECK THESE in Step 2 with names(...) and fix any that differ.
 COMEX_COLS <- c(
@@ -47,7 +50,7 @@ comex_year <- function(flow, year, details, latest) {
   end <- if (year == latest_year) format(latest, "%Y-%m") else sprintf("%d-12", year)
   message("Comex: ", flow, " ", paste(details, collapse = "+"), " ", year)
   df <- NULL
-  for (attempt in 1:4) {
+  for (attempt in seq_len(MAX_ATTEMPTS)) {
     df <- tryCatch(
       comexr::comex_query(
         flow = flow, start_period = sprintf("%d-01", year), end_period = end,
@@ -62,11 +65,11 @@ comex_year <- function(flow, year, details, latest) {
     )
     if (!is.null(df)) break
   }
-  if (is.null(df)) stop("Comex query failed 4 times: ", flow, " ", year)
+  if (is.null(df)) stop("Comex query failed ", MAX_ATTEMPTS, " times: ", flow, " ", year)
   df <- df |> standardize() |> mutate(flow = flow)
   
   saveRDS(df, file)
-  Sys.sleep(1)   # pause between requests
+  Sys.sleep(PAUSE_SECONDS)   # pause between requests, so the API's rate limit is rarely hit
   df
 }
 
