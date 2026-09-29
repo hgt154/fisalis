@@ -55,8 +55,8 @@ export default function TheoriesPage() {
           <h1>Uma biblioteca das Relações Internacionais</h1>
         </div>
         <p className="theories-intro muted">
-          Das tradições clássicas às abordagens críticas: cada verbete resume o argumento central, os conceitos
-          e os autores de referência — com leituras para ir além.
+          Das tradições clássicas às abordagens críticas: cada registro resume o argumento central, os conceitos
+          e os autores de referência.
         </p>
       </header>
 
