@@ -1,0 +1,15 @@
+.bar-list { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+.bar-list li {
+  display: grid;
+  grid-template-columns: 22px minmax(90px, 150px) minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.bar-rank { font-size: 11px; color: var(--color-text-muted); }
+.bar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track { height: 9px; background: color-mix(in srgb, var(--color-border) 60%, transparent); }
+.bar-track span { display: block; height: 100%; }
+.bar-value { text-align: right; white-space: nowrap; }
+.bar-note { min-width: 44px; text-align: right; color: var(--color-text-muted); }

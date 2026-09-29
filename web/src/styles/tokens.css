@@ -115,5 +115,12 @@
   --series-3: #e8836b;
   --series-4: #8fb8b0;
   --series-aggregate: #8a857b;
+
+  /* Trade: lighter flows and a visible "manufacturing" on the dark background */
+  --flow-export: #8fb05a;
+  --flow-import: #e0a84f;
+  --flow-total: #a9c98a;
+  --flow-balance: #d98a66;
+  --sector-manufacturing: #6b675f;
   color-scheme: dark;
 }

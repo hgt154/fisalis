@@ -1,0 +1,19 @@
+.time-chart { position: relative; }
+.time-chart-svg { display: block; width: 100%; height: auto; }
+.time-chart-svg .grid { stroke: var(--color-border); stroke-dasharray: 3 3; }
+.time-chart-svg .grid.zero { stroke: var(--color-border-strong); stroke-dasharray: none; }
+.time-chart-svg .axis { font-size: 11px; fill: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.time-chart-svg .cursor { stroke: var(--color-text-muted); stroke-width: 1; }
+
+.chart-legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 18px; list-style: none; margin: 0 0 8px; padding: 0; font-size: 12.5px; }
+.chart-legend li::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-top: 2px solid var(--c);
+}
+.chart-legend li.dashed::before { border-top-style: dashed; }
+
+.tip-swatch { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 1px; }

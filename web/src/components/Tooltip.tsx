@@ -1,24 +1,19 @@
-// one tooltip style shared by all charts
-
 import type { ReactNode } from 'react'
 
+interface Props {
+  x: number
+  y: number
+  flip?: boolean       // open to the left of the pointer (near the right edge)
+  children: ReactNode
+}
+
 // Floating box positioned at (x, y) inside a relatively positioned parent
-export default function Tooltip({ x, y, children }: { x: number; y: number; children: ReactNode }) {
+export default function Tooltip({ x, y, flip = false, children }: Props) {
   return (
     <div
       role="tooltip"
-      style={{
-        position: 'absolute',
-        left: x + 12,
-        top: y + 12,
-        background: 'var(--color-bg)',
-        border: '1px solid var(--color-border)',
-        borderRadius: 'var(--radius)',
-        padding: 'var(--space-xs) var(--space-sm)',
-        pointerEvents: 'none',
-        whiteSpace: 'nowrap',
-        zIndex: 10,
-      }}
+      className="tip"
+      style={{ left: x + 14, top: y + 14, transform: flip ? 'translateX(calc(-100% - 28px))' : undefined }}
     >
       {children}
     </div>

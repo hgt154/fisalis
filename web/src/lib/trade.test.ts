@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { resample, rowsFor, type PartnerRow } from './trade'
+import { continentShares, previousLabel, resample, rowsFor, type PartnerRow } from './trade'
 
 const points = [
   { date: '2025-11', value: 1 },
@@ -34,5 +34,23 @@ describe('rowsFor', () => {
     const result = rowsFor(rows, 'month', 'corrente', (r) => r.country)
     expect(result.map((r) => [r.country, r.value, r.share])).toEqual([['USA', 110, 0.55], ['CHN', 90, 0.45]])
     expect(result.find((r) => r.country === 'CHN')?.var_pct).toBeCloseTo(90 / 70 - 1)
+  })
+})
+
+describe('continentShares', () => {
+  it('adds up the shares of each continent, largest first', () => {
+    const rows = [
+      { ...row('CHN', 'export', 50, 0), continent: 'Asia', share: 0.5 },
+      { ...row('USA', 'export', 20, 0), continent: 'Americas', share: 0.2 },
+      { ...row('JPN', 'export', 30, 0), continent: 'Asia', share: 0.3 },
+    ]
+    expect(continentShares(rows)).toEqual([{ continent: 'Asia', share: 0.8 }, { continent: 'Americas', share: 0.2 }])
+  })
+})
+
+describe('previousLabel', () => {
+  it('moves the year back by one', () => {
+    expect(previousLabel('Agosto 2026')).toBe('Agosto 2025')
+    expect(previousLabel('Jan–Ago 2026')).toBe('Jan–Ago 2025')
   })
 })

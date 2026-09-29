@@ -69,7 +69,7 @@ export default function WorldMap({ features, fillFor, isActive, tooltipFor, sele
       <svg
         ref={svgRef}
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-        className={globe ? 'world-map-svg' : 'world-map-svg with-water'}
+        className="world-map-svg"
         onMouseLeave={() => setHover(null)}
       >
         <g ref={gRef}>
@@ -108,7 +108,7 @@ export default function WorldMap({ features, fillFor, isActive, tooltipFor, sele
       {hover && tooltip && (
         <div
           role="tooltip"
-          className="map-tip"
+          className="tip"
           style={{ left: hover.x + 14, top: hover.y + 14, transform: hover.flip ? 'translateX(calc(-100% - 28px))' : undefined }}
         >
           {tooltip}

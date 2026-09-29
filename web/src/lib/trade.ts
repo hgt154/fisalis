@@ -186,3 +186,20 @@ export const continentLabel = (continent: string | null) =>
 export const sectorColor = (code: string) =>
   ({ A: 'var(--sector-agro)', B: 'var(--sector-extractive)', C: 'var(--sector-manufacturing)' })[code] ??
   'var(--sector-other)'
+
+// Text color inside a colored box: dark on the light colors, white on the dark ones
+const LIGHT_COLORS = new Set([
+  'var(--continent-africa)', 'var(--continent-americas)', 'var(--continent-oceania)', 'var(--continent-other)',
+  'var(--sector-agro)', 'var(--sector-extractive)', 'var(--sector-other)',
+])
+export const inkOn = (color: string) => (LIGHT_COLORS.has(color) ? '#201f1d' : '#fff')
+
+// Share of each continent in a list of partner rows, largest first (for the legend)
+export function continentShares(rows: PartnerRow[]): { continent: string | null; share: number }[] {
+  const byContinent = new Map<string | null, number>()
+  for (const r of rows) byContinent.set(r.continent, (byContinent.get(r.continent) ?? 0) + r.share)
+  return [...byContinent].map(([continent, share]) => ({ continent, share })).sort((a, b) => b.share - a.share)
+}
+
+// "Agosto 2026" -> "Agosto 2025"; "Jan–Ago 2026" -> "Jan–Ago 2025" (the comparison period)
+export const previousLabel = (label: string) => label.replace(/\d{4}/, (year) => String(Number(year) - 1))

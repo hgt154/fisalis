@@ -1,5 +1,3 @@
-// one function formats every number on the site according to the format column of your indicators.csv
-
 import type { IndicatorFormat } from './types'
 
 const LOCALE = 'pt-BR'
@@ -36,10 +34,15 @@ export function formatValue(value: number | null | undefined, format: IndicatorF
   }
 }
 
-
 // Short numbers: 33 bi, 500 mi, 2,5 mil (axes, stat bands). `digits` = max decimals
 export function formatShort(value: number, digits = 1): string {
   return new Intl.NumberFormat(LOCALE, { notation: 'compact', compactDisplay: 'short', maximumFractionDigits: digits }).format(value)
+}
+
+// Money in cards and bars: US$ 33,2 bi · −US$ 1,6 bi
+export function formatUsdShort(value: number | null | undefined, digits = 1): string {
+  if (value === null || value === undefined || Number.isNaN(value)) return '—'
+  return `${value < 0 ? '−' : ''}US$ ${formatShort(Math.abs(value), digits)}`
 }
 
 // "2026-09-15" -> "15 set. 2026";  "2026-08" -> "ago. 2026"

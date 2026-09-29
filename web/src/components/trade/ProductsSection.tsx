@@ -1,47 +1,76 @@
-// used twice, once with flow="export" and once with flow="import"
-
 import { useMemo } from 'react'
-import { formatChange, formatValue } from '../../lib/format'
-import { rowsFor, sectorColor, type Flow, type PeriodKey, type ProductRow } from '../../lib/trade'
+import { formatChange, formatUsdShort, formatValue } from '../../lib/format'
+import { inkOn, rowsFor, sectorColor, type Flow, type PeriodKey, type ProductRow } from '../../lib/trade'
 import Treemap from '../Treemap'
 import Section from './Section'
 
 interface Props {
   products: ProductRow[]
   period: PeriodKey
-  flow: Flow
+  periodLabel: string
 }
 
-export default function ProductsSection({ products, period, flow }: Props) {
+// One column: title with the total, then the treemap of that flow's products
+function Column({ products, period, flow }: { products: ProductRow[]; period: PeriodKey; flow: Flow }) {
   const rows = useMemo(() => rowsFor(products, period, flow, (r) => r.product_code), [products, period, flow])
-  const sections = [...new Map(rows.map((r) => [r.section_code, r.section])).entries()]
+  const total = rows.reduce((sum, r) => sum + r.value, 0)
 
   return (
-    <Section title={flow === 'export' ? 'Produtos exportados' : 'Produtos importados'}>
-      <ul style={{ display: 'flex', gap: 'var(--space-md)', listStyle: 'none', padding: 0, flexWrap: 'wrap' }}>
-        {sections.map(([code, name]) => (
-          <li key={code}>
-            <span style={{ display: 'inline-block', width: 12, height: 12, background: sectorColor(code), marginRight: 4 }} />
-            {name}
-          </li>
-        ))}
-      </ul>
+    <div>
+      <header className="products-head">
+        <h3>{flow === 'export' ? 'Exportados' : 'Importados'}</h3>
+        <span className="muted num">{formatUsdShort(total)}</span>
+      </header>
       <Treemap
-        items={rows.map((r) => ({
-          id: r.product_code,
-          label: r.product,
-          group: r.section_code,
-          value: r.value,
-          share: r.share,
-          color: sectorColor(r.section_code),
-          tooltip: [
-            r.section,
-            `Valor: ${formatValue(r.value, 'currency')}`,
-            `Variação: ${formatChange(r.var_pct)}`,
-            `Participação: ${formatValue(r.share * 100, 'percent')}`,
-          ],
-        }))}
+        width={620}
+        height={440}
+        items={rows.map((r) => {
+          const color = sectorColor(r.section_code)
+          return {
+            id: r.product_code,
+            label: r.product,
+            group: r.section_code,
+            value: r.value,
+            share: r.share,
+            color,
+            ink: inkOn(color),
+            tooltip: [
+              r.section,
+              `Valor: ${formatUsdShort(r.value, 2)}`,
+              `Variação: ${formatChange(r.var_pct)}`,
+              `Participação: ${formatValue(r.share * 100, 'percent')}`,
+            ],
+          }
+        })}
       />
+    </div>
+  )
+}
+
+export default function ProductsSection({ products, period, periodLabel }: Props) {
+  // Sector legend, shared by both treemaps
+  const sectors = useMemo(
+    () => [...new Map(products.map((r) => [r.section_code, r.section])).entries()].sort(([a], [b]) => a.localeCompare(b)),
+    [products],
+  )
+
+  return (
+    <Section
+      id="produtos"
+      title="Produtos exportados e importados"
+      subtitle={`Por posição SH4, ${periodLabel.toLowerCase()} · cor por setor (ISIC)`}
+      actions={
+        <ul className="trade-legend">
+          {sectors.map(([code, name]) => (
+            <li key={code}><span className="legend-swatch" style={{ background: sectorColor(code) }} />{name}</li>
+          ))}
+        </ul>
+      }
+    >
+      <div className="products-grid">
+        <Column products={products} period={period} flow="export" />
+        <Column products={products} period={period} flow="import" />
+      </div>
     </Section>
   )
 }
