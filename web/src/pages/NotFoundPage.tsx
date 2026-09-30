@@ -1,3 +1,12 @@
+import { Link } from 'react-router'
+import { useLang } from '../i18n/context'
+
 export default function NotFoundPage() {
-  return <h1>Página não encontrada</h1>
+  const { t } = useLang()
+  return (
+    <>
+      <h1>{t.notFound.title}</h1>
+      <p><Link to="/">{t.notFound.back}</Link></p>
+    </>
+  )
 }

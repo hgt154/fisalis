@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLang } from '../../i18n/context'
 import { formatDate, formatShort, formatUsdShort, formatValue } from '../../lib/format'
 import { FLOW_LABELS, type Flow, type ProductSeries } from '../../lib/trade'
 import TimeChart from '../TimeChart'
@@ -6,6 +7,8 @@ import Toggle from '../Toggle'
 import Section from './Section'
 
 export default function ProductSeriesSection({ series }: { series: ProductSeries[] }) {
+  const { t, lang } = useLang()
+  const tr = t.trade
   const [flow, setFlow] = useState<Flow>('export')
   const [code, setCode] = useState<string | null>(null)
   const [metric, setMetric] = useState<'fob' | 'kg'>('fob')
@@ -22,17 +25,17 @@ export default function ProductSeriesSection({ series }: { series: ProductSeries
   return (
     <Section
       id="produto"
-      title="Série histórica por produto"
-      subtitle={`${FLOW_LABELS[flow]} mensal de ${current.product.toLowerCase()} (SH4 ${current.product_code}), ${range}`}
+      title={tr.productHistory}
+      subtitle={tr.productHistorySubtitle(FLOW_LABELS[flow][lang], current.product.toLowerCase(), current.product_code, range)}
       actions={
         <>
-          <Toggle label="Fluxo" value={flow} onChange={setFlow}
-            options={[{ value: 'export', label: FLOW_LABELS.export }, { value: 'import', label: FLOW_LABELS.import }]} />
-          <select aria-label="Produto" className="product-select" value={current.product_code} onChange={(e) => setCode(e.target.value)}>
+          <Toggle label={t.common.flow} value={flow} onChange={setFlow}
+            options={[{ value: 'export', label: FLOW_LABELS.export[lang] }, { value: 'import', label: FLOW_LABELS.import[lang] }]} />
+          <select aria-label={tr.product} className="product-select" value={current.product_code} onChange={(e) => setCode(e.target.value)}>
             {options.map((s) => <option key={s.product_code} value={s.product_code}>{s.product_code} · {s.product}</option>)}
           </select>
-          <Toggle label="Métrica" value={metric} onChange={setMetric}
-            options={[{ value: 'fob', label: 'US$' }, { value: 'kg', label: 'Peso (kg)' }]} />
+          <Toggle label={tr.metric} value={metric} onChange={setMetric}
+            options={[{ value: 'fob', label: 'US$' }, { value: 'kg', label: tr.weight }]} />
         </>
       }
     >

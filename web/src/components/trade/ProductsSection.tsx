@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useLang } from '../../i18n/context'
 import { formatChange, formatUsdShort, formatValue } from '../../lib/format'
 import { inkOn, rowsFor, sectorColor, type Flow, type PeriodKey, type ProductRow } from '../../lib/trade'
 import Treemap from '../Treemap'
@@ -7,18 +8,20 @@ import Section from './Section'
 interface Props {
   products: ProductRow[]
   period: PeriodKey
-  periodLabel: string
+  periodName: string
 }
 
 // One column: title with the total, then the treemap of that flow's products
 function Column({ products, period, flow }: { products: ProductRow[]; period: PeriodKey; flow: Flow }) {
+  const { t } = useLang()
+  const tr = t.trade
   const rows = useMemo(() => rowsFor(products, period, flow, (r) => r.product_code), [products, period, flow])
   const total = rows.reduce((sum, r) => sum + r.value, 0)
 
   return (
     <div>
       <header className="products-head">
-        <h3>{flow === 'export' ? 'Exportados' : 'Importados'}</h3>
+        <h3>{flow === 'export' ? tr.exported : tr.imported}</h3>
         <span className="muted num">{formatUsdShort(total)}</span>
       </header>
       <Treemap
@@ -36,9 +39,9 @@ function Column({ products, period, flow }: { products: ProductRow[]; period: Pe
             ink: inkOn(color),
             tooltip: [
               r.section,
-              `Valor: ${formatUsdShort(r.value, 2)}`,
-              `Variação: ${formatChange(r.var_pct)}`,
-              `Participação: ${formatValue(r.share * 100, 'percent')}`,
+              tr.value(formatUsdShort(r.value, 2)),
+              tr.change(formatChange(r.var_pct)),
+              tr.share(formatValue(r.share * 100, 'percent')),
             ],
           }
         })}
@@ -47,7 +50,8 @@ function Column({ products, period, flow }: { products: ProductRow[]; period: Pe
   )
 }
 
-export default function ProductsSection({ products, period, periodLabel }: Props) {
+export default function ProductsSection({ products, period, periodName }: Props) {
+  const { t } = useLang()
   // Sector legend, shared by both treemaps
   const sectors = useMemo(
     () => [...new Map(products.map((r) => [r.section_code, r.section])).entries()].sort(([a], [b]) => a.localeCompare(b)),
@@ -57,8 +61,8 @@ export default function ProductsSection({ products, period, periodLabel }: Props
   return (
     <Section
       id="produtos"
-      title="Produtos exportados e importados"
-      subtitle={`Por posição SH4, ${periodLabel.toLowerCase()} · cor por setor (ISIC)`}
+      title={t.trade.products}
+      subtitle={t.trade.productsSubtitle(t.trade.inSentence(periodName))}
       actions={
         <ul className="trade-legend">
           {sectors.map(([code, name]) => (

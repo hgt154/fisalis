@@ -1,7 +1,8 @@
 import { Children, isValidElement, type ReactNode } from 'react'
 import Markdown from 'react-markdown'
 import { Link, useParams } from 'react-router'
-import { SUBJECTS, THEORIES, slugify } from '../lib/theories'
+import { useLang } from '../i18n/context'
+import { slugify, subjectLabel, theoriesFor } from '../lib/theories'
 import './TheoryPage.css'
 
 // The plain text inside a heading, even when part of it is bold or italic
@@ -14,45 +15,50 @@ function textOf(node: ReactNode): string {
 
 export default function TheoryPage() {
   const { slug } = useParams()
-  const theory = THEORIES.find((t) => t.slug === slug)
+  const { t, lang } = useLang()
+  const tt = t.theory
+  const all = theoriesFor(lang)
+  const theory = all.find((x) => x.slug === slug)
 
-  if (!theory) return <p>Teoria não encontrada. <Link to="/teorias">Ver todas as teorias</Link></p>
+  if (!theory) return <p>{tt.notFound} <Link to="/teorias">{tt.seeAll}</Link></p>
 
   const related = theory.related
-    .map((r) => ({ ...r, theory: THEORIES.find((t) => t.slug === r.slug) }))
+    .map((r) => ({ ...r, theory: all.find((x) => x.slug === r.slug) }))
     .filter((r) => r.theory !== undefined)
   const mainSubject = theory.subjects[0]
 
   return (
     <article className="theory">
-      <nav className="breadcrumb" aria-label="Você está em">
-        <Link to="/teorias">Teorias</Link>
-        {mainSubject && <> / <Link to={`/teorias?assunto=${mainSubject}`}>{SUBJECTS[mainSubject] ?? mainSubject}</Link></>}
+      <nav className="breadcrumb" aria-label={t.common.youAreHere}>
+        <Link to="/teorias">{tt.breadcrumb}</Link>
+        {mainSubject && <> / <Link to={`/teorias?assunto=${mainSubject}`}>{subjectLabel(mainSubject, lang)}</Link></>}
       </nav>
+
+      {theory.fallback && tt.fallback && <p className="note theory-fallback">{tt.fallback}</p>}
 
       {/* ---------- Head: title and lead on the left, facts on the right ---------- */}
       <header className="theory-head">
         <div>
           <ul className="theory-tags">
-            {theory.subjects.map((s) => <li key={s}><Link className="tag" to={`/teorias?assunto=${s}`}>{SUBJECTS[s] ?? s}</Link></li>)}
+            {theory.subjects.map((s) => <li key={s}><Link className="tag" to={`/teorias?assunto=${s}`}>{subjectLabel(s, lang)}</Link></li>)}
           </ul>
           <h1>{theory.title}</h1>
           <p className="theory-lead">{theory.summary}</p>
         </div>
         <dl className="theory-facts">
-          {theory.period && <div><dt>Período</dt><dd>{theory.period}</dd></div>}
-          {theory.origin && <div><dt>Origem</dt><dd>{theory.origin}</dd></div>}
-          <div><dt>Leitura</dt><dd>{theory.minutes} {theory.minutes === 1 ? 'minuto' : 'minutos'}</dd></div>
+          {theory.period && <div><dt>{tt.period}</dt><dd>{theory.period}</dd></div>}
+          {theory.origin && <div><dt>{tt.origin}</dt><dd>{theory.origin}</dd></div>}
+          <div><dt>{tt.reading}</dt><dd>{tt.minutes(theory.minutes)}</dd></div>
         </dl>
       </header>
 
       <div className="theory-layout">
         {/* ---------- Table of contents, built from the ## headings ---------- */}
-        <nav className="theory-toc" aria-label="Sumário">
-          <p className="kicker">Sumário</p>
+        <nav className="theory-toc" aria-label={tt.contents}>
+          <p className="kicker">{tt.contents}</p>
           <ol>
             {theory.headings.map((h) => <li key={h.id}><a href={`#${h.id}`}>{h.text}</a></li>)}
-            {theory.references.length > 0 && <li><a href="#referencias">Referências</a></li>}
+            {theory.references.length > 0 && <li><a href="#referencias">{tt.references}</a></li>}
           </ol>
         </nav>
 
@@ -66,7 +72,7 @@ export default function TheoryPage() {
 
           {theory.references.length > 0 && (
             <section id="referencias" className="theory-refs">
-              <h2>Referências</h2>
+              <h2>{tt.references}</h2>
               <ul>{theory.references.map((r) => <li key={r}>{r}</li>)}</ul>
             </section>
           )}
@@ -76,7 +82,7 @@ export default function TheoryPage() {
         <aside className="theory-side">
           {theory.key_concepts.length > 0 && (
             <section>
-              <p className="kicker">Conceitos-chave</p>
+              <p className="kicker">{tt.concepts}</p>
               <dl className="side-concepts">
                 {theory.key_concepts.map((c) => (
                   <div key={c.name}><dt>{c.name}</dt>{c.description && <dd>{c.description}</dd>}</div>
@@ -87,7 +93,7 @@ export default function TheoryPage() {
 
           {theory.authors.length > 0 && (
             <section>
-              <p className="kicker">Autores-chave</p>
+              <p className="kicker">{tt.authors}</p>
               <ul className="side-authors">
                 {theory.authors.map((a) => (
                   <li key={a.name}><span>{a.name}</span>{a.years && <span className="muted num">{a.years}</span>}</li>
@@ -98,7 +104,7 @@ export default function TheoryPage() {
 
           {related.length > 0 && (
             <section>
-              <p className="kicker">Teorias relacionadas</p>
+              <p className="kicker">{tt.related}</p>
               <div className="side-related">
                 {related.map((r) => (
                   <Link key={r.slug} to={`/teorias/${r.slug}`} className="card">

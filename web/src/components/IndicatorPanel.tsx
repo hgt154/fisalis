@@ -1,5 +1,6 @@
 import { useMemo, type ReactNode } from 'react'
 import { useSearchParams } from 'react-router'
+import { useLang } from '../i18n/context'
 import { VIEWS, buildSections, groupId, groupLabel, type View } from '../lib/indicators'
 import type { IndicatorMeta } from '../lib/types'
 import IndicatorTable, { type Economy } from './IndicatorTable'
@@ -18,6 +19,7 @@ interface Props {
 // Shared by the Indicators page and the Country page; state lives in the URL (?aba=, ?grupo=).
 export default function IndicatorPanel({ indicators, economies, loading = false, actions }: Props) {
   const [params, setParams] = useSearchParams()
+  const { t, lang } = useLang()
   const view = (params.get('aba') as View | null) ?? 'overview'
   const topic = params.get('grupo')
 
@@ -42,7 +44,7 @@ export default function IndicatorPanel({ indicators, economies, loading = false,
   return (
     <div className="ind-panel">
       <div className="ind-toolbar">
-        <div role="tablist" aria-label="Organização dos indicadores" className="tabs">
+        <div role="tablist" aria-label={t.panel.tabs} className="tabs">
           {VIEWS.map((v) => (
             <button
               key={v.value}
@@ -51,14 +53,14 @@ export default function IndicatorPanel({ indicators, economies, loading = false,
               aria-selected={v.value === view}
               onClick={() => setParam({ aba: v.value === 'overview' ? null : v.value, grupo: null })}
             >
-              {v.label}
+              {v.label[lang]}
             </button>
           ))}
         </div>
 
         <div className="ind-tools">
           {economies.length > 1 && (
-            <ul className="ind-legend" aria-label="Legenda">
+            <ul className="ind-legend" aria-label={t.panel.legend}>
               {economies.map((e) => (
                 <li key={e.iso3} style={{ '--c': e.color } as React.CSSProperties}>{e.name}</li>
               ))}
@@ -66,13 +68,13 @@ export default function IndicatorPanel({ indicators, economies, loading = false,
           )}
           {actions}
           <select
-            aria-label="Tópico"
+            aria-label={t.panel.topic}
             value={topic ?? ''}
             onChange={(e) => setParam({ grupo: e.target.value || null })}
           >
-            <option value="">Tópico: Todos</option>
+            <option value="">{t.panel.topicAll}</option>
             {sections.map((s) => {
-              const { label, kicker } = groupLabel(view, s.group)
+              const { label, kicker } = groupLabel(view, s.group, lang)
               return <option key={s.group} value={s.group}>{kicker ? `${kicker} · ${label}` : label}</option>
             })}
           </select>
@@ -80,16 +82,16 @@ export default function IndicatorPanel({ indicators, economies, loading = false,
       </div>
 
       <div className="ind-layout">
-        <nav className="ind-index" aria-label="Neste painel">
-          <p className="kicker">{view === 'sdg' ? 'Objetivos' : 'Neste painel'}</p>
+        <nav className="ind-index" aria-label={t.panel.inThisPanel}>
+          <p className="kicker">{view === 'sdg' ? t.panel.goals : t.panel.inThisPanel}</p>
           <ul>
             {visible.map((s) => {
-              const { label, kicker, color } = groupLabel(view, s.group)
+              const { label, kicker, color } = groupLabel(view, s.group, lang)
               return (
                 <li key={s.group}>
                   <a href={`#${groupId(s.group)}`}>
                     {color && <span className="sdg-square" style={{ background: color }} />}
-                    {kicker && <span className="ind-index-num">{kicker.replace('ODS ', '')}</span>}
+                    {kicker && <span className="ind-index-num">{kicker.replace(/\D+/, '')}</span>}
                     <span className="ind-index-label">{label}</span>
                     <span className="ind-index-count">{s.items.length}</span>
                   </a>

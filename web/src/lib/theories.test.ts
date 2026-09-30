@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { byPeriod, countBySubject, filterTheories, headingsOf, parseTheory, periodOf, slugify } from './theories'
+import { byPeriod, countBySubject, filterTheories, headingsOf, parseTheory, periodOf, slugify, theoriesFor } from './theories'
 
 const raw = `---
 title: Realismo
@@ -77,5 +77,18 @@ describe('filters', () => {
   })
   it('sorts by starting year', () => {
     expect([...list].sort(byPeriod).map((t) => t.slug)).toEqual(['realismo', 'dependencia', 'construtivismo'])
+  })
+})
+
+describe('theoriesFor', () => {
+  it('has the same entries in both languages', () => {
+    const pt = theoriesFor('pt').map((t) => t.slug).sort()
+    const en = theoriesFor('en').map((t) => t.slug).sort()
+    expect(en).toEqual(pt)
+  })
+  it('uses the English file when there is one', () => {
+    const realism = theoriesFor('en').find((t) => t.slug === 'realismo')
+    expect(realism?.title).toBe('Realism')
+    expect(realism?.fallback).toBeUndefined()
   })
 })

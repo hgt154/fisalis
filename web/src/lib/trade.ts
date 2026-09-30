@@ -1,4 +1,7 @@
 // Types and calculations for the trade page (data from web/public/data/trade/)
+import { monthName } from './format'
+import { CONTINENT_PT } from './names'
+import type { Bilingual, Lang } from './types'
 
 export type Flow = 'export' | 'import'
 export type FlowOrTotal = Flow | 'corrente'
@@ -76,10 +79,20 @@ export interface ProductSeries {
   kg: number[]
 }
 
-export const FLOW_LABELS: Record<FlowOrTotal, string> = {
-  export: 'Exportação',
-  import: 'Importação',
-  corrente: 'Corrente',
+export const FLOW_LABELS: Record<FlowOrTotal, Bilingual> = {
+  export: { pt: 'Exportação', en: 'Exports' },
+  import: { pt: 'Importação', en: 'Imports' },
+  corrente: { pt: 'Corrente', en: 'Total trade' },
+}
+
+// A period's name in the current language, built from its months (not from the Portuguese
+// label in the data): "Agosto 2026" / "August 2026", "Jan–Ago 2026" / "Jan–Aug 2026", "2025".
+// yearsBack = 1 gives the comparison period one year earlier.
+export function periodLabel(p: Pick<TradePeriod, 'year' | 'm_from' | 'm_to'>, yearsBack = 0): string {
+  const year = p.year - yearsBack
+  if (p.m_from === p.m_to) return `${monthName(p.m_to)} ${year}`
+  if (p.m_from === 1 && p.m_to === 12) return String(year)
+  return `${monthName(p.m_from, 'short')}–${monthName(p.m_to, 'short')} ${year}`
 }
 
 // ---------------------------------------------------------------------------
@@ -168,19 +181,14 @@ const CONTINENT_COLORS: Record<string, string> = {
   Oceania: 'var(--continent-oceania)',
 }
 
-export const CONTINENT_LABELS: Record<string, string> = {
-  Africa: 'África',
-  Americas: 'Américas',
-  Asia: 'Ásia',
-  Europe: 'Europa',
-  Oceania: 'Oceania',
-}
 
 export const continentColor = (continent: string | null) =>
   (continent && CONTINENT_COLORS[continent]) || 'var(--continent-other)'
 
-export const continentLabel = (continent: string | null) =>
-  (continent && CONTINENT_LABELS[continent]) || 'Outros / não declarado'
+export const continentLabel = (continent: string | null, lang: Lang = 'pt') =>
+  continent && CONTINENT_COLORS[continent]
+    ? (lang === 'pt' ? CONTINENT_PT[continent] ?? continent : continent)
+    : (lang === 'pt' ? 'Outros / não declarado' : 'Other / not declared')
 
 // ISIC sections: A = agriculture, B = mining, C = manufacturing, anything else = other
 export const sectorColor = (code: string) =>
@@ -200,6 +208,3 @@ export function continentShares(rows: PartnerRow[]): { continent: string | null;
   for (const r of rows) byContinent.set(r.continent, (byContinent.get(r.continent) ?? 0) + r.share)
   return [...byContinent].map(([continent, share]) => ({ continent, share })).sort((a, b) => b.share - a.share)
 }
-
-// "Agosto 2026" -> "Agosto 2025"; "Jan–Ago 2026" -> "Jan–Ago 2025" (the comparison period)
-export const previousLabel = (label: string) => label.replace(/\d{4}/, (year) => String(Number(year) - 1))

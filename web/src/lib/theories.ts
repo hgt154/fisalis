@@ -1,4 +1,5 @@
 import { parse } from 'yaml'
+import type { Bilingual, Lang } from './types'
 
 // ---------------------------------------------------------------------------
 // Shapes
@@ -40,22 +41,25 @@ export interface Theory {
   body: string            // the Markdown text after the frontmatter
   headings: Heading[]     // the "## " titles of the body
   minutes: number         // reading time
+  fallback?: boolean      // true when the English version is missing and the Portuguese one is shown
 }
 
 // Subject codes used in the files -> labels shown on the page
-export const SUBJECTS: Record<string, string> = {
-  politica: 'Política',
-  economica: 'Econômica',
-  seguranca: 'Segurança',
-  filosofica: 'Filosófica',
-  sociologica: 'Sociológica',
+export const SUBJECTS: Record<string, Bilingual> = {
+  politica: { pt: 'Política', en: 'Politics' },
+  economica: { pt: 'Econômica', en: 'Economics' },
+  seguranca: { pt: 'Segurança', en: 'Security' },
+  filosofica: { pt: 'Filosófica', en: 'Philosophy' },
+  sociologica: { pt: 'Sociológica', en: 'Sociology' },
 }
 
+export const subjectLabel = (code: string, lang: Lang) => SUBJECTS[code]?.[lang] ?? code
+
 // Periods of the filter, by the year a theory first appeared
-export const PERIODS = [
-  { value: 'classico', label: 'Clássico (até 1945)', from: -Infinity, to: 1944 },
-  { value: 'guerra-fria', label: 'Guerra Fria (1945–1989)', from: 1945, to: 1989 },
-  { value: 'pos-guerra-fria', label: 'Pós-Guerra Fria (1990–)', from: 1990, to: Infinity },
+export const PERIODS: { value: string; label: Bilingual; from: number; to: number }[] = [
+  { value: 'classico', label: { pt: 'Clássico (até 1945)', en: 'Classical (to 1945)' }, from: -Infinity, to: 1944 },
+  { value: 'guerra-fria', label: { pt: 'Guerra Fria (1945–1989)', en: 'Cold War (1945–1989)' }, from: 1945, to: 1989 },
+  { value: 'pos-guerra-fria', label: { pt: 'Pós-Guerra Fria (1990–)', en: 'Post-Cold War (1990–)' }, from: 1990, to: Infinity },
 ]
 
 // ---------------------------------------------------------------------------
@@ -175,10 +179,20 @@ export function byPeriod(a: Theory, b: Theory): number {
 }
 
 // ---------------------------------------------------------------------------
-// Every .md file in src/content/theories is bundled into the site at build time
+// Every .md file in src/content/theories is bundled into the site at build time.
+// Portuguese files are the originals; English ones live in content/theories/en/ with the same file name.
 
-const files = import.meta.glob('../content/theories/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>
+const raw = (files: Record<string, unknown>) => Object.entries(files as Record<string, string>)
+const ptFiles = import.meta.glob('../content/theories/*.md', { query: '?raw', import: 'default', eager: true })
+const enFiles = import.meta.glob('../content/theories/en/*.md', { query: '?raw', import: 'default', eager: true })
 
-export const THEORIES: Theory[] = Object.entries(files)
-  .map(([path, raw]) => parseTheory(path, raw))
-  .sort(byPeriod)
+const PT = raw(ptFiles).map(([path, text]) => parseTheory(path, text)).sort(byPeriod)
+const EN_BY_SLUG = new Map(raw(enFiles).map(([path, text]) => {
+  const t = parseTheory(path, text)
+  return [t.slug, t] as const
+}))
+
+// English list: the translation when it exists, otherwise the Portuguese entry marked as a fallback
+const EN = PT.map((t) => EN_BY_SLUG.get(t.slug) ?? { ...t, fallback: true }).sort(byPeriod)
+
+export const theoriesFor = (lang: Lang): Theory[] => (lang === 'en' ? EN : PT)

@@ -86,3 +86,5 @@
   .theory-main { max-width: none; }
   .theory-body p { text-align: left; }
 }
+
+.theory-fallback { margin: 0 0 20px; }

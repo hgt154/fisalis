@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { scaleQuantile } from 'd3'
+import { useLang } from '../../i18n/context'
 import { formatChange, formatUsdShort, formatValue } from '../../lib/format'
 import type { CountryFeature } from '../../lib/geo'
 import { NO_DATA_COLOR, SEQUENTIAL } from '../../lib/mapColors'
@@ -15,19 +16,15 @@ import Section from './Section'
 interface Props {
   partners: PartnerRow[]
   period: PeriodKey
-  periodLabel: string
+  periodName: string        // "Agosto 2026" / "August 2026"
   world: CountryFeature[]
 }
 
-const FLOWS: { value: FlowOrTotal; label: string }[] = (['export', 'import', 'corrente'] as const).map((f) => ({ value: f, label: FLOW_LABELS[f] }))
-const SUBTITLE: Record<FlowOrTotal, string> = {
-  export: 'Destino das exportações',
-  import: 'Origem das importações',
-  corrente: 'Corrente de comércio (exportações + importações)',
-}
 const pct = (share: number) => formatValue(share * 100, 'percent')
 
-export default function PartnersSection({ partners, period, periodLabel, world }: Props) {
+export default function PartnersSection({ partners, period, periodName, world }: Props) {
+  const { t, lang } = useLang()
+  const tr = t.trade
   const [flow, setFlow] = useState<FlowOrTotal>('export')
   const [view, setView] = useState<'treemap' | 'map'>('treemap')
 
@@ -36,23 +33,24 @@ export default function PartnersSection({ partners, period, periodLabel, world }
   const scale = useMemo(() => scaleQuantile<string>().domain(rows.map((r) => r.value)).range(SEQUENTIAL), [rows])
   const continents = useMemo(() => continentShares(rows), [rows])
 
+  const flows = (['export', 'import', 'corrente'] as const).map((f) => ({ value: f, label: FLOW_LABELS[f][lang] }))
   const tooltip = (r: PartnerRow) => [
-    `Valor: ${formatUsdShort(r.value, 2)}`,
-    `Variação: ${formatChange(r.var_pct)}`,
-    `Variação absoluta: ${formatUsdShort(r.var_abs, 2)}`,
-    `Participação: ${pct(r.share)}`,
+    tr.value(formatUsdShort(r.value, 2)),
+    tr.change(formatChange(r.var_pct)),
+    tr.absChange(formatUsdShort(r.var_abs, 2)),
+    tr.share(pct(r.share)),
   ]
 
   return (
     <Section
       id="parceiros"
-      title="Países parceiros"
-      subtitle={`${SUBTITLE[flow]}, ${periodLabel.toLowerCase()} · agrupado por continente`}
+      title={tr.partners}
+      subtitle={`${tr.partnersSubtitle[flow]}, ${tr.inSentence(periodName)} · ${tr.groupedByContinent}`}
       actions={
         <>
-          <Toggle label="Fluxo" value={flow} onChange={setFlow} options={FLOWS} />
-          <Toggle label="Visualização" value={view} onChange={setView}
-            options={[{ value: 'treemap', label: 'Treemap' }, { value: 'map', label: 'Geográfico' }]} />
+          <Toggle label={t.common.flow} value={flow} onChange={setFlow} options={flows} />
+          <Toggle label={t.common.view} value={view} onChange={setView}
+            options={[{ value: 'treemap', label: tr.treemap }, { value: 'map', label: tr.geographic }]} />
         </>
       }
     >
@@ -60,7 +58,7 @@ export default function PartnersSection({ partners, period, periodLabel, world }
         {continents.map((c) => (
           <li key={c.continent ?? 'other'}>
             <span className="legend-swatch" style={{ background: continentColor(c.continent) }} />
-            {continentLabel(c.continent)} <span className="muted num">{pct(c.share)}</span>
+            {continentLabel(c.continent, lang)} <span className="muted num">{pct(c.share)}</span>
           </li>
         ))}
       </ul>
@@ -73,7 +71,7 @@ export default function PartnersSection({ partners, period, periodLabel, world }
               height={520}
               items={rows.map((r) => {
                 const color = continentColor(r.continent)
-                return { id: r.country, label: r.country, group: continentLabel(r.continent), value: r.value, share: r.share, color, ink: inkOn(color), tooltip: tooltip(r) }
+                return { id: r.country, label: r.country, group: continentLabel(r.continent, lang), value: r.value, share: r.share, color, ink: inkOn(color), tooltip: tooltip(r) }
               })}
             />
           ) : (
@@ -89,7 +87,7 @@ export default function PartnersSection({ partners, period, periodLabel, world }
                   <>
                     <strong>{r.country}</strong>
                     <span>{formatUsdShort(r.value, 2)} · {pct(r.share)}</span>
-                    <span className="muted">{formatChange(r.var_pct)} vs. ano anterior</span>
+                    <span className="muted">{formatChange(r.var_pct)} {tr.vsLastYear}</span>
                   </>
                 )
               }}
@@ -100,7 +98,7 @@ export default function PartnersSection({ partners, period, periodLabel, world }
         </div>
 
         <div>
-          <p className="kicker">Dez maiores {flow === 'import' ? 'origens' : flow === 'export' ? 'destinos' : 'parceiros'}</p>
+          <p className="kicker">{tr.top10[flow]}</p>
           <BarList
             format={(v) => formatUsdShort(v)}
             items={rows.slice(0, 10).map((r) => ({ label: r.country, value: r.value, color: continentColor(r.continent), note: pct(r.share) }))}

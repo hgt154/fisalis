@@ -1,3 +1,4 @@
+import { useLang } from '../i18n/context'
 import './MapLegend.css'
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export default function MapLegend({ items, steps, note }: Props) {
+  const { t } = useLang()
   return (
     <div className="map-legend">
       {steps && (
@@ -29,7 +31,7 @@ export default function MapLegend({ items, steps, note }: Props) {
         {(items ?? []).map((item) => (
           <li key={item.label}><span className="legend-swatch" style={{ background: item.color }} />{item.label}</li>
         ))}
-        <li><span className="legend-swatch legend-no-data" />Sem dados</li>
+        <li><span className="legend-swatch legend-no-data" />{t.common.noData}</li>
       </ul>
 
       {note && <p className="legend-note muted">{note}</p>}

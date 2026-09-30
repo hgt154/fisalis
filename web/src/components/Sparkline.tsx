@@ -1,4 +1,5 @@
 import { extent, line, scaleLinear } from 'd3'
+import { useLang } from '../i18n/context'
 
 export const MIN_POINTS = 3   // fewer points than this: no line, a short note instead
 
@@ -12,12 +13,13 @@ interface Props {
 const W = 240   // drawing width; the SVG stretches to fill its column
 
 export default function Sparkline({ series, fromYear, toYear, height = 36 }: Props) {
+  const { t } = useLang()
   const drawable = series.filter((s) => s.points.length >= MIN_POINTS)
 
   if (drawable.length === 0) {
     const n = Math.max(0, ...series.map((s) => s.points.length))
     if (n === 0) return <span className="muted">—</span>
-    return <span className="spark-note">Poucos pontos para uma série ({n} {n === 1 ? 'observação' : 'observações'})</span>
+    return <span className="spark-note">{t.panel.fewPoints(n)}</span>
   }
 
   // Same scales for every line, so compared countries share one vertical axis

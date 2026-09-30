@@ -1,9 +1,12 @@
-// Shapes of the JSON files written by the R pipeline (web/public/data/) 
-// This describes the shape of each JSON file your R pipeline writes. If R ever changes a column name, TypeScript will point to every place that breaks.
+// Shapes of the JSON files written by the R pipeline (web/public/data/)
+
+// Site languages
+export type Lang = 'pt' | 'en'
 
 export interface Country {
   iso3: string
   name_en: string
+  name_pt?: string | null   // added by the pipeline (countrycode); older files may not have it
   region: string
   income: string
   capital: string | null
@@ -25,6 +28,9 @@ export interface IndicatorGroup {
   group: string
   order: number
 }
+
+// Text in both languages, for labels that live in the code
+export type Bilingual = Record<Lang, string>
 
 export interface IndicatorMeta {
   code: string

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { continentShares, previousLabel, resample, rowsFor, type PartnerRow } from './trade'
+import { setLocale } from './format'
+import { continentShares, periodLabel, resample, rowsFor, type PartnerRow } from './trade'
 
 const points = [
   { date: '2025-11', value: 1 },
@@ -48,9 +49,17 @@ describe('continentShares', () => {
   })
 })
 
-describe('previousLabel', () => {
-  it('moves the year back by one', () => {
-    expect(previousLabel('Agosto 2026')).toBe('Agosto 2025')
-    expect(previousLabel('Jan–Ago 2026')).toBe('Jan–Ago 2025')
+describe('periodLabel', () => {
+  const month = { year: 2026, m_from: 8, m_to: 8 }
+  const ytd = { year: 2026, m_from: 1, m_to: 8 }
+  it('names months, year-to-date and full years', () => {
+    expect(periodLabel(month)).toBe('Agosto 2026')
+    expect(periodLabel(ytd)).toBe('Jan–Ago 2026')
+    expect(periodLabel({ year: 2025, m_from: 1, m_to: 12 })).toBe('2025')
+  })
+  it('goes back a year for comparisons, and follows the language', () => {
+    expect(periodLabel(month, 1)).toBe('Agosto 2025')
+    setLocale('en')
+    try { expect(periodLabel(ytd)).toBe('Jan–Aug 2026') } finally { setLocale('pt-BR') }
   })
 })

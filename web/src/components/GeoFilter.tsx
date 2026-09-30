@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { useSearchParams } from 'react-router'
+import { useLang } from '../i18n/context'
+import { countryName, placeName } from '../lib/names'
 import type { Country } from '../lib/types'
 import { FILTER_KEYS, filtersToParams, options, parseFilters, type GeoFilters } from '../lib/filters'
 import './GeoFilter.css'
@@ -17,6 +19,8 @@ export default function GeoFilter({ countries, colors = [], summary }: Props) {
   const filters = parseFilters(params)
   const [search, setSearch] = useState('')
   const [open, setOpen] = useState(false)   // phones: the dropdowns hide behind a "Filtros" button
+  const { t, lang } = useLang()
+  const nameOf = (c: Country) => countryName(c, lang)
 
   // Rebuild the URL from the filters, keeping any other parameters (like the map's ?sel=BRA)
   const withOtherParams = (next: URLSearchParams) => {
@@ -28,7 +32,7 @@ export default function GeoFilter({ countries, colors = [], summary }: Props) {
     setParams(withOtherParams(filtersToParams({ ...filters, ...changes })))
 
   const addCountry = (name: string) => {
-    const match = countries.find((c) => c.name_en.toLowerCase() === name.toLowerCase())
+    const match = countries.find((c) => nameOf(c).toLowerCase() === name.toLowerCase())
     if (match && !filters.countries.includes(match.iso3)) {
       update({ countries: [...filters.countries, match.iso3] })
       setSearch('')
@@ -37,11 +41,13 @@ export default function GeoFilter({ countries, colors = [], summary }: Props) {
 
   const removeCountry = (iso: string) => update({ countries: filters.countries.filter((x) => x !== iso) })
 
+  // [label, filter key, values in the data] — the values stay in English (they go in the URL);
+  // only what the visitor sees is translated
   const groups: [string, GroupKey, string[]][] = [
-    ['Bloco', 'bloc', options(countries, (c) => c.blocs)],
-    ['Continente', 'continent', options(countries, (c) => c.continent)],
-    ['Região BM', 'region', options(countries, (c) => c.region)],
-    ['Grupo de renda', 'income', options(countries, (c) => c.income)],
+    [t.geo.bloc, 'bloc', options(countries, (c) => c.blocs)],
+    [t.geo.continent, 'continent', options(countries, (c) => c.continent)],
+    [t.geo.region, 'region', options(countries, (c) => c.region)],
+    [t.geo.income, 'income', options(countries, (c) => c.income)],
   ]
   const activeGroups = groups.filter(([, key]) => filters[key]).length
   const hasAny = activeGroups > 0 || filters.countries.length > 0
@@ -57,16 +63,16 @@ export default function GeoFilter({ countries, colors = [], summary }: Props) {
         {filters.countries.map((iso, i) => (
           <span key={iso} className="chip">
             {colors[i] && <span className="chip-dot" style={{ background: colors[i] }} />}
-            {countries.find((c) => c.iso3 === iso)?.name_en ?? iso}
-            <button type="button" aria-label={`Remover ${iso}`} onClick={() => removeCountry(iso)}>×</button>
+            {(() => { const c = countries.find((x) => x.iso3 === iso); return c ? nameOf(c) : iso })()}
+            <button type="button" aria-label={t.geo.remove(iso)} onClick={() => removeCountry(iso)}>×</button>
           </span>
         ))}
 
         <input
           list="country-list"
           value={search}
-          aria-label="Buscar país"
-          placeholder={filters.countries.length ? 'Adicionar país para comparar…' : 'Buscar país…'}
+          aria-label={t.geo.searchLabel}
+          placeholder={filters.countries.length ? t.geo.addPlaceholder : t.geo.searchPlaceholder}
           onChange={(e) => { setSearch(e.target.value); addCountry(e.target.value) }}
           onKeyDown={(e) => {
             // Backspace in an empty box removes the last chip
@@ -74,12 +80,12 @@ export default function GeoFilter({ countries, colors = [], summary }: Props) {
           }}
         />
         <datalist id="country-list">
-          {countries.map((c) => <option key={c.iso3} value={c.name_en} />)}
+          {countries.map((c) => <option key={c.iso3} value={nameOf(c)} />)}
         </datalist>
       </div>
 
       <button type="button" className="btn btn-secondary geo-toggle" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-        Filtros{activeGroups > 0 && ` (${activeGroups})`}
+        {t.common.filters}{activeGroups > 0 && ` (${activeGroups})`}
       </button>
 
       <div className={`geo-selects${open ? ' open' : ''}`}>
@@ -92,13 +98,13 @@ export default function GeoFilter({ countries, colors = [], summary }: Props) {
             onChange={(e) => update({ [key]: e.target.value || null })}
           >
             <option value="">{label}</option>
-            {values.map((v) => <option key={v} value={v}>{v}</option>)}
+            {values.map((v) => <option key={v} value={v}>{placeName(key, v, lang)}</option>)}
           </select>
         ))}
 
         {hasAny && (
           <button type="button" className="btn btn-ghost" onClick={() => setParams(withOtherParams(new URLSearchParams()))}>
-            Limpar filtros
+            {t.common.clearFilters}
           </button>
         )}
       </div>

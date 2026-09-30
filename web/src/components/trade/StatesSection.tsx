@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { scaleQuantile } from 'd3'
+import { useLang } from '../../i18n/context'
 import { formatChange, formatShort, formatUsdShort, formatValue } from '../../lib/format'
 import type { CountryFeature } from '../../lib/geo'
 import { NO_DATA_COLOR, SEQUENTIAL } from '../../lib/mapColors'
@@ -13,14 +14,16 @@ import Section from './Section'
 interface Props {
   states: StateRow[]
   period: PeriodKey
-  periodLabel: string
+  periodName: string
   brazil: CountryFeature[] // state shapes; `iso3` holds the state code (SP, MG...)
 }
 
-const FLOWS: { value: FlowOrTotal; label: string }[] = (['export', 'import', 'corrente'] as const).map((f) => ({ value: f, label: FLOW_LABELS[f] }))
 const pct = (share: number) => formatValue(share * 100, 'percent')
 
-export default function StatesSection({ states, period, periodLabel, brazil }: Props) {
+export default function StatesSection({ states, period, periodName, brazil }: Props) {
+  const { t, lang } = useLang()
+  const tr = t.trade
+  const FLOWS = (['export', 'import', 'corrente'] as const).map((f) => ({ value: f, label: FLOW_LABELS[f][lang] }))
   const [flow, setFlow] = useState<FlowOrTotal>('export')
 
   const rows = useMemo(() => rowsFor(states, period, flow, (r) => r.state), [states, period, flow])
@@ -30,9 +33,9 @@ export default function StatesSection({ states, period, periodLabel, brazil }: P
   return (
     <Section
       id="estados"
-      title="Estados"
-      subtitle={`Participação de cada UF — ${FLOW_LABELS[flow].toLowerCase()}, ${periodLabel.toLowerCase()}`}
-      actions={<Toggle label="Fluxo" value={flow} onChange={setFlow} options={FLOWS} />}
+      title={tr.states}
+      subtitle={tr.statesSubtitle(FLOW_LABELS[flow][lang].toLowerCase(), tr.inSentence(periodName))}
+      actions={<Toggle label={t.common.flow} value={flow} onChange={setFlow} options={FLOWS} />}
     >
       <div className="trade-split states">
         <div>
@@ -47,7 +50,7 @@ export default function StatesSection({ states, period, periodLabel, brazil }: P
                 <>
                   <strong>{r.state}</strong>
                   <span>{formatUsdShort(r.value, 2)} · {pct(r.share)}</span>
-                  <span className="muted">{formatChange(r.var_pct)} vs. ano anterior</span>
+                  <span className="muted">{formatChange(r.var_pct)} {tr.vsLastYear}</span>
                 </>
               )
             }}
@@ -64,7 +67,7 @@ export default function StatesSection({ states, period, periodLabel, brazil }: P
         </div>
 
         <div>
-          <p className="kicker">Ranking das UFs</p>
+          <p className="kicker">{tr.stateRanking}</p>
           <BarList
             format={(v) => formatUsdShort(v)}
             items={rows.slice(0, 12).map((r) => ({ label: r.state, value: r.value, color: 'var(--flow-export)', note: pct(r.share) }))}

@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import { area as d3area, line as d3line, max, min, scaleBand, scaleLinear } from 'd3'
 import type { Line } from '../lib/trade'
+import { useLang } from '../i18n/context'
+import { getLocale } from '../lib/format'
 import { useWidth } from '../lib/useWidth'
 import Tooltip from './Tooltip'
 import './TimeChart.css'
@@ -20,18 +22,19 @@ interface Props {
 const monthLabel = (date: string) => {
   if (date.length === 4) return date
   const [y, m] = date.split('-').map(Number)
-  return new Date(y, m - 1, 1).toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' }).replace(/ de /g, ' ')
+  return new Date(y, m - 1, 1).toLocaleDateString(getLocale(), { month: 'short', year: 'numeric' }).replace(/ de /g, ' ')
 }
 
 export default function TimeChart({ lines, type, format, formatAxis, area = false, dashed = [] }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
+  const { t } = useLang()
   const [boxRef, W] = useWidth<HTMLDivElement>(960)   // real width in pixels
   const H = W < 600 ? 240 : 300
   const [hover, setHover] = useState<{ index: number; x: number; y: number; flip: boolean } | null>(null)
 
   const dates = [...new Set(lines.flatMap((l) => l.points.map((p) => p.date)))].sort()
   const values = lines.flatMap((l) => l.points.map((p) => p.value))
-  if (dates.length === 0) return <div className="muted" ref={boxRef}>Sem dados.</div>
+  if (dates.length === 0) return <div className="muted" ref={boxRef}>{t.common.noData}</div>
 
   // Scales: one band per date on x; values on y (always including zero)
   const x = scaleBand().domain(dates).range([M.left, W - M.right]).paddingInner(type === 'bar' ? 0.2 : 0)

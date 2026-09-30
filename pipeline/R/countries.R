@@ -14,7 +14,8 @@ get_countries <- function() {
       capital   = capital,
       lat       = as.numeric(latitude),
       lon       = as.numeric(longitude),
-      continent = countrycode::countrycode(iso3c, "iso3c", "continent", warn = FALSE)
+      continent = countrycode::countrycode(iso3c, "iso3c", "continent", warn = FALSE),
+      name_pt = countrycode::countrycode(iso3c, "iso3c", "cldr.name.pt", warn = FALSE)
     )
   
   blocs <- read_csv(file.path(PATH_CONFIG, "blocs.csv"), show_col_types = FALSE) |>

@@ -6,12 +6,14 @@ import GeoFilter from '../components/GeoFilter'
 import MapLegend from '../components/MapLegend'
 import MapSidePanel, { type Overview, type StatRow } from '../components/MapSidePanel'
 import WorldMap from '../components/WorldMap'
+import { useLang } from '../i18n/context'
 import { useJson } from '../lib/data'
 import { FILTER_KEYS, applyFilters, parseFilters } from '../lib/filters'
 import { formatDate, formatShort, formatValue } from '../lib/format'
 import { toFeatures } from '../lib/geo'
 import { buildSections, groupLabel } from '../lib/indicators'
 import { INCOME_LEVELS, NO_DATA_COLOR, SEQUENTIAL, incomeColor } from '../lib/mapColors'
+import { countryName, indicatorName } from '../lib/names'
 import type { IndicatorFormat, IndicatorMeta, LatestValue, MapSummary, Series } from '../lib/types'
 import './MapPage.css'
 
@@ -26,6 +28,9 @@ export default function MapPage() {
   const [params, setParams] = useSearchParams()
   const selected = params.get('sel')         // ?sel=BRA  -> selected country
   const indicatorCode = params.get('ind')    // ?ind=NY.GDP.PCAP.CD -> color by indicator
+  const { t, lang } = useLang()
+  const m = t.map
+  const s = t.country.stats
 
   // --- data -------------------------------------------------------------
   const summary = useJson<MapSummary[]>('map_summary.json')
@@ -54,11 +59,12 @@ export default function MapPage() {
   // "Colorir por" options, grouped like the Indicators overview; everything else under "Outros"
   const optionGroups = useMemo(() => {
     const all = indicators.data ?? []
-    const groups = buildSections(all, 'overview').map((s) => ({ label: groupLabel('overview', s.group).label, items: s.items }))
+    const groups = buildSections(all, 'overview').map((sec) => ({ label: groupLabel('overview', sec.group, lang).label, items: sec.items }))
     const used = new Set(groups.flatMap((g) => g.items.map((i) => i.code)))
-    const rest = all.filter((i) => !used.has(i.code)).sort((a, b) => a.name_pt.localeCompare(b.name_pt, 'pt-BR'))
-    return [...groups, { label: 'Outros indicadores', items: rest }]
-  }, [indicators.data])
+    const rest = all.filter((i) => !used.has(i.code))
+      .sort((a, b) => indicatorName(a, lang).localeCompare(indicatorName(b, lang), lang))
+    return [...groups, { label: m.otherIndicators, items: rest }]
+  }, [indicators.data, lang, m.otherIndicators])
 
   // --- selection and "color by" live in the URL, like the filters ----------
   const setParam = (key: string, value: string | null) => {
@@ -76,17 +82,17 @@ export default function MapPage() {
   const head = (
     <header className="map-head">
       <div className="page-head">
-        <span className="kicker">Mapa</span>
-        <h1>Países e economias</h1>
-        <p className="muted">Passe o mouse para ver um valor; clique para abrir o país no painel.</p>
+        <span className="kicker">{m.kicker}</span>
+        <h1>{m.title}</h1>
+        <p className="muted">{m.subtitle}</p>
       </div>
       <label className="map-color-by">
-        <span className="muted">Colorir por</span>
+        <span className="muted">{m.colorBy}</span>
         <select value={indicatorCode ?? ''} onChange={(e) => setParam('ind', e.target.value || null)}>
-          <option value="">Grupo de renda</option>
+          <option value="">{m.incomeGroup}</option>
           {optionGroups.map((g) => (
             <optgroup key={g.label} label={g.label}>
-              {g.items.map((i) => <option key={i.code} value={i.code}>{i.name_pt}</option>)}
+              {g.items.map((i) => <option key={i.code} value={i.code}>{indicatorName(i, lang)}</option>)}
             </optgroup>
           ))}
         </select>
@@ -100,12 +106,12 @@ export default function MapPage() {
         {head}
         <div className="map-card">
           <div className="map-main"><div className="skeleton map-skeleton" /></div>
-          <div className="map-side"><p className="muted">Carregando dados do Banco Mundial…</p></div>
+          <div className="map-side"><p className="muted">{m.loading}</p></div>
         </div>
       </>
     )
   }
-  if (summary.error || topo.error || !summary.data) return <p>Erro ao carregar o mapa.</p>
+  if (summary.error || topo.error || !summary.data) return <p>{m.error}</p>
 
   // --- filters ------------------------------------------------------------
   const filters = parseFilters(params)
@@ -125,15 +131,15 @@ export default function MapPage() {
   const tooltipFor = (iso3: string) => {
     const country = byIso.get(iso3)
     if (!country) return null
-    const income = INCOME_LEVELS.find((l) => l.value === country.income)?.label
+    const income = INCOME_LEVELS.find((l) => l.value === country.income)?.label[lang]
     const row = indicator ? values.get(iso3) : null
     return (
       <>
-        <strong>{country.name_en}</strong>
+        <strong>{countryName(country, lang)}</strong>
         {income && <span className="muted">{income}</span>}
         {indicator
           ? <span>{formatValue(row?.value, indicator.format)}{row && <span className="muted"> ({row.year})</span>}</span>
-          : <span>PIB: {formatValue(country.gdp, 'currency')}</span>}
+          : <span>{m.gdp(formatValue(country.gdp, 'currency'))}</span>}
       </>
     )
   }
@@ -142,26 +148,26 @@ export default function MapPage() {
   const legend = indicator && scale
     ? {
         steps: {
-          title: indicator.name_pt,
+          title: indicatorName(indicator, lang),
           colors: scale.range(),
           ticks: [scale.domain()[0], ...scale.quantiles(), scale.domain().at(-1)!].map((v) => tick(v, indicator.format)),
         },
-        note: 'Cores por quantis: cada faixa reúne cerca de 1/6 dos países',
+        note: m.quantilesNote,
       }
-    : { items: INCOME_LEVELS, note: 'Classificação de renda do Banco Mundial' }
+    : { items: INCOME_LEVELS.map((l) => ({ color: l.color, label: l.label[lang] })), note: m.incomeNote }
 
   // --- side panel ---------------------------------------------------------
   const selectedCountry = selected ? byIso.get(selected) ?? null : null
   const countryRows: StatRow[] = selectedCountry
     ? [
-        { label: 'População', value: formatValue(selectedCountry.population, 'compact') },
-        { label: 'PIB', value: formatValue(selectedCountry.gdp, 'currency') },
-        { label: 'PIB per capita', value: formatValue(selectedCountry.gdp_pc, 'currency') },
+        { label: s.population.label, value: formatValue(selectedCountry.population, 'compact') },
+        { label: s.gdp.label, value: formatValue(selectedCountry.gdp, 'currency') },
+        { label: s.gdpPc.label, value: formatValue(selectedCountry.gdp_pc, 'currency') },
       ]
     : []
   const selectedValue = selectedCountry && indicator ? values.get(selectedCountry.iso3) : null
   if (selectedCountry && indicator && !['SP.POP.TOTL', 'NY.GDP.MKTP.CD', 'NY.GDP.PCAP.CD'].includes(indicator.code)) {
-    countryRows.push({ label: indicator.name_pt, value: formatValue(selectedValue?.value, indicator.format), year: selectedValue?.year })
+    countryRows.push({ label: indicatorName(indicator, lang), value: formatValue(selectedValue?.value, indicator.format), year: selectedValue?.year })
   }
 
   const worldPoint = (code: string) => lastPoint(world.data?.[code])
@@ -169,27 +175,27 @@ export default function MapPage() {
   const gdp = sum(matching.map((c) => c.gdp))
   const overview: Overview = filtered
     ? {
-        title: `${matching.length} ${matching.length === 1 ? 'país' : 'países'}`,
-        note: 'Soma do valor mais recente de cada país selecionado',
+        title: m.countries(matching.length),
+        note: m.sumNote,
         rows: [
-          { label: 'População', value: formatValue(population, 'compact') },
-          { label: 'PIB', value: formatValue(gdp, 'currency') },
-          { label: 'PIB per capita', value: formatValue(population ? gdp / population : null, 'currency') },
+          { label: s.population.label, value: formatValue(population, 'compact') },
+          { label: s.gdp.label, value: formatValue(gdp, 'currency') },
+          { label: s.gdpPc.label, value: formatValue(population ? gdp / population : null, 'currency') },
         ],
         income: [],
       }
     : {
-        title: 'Mundo',
-        note: `${summary.data.length} economias · Clique em um país para ver seus dados`,
+        title: m.world,
+        note: m.worldNote(summary.data.length),
         rows: [
-          { label: 'População', value: formatValue(worldPoint('SP.POP.TOTL')?.[1], 'compact'), year: worldPoint('SP.POP.TOTL')?.[0] },
-          { label: 'PIB', value: formatValue(worldPoint('NY.GDP.MKTP.CD')?.[1], 'currency'), year: worldPoint('NY.GDP.MKTP.CD')?.[0] },
-          { label: 'PIB per capita', value: formatValue(worldPoint('NY.GDP.PCAP.CD')?.[1], 'currency'), year: worldPoint('NY.GDP.PCAP.CD')?.[0] },
+          { label: s.population.label, value: formatValue(worldPoint('SP.POP.TOTL')?.[1], 'compact'), year: worldPoint('SP.POP.TOTL')?.[0] },
+          { label: s.gdp.label, value: formatValue(worldPoint('NY.GDP.MKTP.CD')?.[1], 'currency'), year: worldPoint('NY.GDP.MKTP.CD')?.[0] },
+          { label: s.gdpPc.label, value: formatValue(worldPoint('NY.GDP.PCAP.CD')?.[1], 'currency'), year: worldPoint('NY.GDP.PCAP.CD')?.[0] },
         ],
         income: [],
       }
   overview.income = INCOME_LEVELS.map((l) => ({
-    label: l.short,
+    label: l.short[lang],
     color: l.color,
     count: matching.filter((c) => c.income === l.value).length,
   }))
@@ -200,12 +206,12 @@ export default function MapPage() {
 
       <GeoFilter
         countries={summary.data}
-        summary={filtered ? `${matching.length} de ${summary.data.length} economias` : `${summary.data.length} economias`}
+        summary={filtered ? m.economiesOf(matching.length, summary.data.length) : m.economies(summary.data.length)}
       />
 
       <div className="map-card">
         <div className="map-main">
-          {latest.loading && <p className="map-loading muted">Carregando indicador…</p>}
+          {latest.loading && <p className="map-loading muted">{m.loadingIndicator}</p>}
           <WorldMap
             globe
             features={features}
@@ -231,8 +237,8 @@ export default function MapPage() {
       </div>
 
       <footer className="map-foot muted">
-        <span>Fronteiras: Natural Earth (domínio público). As fronteiras não implicam endosso.</span>
-        <span>Dados: Banco Mundial, CC BY 4.0{meta.data && ` · atualizado em ${formatDate(meta.data.updated)}`}</span>
+        <span>{m.borders}</span>
+        <span>{m.data}{meta.data && m.updated(formatDate(meta.data.updated))}</span>
       </footer>
     </>
   )

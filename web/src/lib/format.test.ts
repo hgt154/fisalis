@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatDate, formatShort, formatUsdShort, formatValue } from './format'
+import { formatDate, formatList, formatShort, formatUsdShort, formatValue, monthName, setLocale } from './format'
 
 describe('formatValue', () => {
   it('formats large currency values compactly', () => {
@@ -36,5 +36,26 @@ describe('formatUsdShort', () => {
     expect(formatUsdShort(33.16e9)).toBe('US$ 33,2\u00a0bi')
     expect(formatUsdShort(-1.6e9)).toBe('−US$ 1,6\u00a0bi')
     expect(formatUsdShort(null)).toBe('—')
+  })
+})
+
+describe('English locale', () => {
+  // Each test switches the locale and switches it back, so other tests keep pt-BR
+  const inEnglish = (fn: () => void) => { setLocale('en'); try { fn() } finally { setLocale('pt-BR') } }
+
+  it('formats numbers the English way', () => inEnglish(() => {
+    expect(formatValue(3, 'percent')).toBe('3.0%')
+    expect(formatValue(212812405, 'compact')).toBe('212.81 million')
+    expect(formatUsdShort(33.16e9)).toBe('US$ 33.2B')
+    expect(formatValue(null, 'number')).toBe('No data')
+  }))
+  it('formats dates, months and lists', () => inEnglish(() => {
+    expect(formatDate('2026-08')).toBe('Aug 2026')
+    expect(monthName(8)).toBe('August')
+    expect(formatList(['Brazil', 'Argentina', 'Mexico'])).toBe('Brazil, Argentina, and Mexico')
+  }))
+  it('uses Portuguese month names by default', () => {
+    expect(monthName(8)).toBe('Agosto')
+    expect(monthName(8, 'short')).toBe('Ago')
   })
 })

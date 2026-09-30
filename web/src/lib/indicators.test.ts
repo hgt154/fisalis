@@ -46,6 +46,11 @@ describe('groupLabel', () => {
     })
   })
 
+  it('uses English names and "SDG" in English', () => {
+    expect(groupLabel('sdg', 'SDG 13 - Climate Action', 'en')).toMatchObject({ label: 'Climate action', kicker: 'SDG 13' })
+    expect(groupLabel('overview', 'Economic', 'en').label).toBe('Economic')
+  })
+
   it('translates overview groups and falls back to the original name', () => {
     expect(groupLabel('overview', 'Economic').label).toBe('Econômico')
     expect(groupLabel('theme', 'Something New').label).toBe('Something New')

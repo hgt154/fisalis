@@ -1,5 +1,7 @@
+import { useLang } from '../i18n/context'
 import { formatValue } from '../lib/format'
 import { groupId, groupLabel, type Section, type View } from '../lib/indicators'
+import { indicatorName } from '../lib/names'
 import type { IndicatorMeta, Series } from '../lib/types'
 import InfoPopover from './InfoPopover'
 import Sparkline from './Sparkline'
@@ -24,17 +26,18 @@ const lastPoint = (points?: [number, number][]) => (points && points.length ? po
 
 export default function IndicatorTable({ view, sections, economies, fromYear, toYear, loading = false }: Props) {
   const multi = economies.length > 1
+  const { t, lang } = useLang()
 
   return (
     <div className="ind-table">
       <div className="ind-row ind-head kicker" aria-hidden="true">
-        <span>Indicador</span>
-        <span>Valor mais recente</span>
+        <span>{t.panel.indicator}</span>
+        <span>{t.panel.latestValue}</span>
         <span className="ind-years"><span>{fromYear}</span><span>{toYear}</span></span>
       </div>
 
       {sections.map((section) => {
-        const { label, kicker, color } = groupLabel(view, section.group)
+        const { label, kicker, color } = groupLabel(view, section.group, lang)
         const count = section.items.length
         return (
           <section key={section.group} id={groupId(section.group)} className="ind-section">
@@ -44,13 +47,13 @@ export default function IndicatorTable({ view, sections, economies, fromYear, to
                 {kicker && <span className="kicker">{kicker}</span>}
                 {label}
               </h2>
-              <span className="muted">{count} {count === 1 ? 'indicador' : 'indicadores'}</span>
+              <span className="muted">{t.panel.count(count)}</span>
             </header>
 
             {section.items.map((indicator) => (
               <div key={indicator.code} className={`ind-row${multi ? ' multi' : ''}`}>
                 <div className="ind-name">
-                  {indicator.name_pt}
+                  {indicatorName(indicator, lang)}
                   {indicator.description && <InfoPopover indicator={indicator} />}
                 </div>
                 <Values indicator={indicator} economies={economies} loading={loading} />

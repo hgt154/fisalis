@@ -1,9 +1,10 @@
 import { Link } from 'react-router'
 import HeroArt from '../components/HeroArt'
+import { useLang } from '../i18n/context'
 import { useJson } from '../lib/data'
-import { formatDate, formatShort, formatValue } from '../lib/format'
-import { THEORIES } from '../lib/theories'
-import type { SummaryRow, TradeMeta } from '../lib/trade'
+import { formatDate, formatUsdShort, formatValue } from '../lib/format'
+import { theoriesFor } from '../lib/theories'
+import { periodLabel, type SummaryRow, type TradeMeta } from '../lib/trade'
 import type { IndicatorMeta, Series } from '../lib/types'
 import './HomePage.css'
 
@@ -15,22 +16,20 @@ export default function HomePage() {
   const trade = useJson<TradeMeta>('trade/meta.json')
   const summary = useJson<SummaryRow[]>('trade/summary.json')
   const indicators = useJson<IndicatorMeta[]>('indicators.json')
+  const { t, lang } = useLang()
+  const h = t.home
 
   const population = lastPoint(world.data?.['SP.POP.TOTL'])
   const gdp = lastPoint(world.data?.['NY.GDP.MKTP.CD'])
   const balance = summary.data?.find((r) => r.period === 'month' && r.flow === 'saldo')
+  const monthPeriod = trade.data?.periods.find((p) => p.period === 'month')
 
   const sections = [
-    { to: '/mapa', n: '01', title: 'Mapa', color: 'var(--mata)', link: 'Abrir o mapa',
-      text: 'Um mapa-múndi por grupo de renda ou por qualquer indicador, com o perfil de cada país.' },
-    { to: '/indicadores', n: '02', title: 'Indicadores', color: 'var(--folha)', link: 'Comparar países',
-      text: `${indicators.data?.length ?? ''} indicadores do Banco Mundial, comparáveis entre até quatro países.` },
-    { to: '/comercio', n: '03', title: 'Comércio Exterior', color: 'var(--jacaranda)', link: 'Ver a balança',
-      text: 'Exportações e importações brasileiras por parceiro, estado e produto.' },
-    { to: '/teorias', n: '04', title: 'Teorias', color: '#6f9a4a', link: 'Ler as teorias',
-      text: `Uma biblioteca com ${THEORIES.length} teorias das Relações Internacionais, do Realismo às abordagens críticas.` },
-    { to: null, n: '05', title: 'Notícias', color: 'var(--ambar)', link: 'Em breve',
-      text: 'Notícias de fontes confiáveis, resumidas em três frases, sempre com link ao original.' },
+    { to: '/mapa', n: '01', color: 'var(--mata)', ...h.sections.map },
+    { to: '/indicadores', n: '02', color: 'var(--folha)', ...h.sections.indicators, text: h.sections.indicators.text(indicators.data?.length ?? 0) },
+    { to: '/comercio', n: '03', color: 'var(--jacaranda)', ...h.sections.trade },
+    { to: '/teorias', n: '04', color: '#6f9a4a', ...h.sections.theories, text: h.sections.theories.text(theoriesFor(lang).length) },
+    { to: null, n: '05', color: 'var(--ambar)', ...h.sections.news, link: h.soon },
   ]
 
   return (
@@ -38,24 +37,20 @@ export default function HomePage() {
       {/* ---------- Hero ---------- */}
       <section className="home-hero">
         <div className="home-hero-text">
-          <span className="kicker" style={{ color: 'var(--color-accent-strong)' }}>Dados abertos · Relações Internacionais</span>
+          <span className="kicker" style={{ color: 'var(--color-accent-strong)' }}>{h.kicker}</span>
           <h1 className="home-title">
-            O mundo em números, <em className="em">para quem estuda o mundo.</em>
+            {h.titleStart}<em className="em">{h.titleEm}</em>
           </h1>
-          <p className="home-lead">
-            Arco reúne em uma só interface os indicadores de desenvolvimento do Banco Mundial, um mapa-múndi
-            interativo, as estatísticas do comércio exterior brasileiro e uma biblioteca de teorias de RI.
-            Tudo filtrável, citável e gratuito.
-          </p>
+          <p className="home-lead">{h.lead}</p>
           <div className="home-actions">
-            <Link className="btn btn-primary btn-lg" to="/mapa">Explorar o mapa →</Link>
-            <Link className="btn btn-secondary btn-lg" to="/indicadores">Ver indicadores</Link>
+            <Link className="btn btn-primary btn-lg" to="/mapa">{h.exploreMap}</Link>
+            <Link className="btn btn-secondary btn-lg" to="/indicadores">{h.seeIndicators}</Link>
           </div>
         </div>
         <figure className="home-figure">
-          <div className="home-frame"><HeroArt /></div>
+          <div className="home-frame"><HeroArt label={h.heroAlt} /></div>
           <figcaption className="muted">
-            <span>Arcada, espelho d’água e jardim — concreto aparente e vegetação</span>
+            <span>{h.figcaption}</span>
           </figcaption>
         </figure>
       </section>
@@ -65,26 +60,26 @@ export default function HomePage() {
         <div className="frieze frieze-lg" />
         <section className="slab home-stats num">
           <div className="home-stat">
-            <span className="home-stat-label">População mundial</span>
+            <span className="home-stat-label">{h.worldPopulation}</span>
             <span className="home-stat-value">{formatValue(population?.[1], 'compact')}</span>
-            <span className="home-stat-note">Banco Mundial · {population?.[0] ?? '—'}</span>
+            <span className="home-stat-note">{h.worldBank} · {population?.[0] ?? '—'}</span>
           </div>
           <div className="home-stat">
-            <span className="home-stat-label">PIB mundial</span>
-            <span className="home-stat-value">{gdp ? `US$ ${formatShort(gdp[1], 2)}` : '—'}</span>
-            <span className="home-stat-note">US$ correntes · {gdp?.[0] ?? '—'}</span>
+            <span className="home-stat-label">{h.worldGdp}</span>
+            <span className="home-stat-value">{formatUsdShort(gdp?.[1], 2)}</span>
+            <span className="home-stat-note">{h.currentUsd} · {gdp?.[0] ?? '—'}</span>
           </div>
           <div className="home-stat">
-            <span className="home-stat-label">Saldo comercial BR</span>
-            <span className="home-stat-value">{balance ? `US$ ${formatShort(balance.value)}` : '—'}</span>
+            <span className="home-stat-label">{h.tradeBalance}</span>
+            <span className="home-stat-value">{formatUsdShort(balance?.value)}</span>
             <span className="home-stat-note">
-              {balance ? `${balance.value >= 0 ? 'Superávit' : 'Déficit'} · ${balance.label}` : ''}
+              {balance ? `${balance.value >= 0 ? h.surplus : h.deficit}${monthPeriod ? ` · ${periodLabel(monthPeriod)}` : ''}` : ''}
             </span>
           </div>
           <div className="home-stat">
-            <span className="home-stat-label">Última atualização</span>
+            <span className="home-stat-label">{h.lastUpdate}</span>
             <span className="home-stat-value">{meta.data ? formatDate(meta.data.updated) : '—'}</span>
-            <span className="home-stat-note">{trade.data ? `Comércio até ${formatDate(trade.data.latest)}` : ''}</span>
+            <span className="home-stat-note">{trade.data ? h.tradeUntil(formatDate(trade.data.latest)) : ''}</span>
           </div>
         </section>
         <div className="garden-line" />
@@ -92,8 +87,8 @@ export default function HomePage() {
 
       {/* ---------- Five sections ---------- */}
       <div className="home-sections-head">
-        <h2>Cinco maneiras de ler o sistema internacional</h2>
-        <span className="muted">Cinco vãos sob a mesma laje</span>
+        <h2>{h.sectionsTitle}</h2>
+        <span className="muted">{h.sectionsNote}</span>
       </div>
       <div className="home-sections">
         {sections.map((s) => {
@@ -120,13 +115,10 @@ export default function HomePage() {
 
       {/* ---------- About ---------- */}
       <section className="home-about">
-        <h3>Sobre o projeto</h3>
-        <p><em>Para quem.</em> Estudantes e pesquisadores de Relações Internacionais, jornalistas e leitores
-          curiosos que precisam de números confiáveis sem abrir cinco portais diferentes.</p>
-        <p><em>Como funciona.</em> Os dados são coletados das fontes oficiais, padronizados em pt-BR e
-          atualizados automaticamente. Cada número informa o ano de referência e leva à definição original.</p>
-        <p><em>Código aberto.</em> Metodologia, pipelines e esta interface estão publicados no GitHub.
-          Correções e sugestões são bem-vindas.</p>
+        <h3>{h.about}</h3>
+        <p><em>{h.whoTitle}</em> {h.who}</p>
+        <p><em>{h.howTitle}</em> {h.how}</p>
+        <p><em>{h.openTitle}</em> {h.open}</p>
       </section>
     </>
   )

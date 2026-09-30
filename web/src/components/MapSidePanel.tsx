@@ -1,5 +1,7 @@
 import { Link } from 'react-router'
+import { useLang } from '../i18n/context'
 import { INCOME_LEVELS } from '../lib/mapColors'
+import { countryName, placeName } from '../lib/names'
 import type { MapSummary } from '../lib/types'
 import './MapSidePanel.css'
 
@@ -42,14 +44,16 @@ function Rows({ rows }: { rows: StatRow[] }) {
 }
 
 export default function MapSidePanel({ country, countryRows, overview, empty, onClose, onClear }: Props) {
+  const { t, lang } = useLang()
+  const m = t.map
   // 1. Filters with no result
   if (empty) {
     return (
       <aside className="map-panel">
-        <p className="kicker">0 de {empty.total} economias</p>
-        <h2>Nenhum país corresponde a esses filtros</h2>
-        <p className="muted">Remova um dos filtros para ampliar a seleção.</p>
-        <button type="button" className="btn btn-primary" onClick={onClear}>↺ Limpar filtros</button>
+        <p className="kicker">{m.noMatch(empty.total)}</p>
+        <h2>{m.noMatchTitle}</h2>
+        <p className="muted">{m.noMatchHint}</p>
+        <button type="button" className="btn btn-primary" onClick={onClear}>↺ {t.common.clearFilters}</button>
       </aside>
     )
   }
@@ -59,14 +63,14 @@ export default function MapSidePanel({ country, countryRows, overview, empty, on
     const total = overview.income.reduce((sum, i) => sum + i.count, 0)
     return (
       <aside className="map-panel">
-        <p className="kicker">Selecionado</p>
+        <p className="kicker">{m.selected}</p>
         <h2>{overview.title}</h2>
         <p className="muted panel-note">{overview.note}</p>
         <Rows rows={overview.rows} />
 
         {total > 0 && (
           <div className="panel-income">
-            <p className="kicker">Economias por grupo de renda</p>
+            <p className="kicker">{m.byIncome}</p>
             <div className="panel-income-bar">
               {overview.income.map((i) => (
                 <span key={i.label} style={{ flexGrow: i.count, background: i.color }} title={`${i.label}: ${i.count}`} />
@@ -80,7 +84,7 @@ export default function MapSidePanel({ country, countryRows, overview, empty, on
           </div>
         )}
 
-        <p className="panel-source muted">Fonte: Banco Mundial, World Development Indicators.</p>
+        <p className="panel-source muted">{m.source}</p>
       </aside>
     )
   }
@@ -90,21 +94,21 @@ export default function MapSidePanel({ country, countryRows, overview, empty, on
   return (
     <aside className="map-panel">
       <div className="panel-top">
-        <p className="kicker">Selecionado</p>
-        <button type="button" className="panel-back" onClick={onClose}>← Mundo</button>
+        <p className="kicker">{m.selected}</p>
+        <button type="button" className="panel-back" onClick={onClose}>{m.backToWorld}</button>
       </div>
-      <h2>{country.name_en}</h2>
+      <h2>{countryName(country, lang)}</h2>
       <p className="panel-meta">
-        <span>{country.region}</span>
-        {income && <span><span className="income-dot" style={{ background: income.color }} />{income.label}</span>}
+        <span>{placeName('region', country.region, lang)}</span>
+        {income && <span><span className="income-dot" style={{ background: income.color }} />{income.label[lang]}</span>}
       </p>
       {country.blocs.length > 0 && (
         <ul className="panel-blocs">
-          {country.blocs.map((b) => <li key={b} className="tag">{b}</li>)}
+          {country.blocs.map((b) => <li key={b} className="tag">{placeName('bloc', b, lang)}</li>)}
         </ul>
       )}
       <Rows rows={countryRows} />
-      <Link className="btn btn-primary panel-cta" to={`/pais/${country.iso3}`}>Ver perfil do país →</Link>
+      <Link className="btn btn-primary panel-cta" to={`/pais/${country.iso3}`}>{m.seeProfile}</Link>
     </aside>
   )
 }

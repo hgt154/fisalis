@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { geoGraticule10, geoNaturalEarth1, geoPath, select, zoom, zoomIdentity, type ZoomBehavior } from 'd3'
+import { useLang } from '../i18n/context'
 import type { CountryFeature } from '../lib/geo'
 import './WorldMap.css'
 
@@ -20,6 +21,7 @@ export default function WorldMap({ features, fillFor, isActive, tooltipFor, sele
   const svgRef = useRef<SVGSVGElement>(null)
   const gRef = useRef<SVGGElement>(null)
   const zoomRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null)
+  const { t } = useLang()
   const [hover, setHover] = useState<{ iso3: string; x: number; y: number; flip: boolean } | null>(null)
 
   // 1. Turn each shape into an SVG path string (only when the shapes change).
@@ -100,9 +102,9 @@ export default function WorldMap({ features, fillFor, isActive, tooltipFor, sele
       </svg>
 
       <div className="map-zoom">
-        <button type="button" aria-label="Aproximar" onClick={() => zoomBy(1.5)}>+</button>
-        <button type="button" aria-label="Afastar" onClick={() => zoomBy(1 / 1.5)}>−</button>
-        <button type="button" aria-label="Voltar ao mapa inteiro" onClick={resetZoom}>↺</button>
+        <button type="button" aria-label={t.map.zoomIn} onClick={() => zoomBy(1.5)}>+</button>
+        <button type="button" aria-label={t.map.zoomOut} onClick={() => zoomBy(1 / 1.5)}>−</button>
+        <button type="button" aria-label={t.map.zoomReset} onClick={resetZoom}>↺</button>
       </div>
 
       {hover && tooltip && (

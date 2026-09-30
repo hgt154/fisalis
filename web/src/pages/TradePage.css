@@ -79,3 +79,5 @@
   .summary-foot { flex-direction: column; }
   .product-select { max-width: 100%; }
 }
+
+.trade-names-note { margin: -16px 0 24px; font-size: 12px; }

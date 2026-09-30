@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { hierarchy, treemap, type HierarchyRectangularNode } from 'd3'
+import { getLocale } from '../lib/format'
 import { useWidth } from '../lib/useWidth'
 import Tooltip from './Tooltip'
 
@@ -26,7 +27,7 @@ interface Node {
   children?: Node[]
 }
 
-const pct = (share: number) => `${(share * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`
+const pct = (share: number) => `${(share * 100).toLocaleString(getLocale(), { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`
 
 export default function Treemap({ items, width: baseWidth = 960, height: baseHeight = 480 }: Props) {
   const [boxRef, width] = useWidth<HTMLDivElement>(baseWidth)

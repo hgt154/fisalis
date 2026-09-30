@@ -1,9 +1,9 @@
 // Home illustration: arcade, reflecting pool and garden (from the design, "Composição geométrica")
 const ARCH_X = [5, 80, 155, 230, 305, 380, 455, 530]
 
-export default function HeroArt() {
+export default function HeroArt({ label }: { label: string }) {
   return (
-    <svg viewBox="0 0 600 520" role="img" aria-label="Arcada de concreto, espelho d’água e jardim" style={{ display: 'block', width: '100%', height: 'auto' }}>
+    <svg viewBox="0 0 600 520" role="img" aria-label={label} style={{ display: 'block', width: '100%', height: 'auto' }}>
       <defs>
         <pattern id="heroBeam" width="600" height="14" patternUnits="userSpaceOnUse">
           <rect width="600" height="14" fill="#8d887e" />

@@ -1,9 +1,11 @@
+import type { Bilingual } from './types'
+
 // Income groups exactly as the World Bank writes them, with labels and a color token
-export const INCOME_LEVELS = [
-  { value: 'High income', label: 'Alta renda', short: 'alta', color: 'var(--income-high)' },
-  { value: 'Upper middle income', label: 'Renda média-alta', short: 'média-alta', color: 'var(--income-upper-middle)' },
-  { value: 'Lower middle income', label: 'Renda média-baixa', short: 'média-baixa', color: 'var(--income-lower-middle)' },
-  { value: 'Low income', label: 'Baixa renda', short: 'baixa', color: 'var(--income-low)' },
+export const INCOME_LEVELS: { value: string; label: Bilingual; short: Bilingual; color: string }[] = [
+  { value: 'High income', label: { pt: 'Alta renda', en: 'High income' }, short: { pt: 'alta', en: 'high' }, color: 'var(--income-high)' },
+  { value: 'Upper middle income', label: { pt: 'Renda média-alta', en: 'Upper middle income' }, short: { pt: 'média-alta', en: 'upper middle' }, color: 'var(--income-upper-middle)' },
+  { value: 'Lower middle income', label: { pt: 'Renda média-baixa', en: 'Lower middle income' }, short: { pt: 'média-baixa', en: 'lower middle' }, color: 'var(--income-lower-middle)' },
+  { value: 'Low income', label: { pt: 'Baixa renda', en: 'Low income' }, short: { pt: 'baixa', en: 'low' }, color: 'var(--income-low)' },
 ]
 
 export const NO_DATA_COLOR = 'var(--map-no-data)'
