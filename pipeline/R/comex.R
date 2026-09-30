@@ -1,11 +1,11 @@
 library(dplyr)
 library(purrr)
 
-# Be gentle with the API: wait longer after a "too many requests" error
-options(comexr.retry_time = 15, comexr.timeout = 180)
+# Retries are handled in comex_year() (with growing waits), so comexr tries each request only once
+options(comexr.timeout = 180, comexr.max_tries = 1)
 
 MAX_ATTEMPTS  <- 6    # tries per request before giving up
-PAUSE_SECONDS <- 11   # the API asks for 10 s between requests; 11 leaves a margin
+PAUSE_SECONDS <- 30   # the API asks for 10 s between requests; 11 leaves a margin
 
 # Column names the API returns -> the names we use everywhere else.
 # CHECK THESE in Step 2 with names(...) and fix any that differ.
@@ -58,8 +58,11 @@ comex_year <- function(flow, year, details, latest) {
         language = "pt", verbose = FALSE
       ),
       error = function(e) {
-        message("  attempt ", attempt, " failed: ", conditionMessage(e), " — waiting 15 s")
-        Sys.sleep(15)
+        # Exponential backoff: 15, 30, 60, 120, 240 s — each failure waits twice as long
+        wait <- min(15 * 2^(attempt - 1), 240)
+        message("  attempt ", attempt, " failed: ", conditionMessage(e),
+                if (attempt < MAX_ATTEMPTS) paste0(" — waiting ", wait, " s") else "")
+        if (attempt < MAX_ATTEMPTS) Sys.sleep(wait)
         NULL
       }
     )

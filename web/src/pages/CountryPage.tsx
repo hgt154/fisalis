@@ -7,7 +7,7 @@ import type { Country, IndicatorMeta, Series } from '../lib/types'
 import './CountryPage.css'
 
 // The five figures in the band under the title
-const STATS = [
+const STATS = [ 
   { code: 'SP.POP.TOTL', label: 'População', note: 'habitantes' },
   { code: 'NY.GDP.MKTP.CD', label: 'PIB', note: 'US$ correntes' },
   { code: 'NY.GDP.PCAP.CD', label: 'PIB per capita', note: 'US$ correntes' },

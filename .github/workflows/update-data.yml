@@ -11,7 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-24.04
-    timeout-minutes: 90       # stop if something hangs (e.g. an API that never answers)
+    timeout-minutes: 120       # stop if something hangs (e.g. an API that never answers)
 
     steps:
       - uses: actions/checkout@v5
