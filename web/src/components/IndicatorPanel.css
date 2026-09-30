@@ -93,7 +93,12 @@
   background: var(--c);
 }
 
-.spark { display: block; width: 100%; overflow: visible; }
+/* Sparkline: drawn at its real width (see Sparkline.tsx); the tooltip floats above it */
+.spark-box { position: relative; }
+.spark { display: block; overflow: visible; cursor: crosshair; touch-action: pan-y; }
+.spark-cursor { stroke: var(--color-text-muted); stroke-width: 1; }
+.spark-dot { stroke: var(--color-bg); stroke-width: 2; }   /* ring in the background color */
+
 .spark-note { display: block; font-size: 11.5px; line-height: 1.35; color: var(--color-text-muted); }
 
 /* ---------- Definition popover (ⓘ) ---------- */

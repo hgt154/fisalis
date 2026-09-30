@@ -61,7 +61,8 @@ export default function IndicatorTable({ view, sections, economies, fromYear, to
                   <Sparkline
                     fromYear={fromYear}
                     toYear={toYear}
-                    series={economies.map((e) => ({ color: e.color, points: e.series?.[indicator.code] ?? [] }))}
+                    format={(v) => formatValue(v, indicator.format)}
+                    series={economies.map((e) => ({ name: e.name, color: e.color, points: e.series?.[indicator.code] ?? [] }))}
                   />
                 </div>
               </div>
