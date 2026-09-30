@@ -15,7 +15,7 @@
   margin: 0;
   text-wrap: balance;
 }
-.home-lead { font-size: 18px; line-height: 1.6; max-width: 580px; margin: 0; text-align: justify; hyphens: auto; }
+.home-lead { font-size: 18px; line-height: 1.6; max-width: 580px; margin: 0; text-wrap: pretty; }
 .home-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn-lg { font-size: 16px; padding: 12px 20px; }
 
@@ -100,7 +100,7 @@ a.vao:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(45, 43, 4
   border-top: 1px solid var(--color-text);
 }
 .home-about h3 { font-size: 30px; font-weight: 400; margin: 0; }
-.home-about p { font-size: 15px; line-height: 1.65; text-align: justify; hyphens: auto; margin: 0; }
+.home-about p { font-size: 15px; line-height: 1.65; margin: 0; text-wrap: pretty; }
 
 /* ---------- Smaller screens ---------- */
 @media (max-width: 1100px) {

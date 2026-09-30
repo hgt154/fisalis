@@ -35,7 +35,7 @@
 .theory-body { font-size: 15.5px; line-height: 1.7; }
 .theory-body h2 { font-size: 28px; margin: 32px 0 10px; scroll-margin-top: var(--space-md); }
 .theory-body h2:first-child { margin-top: 0; }
-.theory-body p { margin: 0 0 14px; text-align: justify; hyphens: auto; }
+.theory-body p { margin: 0 0 14px; text-wrap: pretty; }
 
 /* Drop cap on the first paragraph */
 .theory-body > p:first-of-type::first-letter {
