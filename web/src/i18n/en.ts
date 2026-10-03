@@ -116,6 +116,12 @@ export const en: Messages = {
     officialDefinition: 'Official definition',
     wbSource: 'World Bank, WDI',
     fewPoints: (n) => `Too few points for a series (${plural(n, 'observation', 'observations')})`,
+    search: 'Search indicators',
+    searchPlaceholder: 'Search indicators (e.g. GDP, CO₂, education)',
+    found: (n, query) => `${plural(n, 'indicator', 'indicators')} found for “${query}”`,
+    noResults: (query) => `No indicator in this tab for “${query}”.`,
+    alsoIn: 'Also in:',
+    clearSearch: 'Clear search',
   },
 
   country: {

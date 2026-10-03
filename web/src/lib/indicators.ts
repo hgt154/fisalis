@@ -129,3 +129,28 @@ export function groupId(group: string): string {
   const slug = group.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-')
   return `g-${slug.replace(/^-|-$/g, '')}`
 }
+
+// ---------------------------------------------------------------------------
+// Search
+
+// Lowercase without accents, so "educacao" finds "Educação" and "co2" finds "CO2"
+export const fold = (text: string) => text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+
+// Keep only indicators whose name (Portuguese or English) or code contains every word of the search.
+// Sections left empty are dropped.
+export function searchSections(sections: Section[], query: string): Section[] {
+  const words = fold(query).split(/\s+/).filter(Boolean)
+  if (words.length === 0) return sections
+  return sections
+    .map((s) => ({
+      ...s,
+      items: s.items.filter((i) => {
+        const text = fold([i.name_pt, i.name_en, i.code].join(' '))
+        return words.every((w) => text.includes(w))
+      }),
+    }))
+    .filter((s) => s.items.length > 0)
+}
+
+// Number of different indicators in a list of sections (one indicator can sit in two themes)
+export const countIndicators = (sections: Section[]) => new Set(sections.flatMap((s) => s.items.map((i) => i.code))).size

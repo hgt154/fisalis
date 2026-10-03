@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { aggregateFor, buildSections, groupId, groupLabel } from './indicators'
+import { aggregateFor, buildSections, countIndicators, groupId, groupLabel, searchSections } from './indicators'
 import type { IndicatorMeta } from './types'
 
 const make = (code: string, groups: IndicatorMeta['groups']): IndicatorMeta => ({
@@ -60,5 +60,29 @@ describe('groupLabel', () => {
 describe('groupId', () => {
   it('builds a safe anchor id', () => {
     expect(groupId('Health, Nutrition & Population')).toBe('g-health-nutrition-population')
+  })
+})
+
+describe('searchSections', () => {
+  const sections = [
+    { group: 'Social', items: [
+      { ...make('SE.ADT.LITR.ZS', []), name_pt: 'Taxa de alfabetização', name_en: 'Literacy rate' },
+      { ...make('SP.POP.TOTL', []), name_pt: 'População, total', name_en: 'Population, total' },
+    ] },
+    { group: 'Economic', items: [{ ...make('NY.GDP.MKTP.CD', []), name_pt: 'PIB (US$ correntes)', name_en: 'GDP (current US$)' }] },
+  ]
+
+  it('ignores accents and case, and searches both languages and the code', () => {
+    expect(countIndicators(searchSections(sections, 'ALFABETIZACAO'))).toBe(1)
+    expect(countIndicators(searchSections(sections, 'gdp'))).toBe(1)
+    expect(countIndicators(searchSections(sections, 'sp.pop'))).toBe(1)
+  })
+  it('needs every word and drops empty sections', () => {
+    const result = searchSections(sections, 'população total')
+    expect(result.map((s) => s.group)).toEqual(['Social'])
+    expect(searchSections(sections, 'população pib')).toEqual([])
+  })
+  it('returns everything for an empty search', () => {
+    expect(searchSections(sections, '  ')).toBe(sections)
   })
 })

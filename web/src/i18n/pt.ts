@@ -117,6 +117,12 @@ export const pt = {
     officialDefinition: 'Definição oficial',
     wbSource: 'Banco Mundial, WDI',
     fewPoints: (n: number) => `Poucos pontos para uma série (${plural(n, 'observação', 'observações')})`,
+    search: 'Buscar indicador',
+    searchPlaceholder: 'Buscar indicador (ex.: PIB, CO₂, educação)',
+    found: (n: number, query: string) => `${plural(n, 'indicador encontrado', 'indicadores encontrados')} para “${query}”`,
+    noResults: (query: string) => `Nenhum indicador nesta aba para “${query}”.`,
+    alsoIn: 'Também em:',
+    clearSearch: 'Limpar busca',
   },
 
   country: {

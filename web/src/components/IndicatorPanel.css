@@ -161,3 +161,42 @@
   .ind-values-multi li { flex-direction: column; gap: 0; padding-top: 4px; border-top: 2px solid var(--c); white-space: normal; }
   .ind-values-multi .ind-code::before { display: none; }
 }
+
+/* ---------- Indicator search ---------- */
+.ind-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 260px;
+  min-height: 36px;
+  padding: 0 10px;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+}
+.ind-search:focus-within { border-color: var(--color-accent); }
+.ind-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 0;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+.ind-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  padding: 12px 0 0;
+  font-size: 13.5px;
+}
+.ind-search-bar .btn-ghost { font-size: 13px; padding: 2px 6px; }
+
+@media (max-width: 700px) {
+  .ind-tools { width: 100%; }
+  .ind-search { width: 100%; }
+}
