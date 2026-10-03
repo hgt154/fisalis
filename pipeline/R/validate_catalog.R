@@ -25,3 +25,8 @@ stopifnot(all(ind$format %in% c("number", "percent", "currency", "compact")))
 
 message("Catalog OK: ", nrow(ind), " indicators, ", nrow(groups), " group rows")
 groups |> count(view, group) |> print(n = Inf)
+
+
+agg <- read_csv(file.path(PATH_CONFIG, "aggregation.csv"), show_col_types = FALSE)
+stopifnot("Every indicator needs a row in aggregation.csv" = setequal(agg$code, ind$code))
+stopifnot("aggregation must be sum, pop, gdp or none" = all(agg$aggregation %in% c("sum", "pop", "gdp", "none")))

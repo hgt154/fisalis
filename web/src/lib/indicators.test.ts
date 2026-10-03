@@ -29,13 +29,24 @@ describe('buildSections', () => {
 })
 
 describe('aggregateFor', () => {
-  const aggregates = [{ iso3: 'LCN', name_en: 'Latin America & Caribbean' }]
+  const aggregates = [
+    { iso3: 'LCN', name_en: 'Latin America & Caribbean' },
+    { iso3: 'EUU', name_en: 'European Union', kind: 'official' as const, bloc: 'European Union' },
+    { iso3: 'BLOC-BRICS', name_en: 'BRICS', kind: 'calculated' as const, bloc: 'BRICS' },
+    { iso3: 'CONT-AFRICA', name_en: 'Africa', kind: 'calculated' as const, continent: 'Africa' },
+  ]
   const base = { countries: [], bloc: null, continent: null, region: null, income: null }
   it('finds the aggregate for a region', () => {
     expect(aggregateFor({ ...base, region: 'Latin America & Caribbean' }, aggregates)?.iso3).toBe('LCN')
   })
-  it('returns null without a region or income filter', () => {
+  it('finds official and calculated bloc aggregates, and continents', () => {
+    expect(aggregateFor({ ...base, bloc: 'European Union' }, aggregates)?.iso3).toBe('EUU')
+    expect(aggregateFor({ ...base, bloc: 'BRICS' }, aggregates)?.iso3).toBe('BLOC-BRICS')
+    expect(aggregateFor({ ...base, continent: 'Africa' }, aggregates)?.iso3).toBe('CONT-AFRICA')
+  })
+  it('returns null when nothing matches', () => {
     expect(aggregateFor(base, aggregates)).toBeNull()
+    expect(aggregateFor({ ...base, bloc: 'NATO' }, aggregates)).toBeNull()
   })
 })
 

@@ -17,8 +17,11 @@ export interface Country {
 }
 
 export interface Aggregate {
-  iso3: string
+  iso3: string                         // "LCN", "EUU", "BLOC-BRICS", "CONT-AFRICA"
   name_en: string
+  kind?: 'official' | 'calculated'     // published by the World Bank, or calculated by the pipeline
+  bloc?: string | null                 // the bloc it stands for ("BRICS", "European Union")
+  continent?: string | null            // the continent it stands for ("Africa")
 }
 
 export type IndicatorFormat = 'number' | 'percent' | 'currency' | 'compact'

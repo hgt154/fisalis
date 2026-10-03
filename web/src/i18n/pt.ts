@@ -98,9 +98,12 @@ export const pt = {
     comparison: ' · Comparação',
     subtitle: 'Banco Mundial, World Development Indicators · valor mais recente e série desde 2000',
     firstN: (n: number) => `Mostrando os primeiros ${n} países selecionados.`,
-    noAggregate: 'Valores agregados por bloco e continente ainda não estão disponíveis. Selecione países para compará-los.',
     seriesError: (message: string) => `Erro ao carregar séries: ${message}`,
     aggregate: '(agregado)',
+    calculated: '(calculado)',
+    noAggregateFor: (name: string) => `Ainda não há valores agregados para ${name}. Selecione países para compará-los.`,
+    calculatedNote: (name: string) =>
+      `Os valores de ${name} são calculados pelo Arco a partir dos membros atuais: somas (população, PIB) ou médias ponderadas pela população ou pelo PIB, conforme o indicador. Só aparecem quando os membros com dados representam ao menos 2/3 do total naquele ano. Índices, escores e medidas de desigualdade não são agregados.`,
   },
 
   panel: {

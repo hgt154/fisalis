@@ -7,7 +7,7 @@ import { useJson, useJsonMany } from '../lib/data'
 import { parseFilters } from '../lib/filters'
 import { formatList } from '../lib/format'
 import { aggregateFor } from '../lib/indicators'
-import { aggregateName, countryName } from '../lib/names'
+import { aggregateName, countryName, placeName } from '../lib/names'
 import type { Aggregate, Country, IndicatorMeta, Series } from '../lib/types'
 
 const DEFAULT_COUNTRY = 'BRA'
@@ -41,7 +41,9 @@ export default function IndicatorsPage() {
   const aggregateLabel = aggregate ? aggregateName(aggregate.name_en, lang) : ''
   const economies: Economy[] = allIso.map((iso, i) => ({
     iso3: iso,
-    name: aggregate && iso === aggregate.iso3 ? `${aggregateLabel} ${t.indicators.aggregate}` : nameOf(iso),
+    name: aggregate && iso === aggregate.iso3
+      ? `${aggregateLabel} ${aggregate.kind === 'calculated' ? t.indicators.calculated : t.indicators.aggregate}`
+      : nameOf(iso),
     color: aggregate && iso === aggregate.iso3 ? 'var(--series-aggregate)' : COLORS[i],
     series: series.data[i] ?? null,
   }))
@@ -62,8 +64,11 @@ export default function IndicatorsPage() {
         <p className="note">{t.indicators.firstN(MAX_COUNTRIES)}</p>
       )}
       {(filters.bloc || filters.continent) && !aggregate && (
-        <p className="note">{t.indicators.noAggregate}</p>
+        <p className="note">
+          {t.indicators.noAggregateFor(placeName(filters.bloc ? 'bloc' : 'continent', (filters.bloc ?? filters.continent)!, lang))}
+        </p>
       )}
+      {aggregate?.kind === 'calculated' && <p className="note note-info">{t.indicators.calculatedNote(aggregateLabel)}</p>}
       {series.error && <p className="note">{t.indicators.seriesError(series.error.message)}</p>}
 
       <IndicatorPanel indicators={indicators.data} economies={economies} loading={series.loading} />

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { aggregateName, countryName, placeName } from './names'
+import { aggregateName, countryName, placeName, shortCode } from './names'
 
 describe('names', () => {
   it('translates places to Portuguese and keeps English as is', () => {
@@ -15,5 +15,14 @@ describe('names', () => {
     expect(countryName({ name_en: 'Brazil', name_pt: 'Brasil' }, 'pt')).toBe('Brasil')
     expect(countryName({ name_en: 'Kosovo', name_pt: null }, 'pt')).toBe('Kosovo')
     expect(countryName({ name_en: 'Brazil', name_pt: 'Brasil' }, 'en')).toBe('Brazil')
+  })
+})
+
+describe('shortCode', () => {
+  it('keeps country codes and shortens group codes', () => {
+    expect(shortCode('BRA')).toBe('BRA')
+    expect(shortCode('BLOC-BRICS')).toBe('BRICS')
+    expect(shortCode('BLOC-AFRICAN-UNION')).toBe('AU')
+    expect(shortCode('CONT-AMERICAS')).toBe('AMERICAS')
   })
 })

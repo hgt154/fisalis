@@ -1,7 +1,7 @@
 import { useLang } from '../i18n/context'
 import { formatValue } from '../lib/format'
 import { groupId, groupLabel, type Section, type View } from '../lib/indicators'
-import { indicatorName } from '../lib/names'
+import { indicatorName, shortCode } from '../lib/names'
 import type { IndicatorMeta, Series } from '../lib/types'
 import InfoPopover from './InfoPopover'
 import Sparkline from './Sparkline'
@@ -95,7 +95,7 @@ function Values({ indicator, economies, loading }: { indicator: IndicatorMeta; e
     <ul className="ind-values ind-values-multi">
       {cells.map(({ economy, last, text }) => (
         <li key={economy.iso3} style={{ '--c': economy.color } as React.CSSProperties}>
-          <span className="ind-code" title={economy.name}>{economy.iso3}</span>
+          <span className="ind-code" title={economy.name}>{shortCode(economy.iso3)}</span>
           <span className={last ? 'ind-value-sm' : 'ind-empty'}>{text}</span>
           {last && <span className="ind-year"> ({last[0]})</span>}
         </li>

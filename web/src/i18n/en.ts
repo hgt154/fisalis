@@ -97,9 +97,12 @@ export const en: Messages = {
     comparison: ' · Comparison',
     subtitle: 'World Bank, World Development Indicators · latest value and series since 2000',
     firstN: (n) => `Showing the first ${n} selected countries.`,
-    noAggregate: 'Aggregate values for blocs and continents are not available yet. Select countries to compare them.',
     seriesError: (message) => `Could not load the series: ${message}`,
     aggregate: '(aggregate)',
+    calculated: '(calculated)',
+    noAggregateFor: (name) => `There are no aggregate values for ${name} yet. Select countries to compare them.`,
+    calculatedNote: (name) =>
+      `Values for ${name} are calculated by Arco from the current members: totals (population, GDP) or averages weighted by population or GDP, depending on the indicator. They only appear when members with data account for at least 2/3 of the total in that year. Indices, scores and inequality measures are not aggregated.`,
   },
 
   panel: {

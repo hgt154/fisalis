@@ -1,0 +1,130 @@
+code,aggregation,note
+SP.DYN.LE00.IN,pop,population-weighted average
+SI.POV.DDAY,pop,population-weighted average
+SP.POP.TOTL,sum,total of the members
+SP.POP.GROW,pop,population-weighted average
+SM.POP.NETM,sum,total of the members
+NY.GDP.MKTP.CD,sum,total of the members
+NY.GDP.PCAP.CD,pop,population-weighted average
+NY.GDP.MKTP.KD.ZG,gdp,GDP-weighted average
+SL.UEM.TOTL.ZS,pop,population-weighted average
+FP.CPI.TOTL.ZG,gdp,GDP-weighted average
+EG.ELC.ACCS.ZS,pop,population-weighted average
+AG.LND.FRST.ZS,none,needs land area as weight
+EN.GHG.CO2.PC.CE.AR5,pop,population-weighted average
+ER.H2O.FWTL.ZS,none,needs water resources as weight
+EG.ELC.RNWX.ZS,none,needs electricity output as weight
+SH.STA.SMSS.ZS,pop,population-weighted average
+IT.NET.USER.ZS,pop,population-weighted average
+VC.IHR.PSRC.P5,pop,population-weighted average
+SG.GEN.PARL.ZS,none,needs parliament seats as weight
+GC.DOD.TOTL.GD.ZS,gdp,GDP-weighted average
+IQ.SPI.OVRL,none,score
+BX.KLT.DINV.WD.GD.ZS,gdp,GDP-weighted average
+AG.PRD.CROP.XD,none,index with a national base
+AG.PRD.LVSK.XD,none,index with a national base
+AG.LND.ARBL.ZS,none,needs land area as weight
+NV.AGR.TOTL.ZS,gdp,GDP-weighted average
+EN.GHG.ALL.PC.CE.AR5,pop,population-weighted average
+EG.FEC.RNEW.ZS,none,needs energy consumption as weight
+AG.LND.EL5M.ZS,none,needs land area as weight
+IT.CEL.SETS.P2,pop,population-weighted average
+IT.NET.BBND.P2,pop,population-weighted average
+SE.PRM.ENRR,pop,population-weighted average
+SE.ADT.LITR.ZS,pop,population-weighted average
+SE.XPD.TOTL.GB.ZS,none,needs government spending as weight
+EG.USE.COMM.CL.ZS,none,needs energy use as weight
+EG.USE.ELEC.KH.PC,pop,population-weighted average
+EG.CFT.ACCS.ZS,pop,population-weighted average
+ER.PTD.TOTL.ZS,none,needs territorial area as weight
+IC.FRM.BNKS.ZS,none,firm survey
+LP.LPI.ITRN.XQ,none,score
+TX.VAL.TECH.MF.ZS,none,needs manufactured exports as weight
+CM.MKT.TRAD.GD.ZS,gdp,GDP-weighted average
+SM.POP.FDIP,sum,total of the members
+MS.MIL.TOTL.TF.ZS,pop,population-weighted average
+SE.ENR.PRSC.FM.ZS,none,ratio of ratios
+SP.DYN.CONU.ZS,pop,population-weighted average
+SH.STA.MMRT,pop,population-weighted average
+MS.MIL.XPND.GD.ZS,gdp,GDP-weighted average
+SH.IMM.MEAS,pop,population-weighted average
+SH.SGR.CRSK.ZS,pop,population-weighted average
+SH.DYN.AIDS.ZS,pop,population-weighted average
+IS.RRS.GOOD.MT.K6,sum,total of the members
+IE.PPI.ENGY.CD,sum,total of the members
+IE.PPI.TRAN.CD,sum,total of the members
+IE.PPI.WATR.CD,sum,total of the members
+SL.TLF.CACT.ZS,pop,population-weighted average
+SL.GDP.PCAP.EM.KD,pop,population-weighted average
+SL.EMP.TOTL.SP.ZS,pop,population-weighted average
+NY.GNP.MKTP.CD,sum,total of the members
+NY.GNP.PCAP.KD.ZG,pop,population-weighted average
+BN.GSR.GNFS.CD,sum,total of the members
+BN.KLT.DINV.CD,sum,total of the members
+SI.DST.FRST.20,none,inequality measure
+SI.POV.GINI,none,inequality measures cannot be averaged across countries
+EN.POP.SLUM.UR.ZS,pop,population-weighted average
+SL.TLF.0714.ZS,pop,population-weighted average
+SL.FAM.0714.ZS,none,share of a share
+per_allsp.cov_pop_tot,pop,population-weighted average
+GC.REV.SOCL.ZS,none,needs government revenue as weight
+IS.RRS.PASG.KM,sum,total of the members
+EN.GHG.CO2.TR.MT.CE.AR5,sum,total of the members
+SH.STA.TRAF.P5,pop,population-weighted average
+VC.IDP.NWDS,sum,total of the members
+AG.LND.EL5M.UR.K2,sum,total of the members
+SP.URB.TOTL.IN.ZS,pop,population-weighted average
+SH.H2O.BASW.ZS,pop,population-weighted average
+SH.STA.HYGN.ZS,pop,population-weighted average
+ER.MRN.PTMR.ZS,none,needs territorial waters as weight
+SI.POV.NAHC,none,national poverty lines differ between countries
+SH.STA.STNT.ZS,pop,population-weighted average
+SN.ITK.DEFC.ZS,pop,population-weighted average
+SN.ITK.SVFI.ZS,pop,population-weighted average
+SH.STA.STNT.FE.ZS,pop,population-weighted average
+SH.STA.STNT.MA.ZS,pop,population-weighted average
+SH.DYN.MORT,pop,population-weighted average
+SH.HIV.INCD.ZS,pop,population-weighted average
+SH.DYN.MORT.FE,pop,population-weighted average
+SH.DYN.MORT.MA,pop,population-weighted average
+SP.ADO.TFRT,pop,population-weighted average
+SE.SEC.CMPT.LO.ZS,pop,population-weighted average
+SE.ADT.1524.LT.ZS,pop,population-weighted average
+SE.SEC.CMPT.LO.FE.ZS,pop,population-weighted average
+SE.SEC.CMPT.LO.MA.ZS,pop,population-weighted average
+SL.EMP.SMGT.FE.ZS,none,needs management employment as weight
+IC.FRM.FEMM.ZS,none,firm survey
+SH.STA.BASS.ZS,pop,population-weighted average
+ER.H2O.FWST.ZS,none,needs water resources as weight
+SH.H2O.SMDW.ZS,pop,population-weighted average
+EG.ELC.ACCS.RU.ZS,pop,population-weighted average
+EG.ELC.ACCS.UR.ZS,pop,population-weighted average
+NY.GDP.PCAP.KD.ZG,pop,population-weighted average
+FX.OWN.TOTL.ZS,pop,population-weighted average
+NV.IND.MANF.ZS,gdp,GDP-weighted average
+GB.XPD.RSDV.GD.ZS,gdp,GDP-weighted average
+SI.SPR.PC40.ZG,none,"survey-period growth, not comparable across countries"
+SI.SPR.PCAP.ZG,none,"survey-period growth, not comparable"
+SI.DST.50MD,none,inequality measure
+SI.RMT.COST.IB.ZS,none,"transaction cost, not a population measure"
+SI.RMT.COST.OB.ZS,none,transaction cost
+SP.URB.GROW,pop,population-weighted average
+EN.ATM.PM25.MC.M3,pop,population-weighted average
+NY.ADJ.SVNX.GN.ZS,gdp,GDP-weighted average
+NY.GDP.TOTL.RT.ZS,gdp,GDP-weighted average
+EN.CLC.MDAT.ZS,none,"historical average, not a yearly series"
+EN.CLC.DRSK.XQ,none,score
+EN.GHG.ALL.MT.CE.AR5,sum,total of the members
+ER.FSH.PROD.MT,sum,total of the members
+ER.FSH.AQUA.MT,sum,total of the members
+ER.FSH.CAPT.MT,sum,total of the members
+ER.LND.PTLD.ZS,none,needs land area as weight
+GF.XPD.BUDG.ZS,none,"budget execution, not comparable"
+IC.FRM.BRIB.ZS,none,firm survey
+SP.REG.BRTH.ZS,pop,population-weighted average
+SP.REG.BRTH.RU.ZS,pop,population-weighted average
+SP.REG.BRTH.UR.ZS,pop,population-weighted average
+BX.TRF.PWKR.DT.GD.ZS,gdp,GDP-weighted average
+DT.TDS.DECT.EX.ZS,none,needs exports as weight
+GC.TAX.TOTL.GD.ZS,gdp,GDP-weighted average
+NE.EXP.GNFS.ZS,gdp,GDP-weighted average

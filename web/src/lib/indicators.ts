@@ -45,11 +45,16 @@ export function buildSections(indicators: IndicatorMeta[], view: View): Section[
     .sort((a, b) => groupRank(view, a.group) - groupRank(view, b.group) || a.group.localeCompare(b.group))
 }
 
-// A World Bank aggregate matching the region or income filter, if one exists
-// (e.g. region "Latin America & Caribbean" -> aggregate LCN)
+// The aggregate that matches the filters, if one exists:
+//   region / income group -> World Bank aggregate by name (region "Latin America & Caribbean" -> LCN)
+//   bloc                  -> official (EU -> EUU) or calculated by the pipeline (BRICS -> BLOC-BRICS)
+//   continent             -> calculated by the pipeline (Africa -> CONT-AFRICA)
 export function aggregateFor(filters: GeoFilters, aggregates: Aggregate[]): Aggregate | null {
   const name = filters.region ?? filters.income
-  return name ? aggregates.find((a) => a.name_en === name) ?? null : null
+  if (name) return aggregates.find((a) => a.name_en === name) ?? null
+  if (filters.bloc) return aggregates.find((a) => a.bloc === filters.bloc) ?? null
+  if (filters.continent) return aggregates.find((a) => a.continent === filters.continent) ?? null
+  return null
 }
 
 // ---------------------------------------------------------------------------

@@ -48,14 +48,22 @@ export function placeName(kind: Kind, value: string, lang: Lang): string {
   return lang === 'pt' ? MAPS[kind][value] ?? value : value
 }
 
-// World Bank aggregates are regions or income groups ("World", "Upper middle income"...)
+// Aggregates are regions, income groups, blocs or continents ("World", "Upper middle income", "BRICS", "Africa")
 export function aggregateName(name: string, lang: Lang): string {
-  return lang === 'pt' ? REGION_PT[name] ?? INCOME_PT[name] ?? name : name
+  return lang === 'pt' ? REGION_PT[name] ?? INCOME_PT[name] ?? BLOC_PT[name] ?? CONTINENT_PT[name] ?? name : name
 }
 
 // Country name in the chosen language (English if the Portuguese one is missing)
 export function countryName(country: Pick<Country, 'name_en' | 'name_pt'>, lang: Lang): string {
   return lang === 'pt' ? country.name_pt || country.name_en : country.name_en
+}
+
+// Short label for the narrow code column: "BRA" stays, "BLOC-BRICS" -> "BRICS",
+// "BLOC-AFRICAN-UNION" -> "AU", "CONT-AMERICAS" -> "AMERICAS"
+export function shortCode(iso3: string): string {
+  const name = iso3.replace(/^(BLOC|CONT)-/, '')
+  const words = name.split('-')
+  return words.length > 1 ? words.map((w) => w[0]).join('') : name.slice(0, 8)
 }
 
 export function indicatorName(indicator: Pick<IndicatorMeta, 'name_pt' | 'name_en'>, lang: Lang): string {
