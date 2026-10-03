@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { aggregateFor, buildSections, countIndicators, groupId, groupLabel, searchSections } from './indicators'
+import { activeGroup, aggregateFor, buildSections, countriesToShow, countIndicators, groupId, groupLabel, searchSections } from './indicators'
 import type { IndicatorMeta } from './types'
 
 const make = (code: string, groups: IndicatorMeta['groups']): IndicatorMeta => ({
@@ -47,6 +47,30 @@ describe('aggregateFor', () => {
   it('returns null when nothing matches', () => {
     expect(aggregateFor(base, aggregates)).toBeNull()
     expect(aggregateFor({ ...base, bloc: 'NATO' }, aggregates)).toBeNull()
+  })
+})
+
+describe('countriesToShow', () => {
+  const base = { countries: [], bloc: null, continent: null, region: null, income: null }
+  it('falls back to the default country only when nothing is selected', () => {
+    expect(countriesToShow(base, 'BRA', 4)).toEqual(['BRA'])
+  })
+  it('shows no country when a group is chosen on its own', () => {
+    expect(countriesToShow({ ...base, bloc: 'BRICS' }, 'BRA', 4)).toEqual([])
+    expect(countriesToShow({ ...base, income: 'High income' }, 'BRA', 4)).toEqual([])
+  })
+  it('keeps the chosen countries, up to the maximum', () => {
+    expect(countriesToShow({ ...base, bloc: 'BRICS', countries: ['ARG'] }, 'BRA', 4)).toEqual(['ARG'])
+    expect(countriesToShow({ ...base, countries: ['A', 'B', 'C', 'D', 'E'] }, 'BRA', 4)).toEqual(['A', 'B', 'C', 'D'])
+  })
+})
+
+describe('activeGroup', () => {
+  const base = { countries: [], bloc: null, continent: null, region: null, income: null }
+  it('follows the same priority as aggregateFor', () => {
+    expect(activeGroup(base)).toBeNull()
+    expect(activeGroup({ ...base, bloc: 'BRICS', continent: 'Africa' })).toEqual({ kind: 'bloc', value: 'BRICS' })
+    expect(activeGroup({ ...base, region: 'South Asia', bloc: 'BRICS' })).toEqual({ kind: 'region', value: 'South Asia' })
   })
 })
 

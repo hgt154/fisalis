@@ -57,6 +57,25 @@ export function aggregateFor(filters: GeoFilters, aggregates: Aggregate[]): Aggr
   return null
 }
 
+// The group filter that decides the aggregate (same priority as aggregateFor)
+export type GroupKind = 'region' | 'income' | 'bloc' | 'continent'
+export function activeGroup(filters: GeoFilters): { kind: GroupKind; value: string } | null {
+  if (filters.region) return { kind: 'region', value: filters.region }
+  if (filters.income) return { kind: 'income', value: filters.income }
+  if (filters.bloc) return { kind: 'bloc', value: filters.bloc }
+  if (filters.continent) return { kind: 'continent', value: filters.continent }
+  return null
+}
+
+// Which countries to show next to the aggregate:
+// - countries chosen by the reader  -> those (up to max)
+// - none chosen, but a group filter -> none: the group's aggregate stands on its own
+// - nothing at all                  -> the default country, so the page is never empty on arrival
+export function countriesToShow(filters: GeoFilters, defaultIso: string, max: number): string[] {
+  if (filters.countries.length) return filters.countries.slice(0, max)
+  return activeGroup(filters) ? [] : [defaultIso]
+}
+
 // ---------------------------------------------------------------------------
 // Portuguese labels for the groups (the catalog stores them in English)
 

@@ -6,7 +6,7 @@ import { useLang } from '../i18n/context'
 import { useJson, useJsonMany } from '../lib/data'
 import { parseFilters } from '../lib/filters'
 import { formatList } from '../lib/format'
-import { aggregateFor } from '../lib/indicators'
+import { activeGroup, aggregateFor, countriesToShow } from '../lib/indicators'
 import { aggregateName, countryName, placeName } from '../lib/names'
 import type { Aggregate, Country, IndicatorMeta, Series } from '../lib/types'
 
@@ -24,14 +24,17 @@ export default function IndicatorsPage() {
   const indicators = useJson<IndicatorMeta[]>('indicators.json')
   const aggregates = useJson<Aggregate[]>('aggregates.json')
 
-  // Which economies to show: the chosen countries (or Brazil), plus a WB aggregate if one matches
-  const isoList = (filters.countries.length ? filters.countries : [DEFAULT_COUNTRY]).slice(0, MAX_COUNTRIES)
+  // Which economies to show: the chosen countries plus the group's aggregate, if there is one.
+  // Brazil is only a fallback for a bare page (no countries, no group).
+  const group = activeGroup(filters)
+  const isoList = countriesToShow(filters, DEFAULT_COUNTRY, MAX_COUNTRIES)
   const aggregate = aggregateFor(filters, aggregates.data ?? [])
   const allIso = aggregate ? [...isoList, aggregate.iso3] : isoList
 
   const series = useJsonMany<Series>(allIso.map((iso) => `series/${iso}.json`))
 
-  if (countries.loading || indicators.loading) return <p className="muted">{t.common.loading}</p>
+  // Wait for aggregates too, otherwise a bloc page would flash "no aggregate" before they arrive
+  if (countries.loading || indicators.loading || aggregates.loading) return <p className="muted">{t.common.loading}</p>
   if (!countries.data || !indicators.data) return <p>{t.common.loadError}</p>
 
   const nameOf = (iso: string) => {
@@ -49,12 +52,16 @@ export default function IndicatorsPage() {
   }))
 
   const comparing = economies.length > 1
+  const groupLabel = group ? placeName(group.kind, group.value, lang) : ''
+  const title = economies.length
+    ? formatList(economies.map((e) => (e.iso3 === aggregate?.iso3 ? aggregateLabel : e.name)))
+    : groupLabel
 
   return (
     <>
       <header className="page-head">
         <span className="kicker">{t.indicators.kicker}{comparing && t.indicators.comparison}</span>
-        <h1>{formatList(economies.map((e) => (e.iso3 === aggregate?.iso3 ? aggregateLabel : e.name)))}</h1>
+        <h1>{title}</h1>
         <p className="muted">{t.indicators.subtitle}</p>
       </header>
 
@@ -63,15 +70,13 @@ export default function IndicatorsPage() {
       {filters.countries.length > MAX_COUNTRIES && (
         <p className="note">{t.indicators.firstN(MAX_COUNTRIES)}</p>
       )}
-      {(filters.bloc || filters.continent) && !aggregate && (
-        <p className="note">
-          {t.indicators.noAggregateFor(placeName(filters.bloc ? 'bloc' : 'continent', (filters.bloc ?? filters.continent)!, lang))}
-        </p>
-      )}
+      {group && !aggregate && <p className="note">{t.indicators.noAggregateFor(groupLabel)}</p>}
       {aggregate?.kind === 'calculated' && <p className="note note-info">{t.indicators.calculatedNote(aggregateLabel)}</p>}
       {series.error && <p className="note">{t.indicators.seriesError(series.error.message)}</p>}
 
-      <IndicatorPanel indicators={indicators.data} economies={economies} loading={series.loading} />
+      {economies.length > 0 && (
+        <IndicatorPanel indicators={indicators.data} economies={economies} loading={series.loading} />
+      )}
     </>
   )
 }
