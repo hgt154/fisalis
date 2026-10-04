@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router'
 import type { Topology } from 'topojson-specification'
+import PageIntro from '../components/PageIntro'
 import Toggle from '../components/Toggle'
 import TradeTabs from '../components/trade/TradeTabs'
 import HistorySection from '../components/trade/HistorySection'
@@ -86,6 +87,16 @@ export default function TradePage() {
   return (
     <>
       {head}
+      <PageIntro
+        id="trade-brazil"
+        lead={t.intro.trade.lead}
+        facts={[
+          { label: t.intro.source, value: t.intro.trade.source },
+          { label: t.intro.coverage, value: t.intro.trade.coverage(formatDate(meta.data!.latest)) },
+          { label: t.intro.values, value: t.intro.trade.values },
+          { label: t.intro.updated, value: t.intro.trade.updated },
+        ]}
+      />
 
       <Section
         id="resumo"

@@ -309,6 +309,52 @@ export const pt = {
     noData: 'Não há dados por produto para esta economia.',
   },
 
+  intro: {
+    about: 'Sobre estes dados',
+    source: 'Fonte',
+    coverage: 'Cobertura',
+    updated: 'Atualização',
+    values: 'Valores',
+    note: 'Atenção',
+    aggregates: 'Agregados',
+    totals: 'Totais e parceiros',
+    products: 'Produtos',
+    monthly: (date: string) => `Verificada todo mês; última em ${date}`,
+    map: {
+      lead: 'Um mapa-múndi com dados do Banco Mundial. Pinte os países por grupo de renda ou por qualquer indicador, filtre por bloco, continente, região ou renda e clique num país para ver seus números.',
+      source: 'Banco Mundial, World Development Indicators (WDI) · CC BY 4.0',
+      coverage: (n: number) => `${n} economias; para cada uma, o valor mais recente disponível`,
+      note: 'O ano do valor mais recente varia de país para país; ele aparece ao passar o mouse.',
+    },
+    indicators: {
+      lead: (n: number) => `${n} indicadores de desenvolvimento do Banco Mundial: população, economia, saúde, educação, meio ambiente e instituições. Compare até quatro países entre si ou com o agregado de um bloco, continente, região ou grupo de renda. Cada linha traz o último valor e a série desde 2000.`,
+      source: 'Banco Mundial, World Development Indicators (WDI) · CC BY 4.0',
+      aggregates: 'Oficiais do Banco Mundial (regiões, grupos de renda, União Europeia) ou calculados pelo Arco a partir dos membros (blocos e continentes)',
+      note: 'Os anos disponíveis variam por país e indicador. A definição oficial de cada indicador está no ícone ⓘ.',
+    },
+    country: {
+      lead: 'Um retrato do país em números: população, economia, comércio, saúde e meio ambiente, com o valor mais recente de cada indicador do Banco Mundial e a série desde 2000.',
+      source: 'Banco Mundial, World Development Indicators (WDI) · CC BY 4.0',
+      coverage: 'Último valor de cada indicador e série desde 2000',
+      note: 'O ano mais recente varia por indicador e aparece ao lado de cada valor.',
+    },
+    trade: {
+      lead: 'Exportações e importações brasileiras segundo o Comex Stat, o sistema oficial do governo federal: o resumo de um período, a série mensal desde 2016 e a divisão por país parceiro, estado e produto.',
+      source: 'Comex Stat · Ministério do Desenvolvimento, Indústria, Comércio e Serviços (MDIC)',
+      coverage: (until: string) => `Mensal, de jan. 2016 a ${until}`,
+      values: 'Dólares correntes, FOB (valor da mercadoria no porto de embarque)',
+      updated: 'Todo mês, quando o MDIC publica o mês anterior',
+      note: 'Nomes de países, estados e produtos vêm do Comex Stat, em português.',
+    },
+    world: {
+      lead: 'O comércio de bens de qualquer economia com o mundo. Totais e parceiros vêm do FMI e são atualizados todo mês; os produtos vêm do CEPII BACI, mais detalhado, mas com cerca de dois anos de atraso.',
+      totals: (until: string) => `FMI, International Trade in Goods (IMTS) · mensal desde 2010 e anual desde 2000, até ${until}`,
+      products: (from: number, to: number) => `CEPII, BACI · ${from}–${to}, 96 capítulos do Sistema Harmonizado`,
+      values: 'Dólares correntes; exportações FOB, importações CIF (com frete e seguro)',
+      note: 'Só bens: serviços (turismo, transporte, finanças…) não entram.',
+    },
+  },
+
   theories: {
     kicker: 'Teorias',
     title: 'Uma biblioteca das Relações Internacionais',

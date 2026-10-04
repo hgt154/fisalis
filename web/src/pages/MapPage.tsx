@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useSearchParams } from 'react-router'
 import { scaleQuantile } from 'd3'
 import type { Topology } from 'topojson-specification'
+import PageIntro from '../components/PageIntro'
 import GeoFilter from '../components/GeoFilter'
 import MapLegend from '../components/MapLegend'
 import MapSidePanel, { type Overview, type StatRow } from '../components/MapSidePanel'
@@ -200,9 +201,23 @@ export default function MapPage() {
     count: matching.filter((c) => c.income === l.value).length,
   }))
 
+  const intro = (
+    <PageIntro
+      id="map"
+      lead={t.intro.map.lead}
+      facts={[
+        { label: t.intro.source, value: t.intro.map.source },
+        { label: t.intro.coverage, value: t.intro.map.coverage(summary.data.length) },
+        ...(meta.data ? [{ label: t.intro.updated, value: t.intro.monthly(formatDate(meta.data.updated)) }] : []),
+        { label: t.intro.note, value: t.intro.map.note },
+      ]}
+    />
+  )
+
   return (
     <>
       {head}
+      {intro}
 
       <GeoFilter
         countries={summary.data}

@@ -1,8 +1,9 @@
 import { Link, useParams } from 'react-router'
 import IndicatorPanel from '../components/IndicatorPanel'
+import PageIntro from '../components/PageIntro'
 import { useLang } from '../i18n/context'
 import { useJson } from '../lib/data'
-import { formatValue } from '../lib/format'
+import { formatDate, formatValue } from '../lib/format'
 import { INCOME_LEVELS } from '../lib/mapColors'
 import { countryName, placeName } from '../lib/names'
 import type { Country, IndicatorMeta, Series } from '../lib/types'
@@ -22,6 +23,7 @@ export default function CountryPage() {
   const countries = useJson<Country[]>('countries.json')
   const indicators = useJson<IndicatorMeta[]>('indicators.json')
   const series = useJson<Series>(`series/${iso3}.json`)
+  const meta = useJson<{ updated: string }>('meta.json')
   const { t, lang } = useLang()
   const c = t.country
 
@@ -61,6 +63,17 @@ export default function CountryPage() {
           </ul>
         )}
       </header>
+
+      <PageIntro
+        id="country"
+        lead={t.intro.country.lead}
+        facts={[
+          { label: t.intro.source, value: t.intro.country.source },
+          { label: t.intro.coverage, value: t.intro.country.coverage },
+          ...(meta.data ? [{ label: t.intro.updated, value: t.intro.monthly(formatDate(meta.data.updated)) }] : []),
+          { label: t.intro.note, value: t.intro.country.note },
+        ]}
+      />
 
       <dl className="country-stats">
         {STATS.map((s) => {

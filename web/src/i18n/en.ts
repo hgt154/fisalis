@@ -311,6 +311,52 @@ export const en: Messages = {
     noData: 'There is no product data for this economy.',
   },
 
+  intro: {
+    about: 'About this data',
+    source: 'Source',
+    coverage: 'Coverage',
+    updated: 'Updates',
+    values: 'Values',
+    note: 'Keep in mind',
+    aggregates: 'Aggregates',
+    totals: 'Totals and partners',
+    products: 'Products',
+    monthly: (date) => `Checked every month; last on ${date}`,
+    map: {
+      lead: 'A world map with World Bank data. Color the countries by income group or by any indicator, filter by bloc, continent, region or income, and click a country to see its numbers.',
+      source: 'World Bank, World Development Indicators (WDI) · CC BY 4.0',
+      coverage: (n) => `${n} economies; for each, the latest value available`,
+      note: 'The year of the latest value differs from country to country; hover to see it.',
+    },
+    indicators: {
+      lead: (n) => `${n} World Bank development indicators: population, economy, health, education, environment and institutions. Compare up to four countries with each other or with the aggregate of a bloc, continent, region or income group. Each row shows the latest value and the series since 2000.`,
+      source: 'World Bank, World Development Indicators (WDI) · CC BY 4.0',
+      aggregates: 'Official World Bank figures (regions, income groups, European Union) or calculated by Arco from the members (blocs and continents)',
+      note: 'Available years vary by country and indicator. Each indicator’s official definition is behind the ⓘ icon.',
+    },
+    country: {
+      lead: 'A portrait of the country in numbers: population, economy, trade, health and environment, with the latest value of each World Bank indicator and the series since 2000.',
+      source: 'World Bank, World Development Indicators (WDI) · CC BY 4.0',
+      coverage: 'Latest value of each indicator and the series since 2000',
+      note: 'The latest year varies by indicator and is shown next to each value.',
+    },
+    trade: {
+      lead: 'Brazil’s exports and imports according to Comex Stat, the federal government’s official system: a summary for one period, the monthly series since 2016, and the split by partner country, state and product.',
+      source: 'Comex Stat · Brazilian Ministry of Development, Industry, Trade and Services (MDIC)',
+      coverage: (until) => `Monthly, from Jan 2016 to ${until}`,
+      values: 'Current US dollars, FOB (value of the goods at the port of shipment)',
+      updated: 'Every month, once MDIC publishes the previous month',
+      note: 'Country, state and product names come from Comex Stat, in Portuguese.',
+    },
+    world: {
+      lead: 'Any economy’s trade in goods with the world. Totals and partners come from the IMF and are updated every month; products come from CEPII BACI, more detailed but about two years behind.',
+      totals: (until) => `IMF, International Trade in Goods (IMTS) · monthly since 2010 and yearly since 2000, up to ${until}`,
+      products: (from, to) => `CEPII, BACI · ${from}–${to}, 96 Harmonized System chapters`,
+      values: 'Current US dollars; exports FOB, imports CIF (including freight and insurance)',
+      note: 'Goods only: services (tourism, transport, finance…) are not included.',
+    },
+  },
+
   theories: {
     kicker: 'Theories',
     title: 'A library of International Relations',

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router'
 import type { Topology } from 'topojson-specification'
+import PageIntro from '../components/PageIntro'
 import Toggle from '../components/Toggle'
 import HistorySection from '../components/trade/HistorySection'
 import PartnersSection from '../components/trade/PartnersSection'
@@ -111,9 +112,26 @@ export default function WorldTradePage() {
   const monthly = monthlySeries(data)
   const partners = worldPartners(data, partnerInfo)
 
+  const worldLast = index.data?.economies.find((e) => e.iso3 === WORLD)?.last_month
+  const intro = (
+    <PageIntro
+      id="trade-world"
+      lead={t.intro.world.lead}
+      facts={[
+        { label: t.intro.totals, value: t.intro.world.totals(worldLast ? formatDate(worldLast) : '—') },
+        ...(productsIndex.data
+          ? [{ label: t.intro.products, value: t.intro.world.products(productsIndex.data.first_year, productsIndex.data.year) }]
+          : []),
+        { label: t.intro.values, value: t.intro.world.values },
+        { label: t.intro.note, value: t.intro.world.note },
+      ]}
+    />
+  )
+
   return (
     <>
       {head}
+      {intro}
       {iso === 'BRA' && <p className="note note-info world-note">{wt.brazilNote}</p>}
 
       <Section

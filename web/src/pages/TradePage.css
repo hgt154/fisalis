@@ -109,3 +109,7 @@
 .concentration-rank { font-size: 13px; margin: 2px 0 14px !important; }
 .spark-years { display: flex; justify-content: space-between; font-size: 11px; margin: 2px 0 12px !important; }
 .concentration-note { font-size: 12px; line-height: 1.5; }
+
+/* "Sobre estes dados" sits right above a section that already has a rule on top */
+.trade-head + .page-intro,
+.world-picker + .page-intro { border-bottom: 0; padding-bottom: 6px; margin-bottom: 6px; }

@@ -1,0 +1,44 @@
+/* "Sobre estes dados": a quiet band under the page title */
+.page-intro {
+  margin: 0 0 var(--space-lg);
+  padding: 14px 0 18px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.page-intro > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.page-intro > summary::-webkit-details-marker { display: none; }
+.page-intro > summary::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.15s;
+}
+.page-intro:not([open]) > summary::after { transform: rotate(-45deg); }
+.page-intro > summary:hover { color: var(--color-accent); }
+.page-intro:not([open]) { padding-bottom: 14px; }
+
+.page-intro-body { margin-top: 12px; }
+.page-intro-lead { max-width: 74ch; margin: 0 0 16px; font-size: 15.5px; line-height: 1.6; }
+.page-intro-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px 32px;
+  margin: 0;
+}
+.page-intro-facts div { min-width: 0; }
+.page-intro-facts dt { margin-bottom: 4px; }
+.page-intro-facts dd { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--color-text-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-intro > summary::after { transition: none; }
+}

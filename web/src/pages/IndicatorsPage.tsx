@@ -1,11 +1,12 @@
 import { useSearchParams } from 'react-router'
 import GeoFilter from '../components/GeoFilter'
+import PageIntro from '../components/PageIntro'
 import IndicatorPanel from '../components/IndicatorPanel'
 import type { Economy } from '../components/IndicatorTable'
 import { useLang } from '../i18n/context'
 import { useJson, useJsonMany } from '../lib/data'
 import { parseFilters } from '../lib/filters'
-import { formatList } from '../lib/format'
+import { formatDate, formatList } from '../lib/format'
 import { activeGroup, aggregateFor, countriesToShow } from '../lib/indicators'
 import { aggregateName, countryName, placeName } from '../lib/names'
 import type { Aggregate, Country, IndicatorMeta, Series } from '../lib/types'
@@ -23,6 +24,7 @@ export default function IndicatorsPage() {
   const countries = useJson<Country[]>('countries.json')
   const indicators = useJson<IndicatorMeta[]>('indicators.json')
   const aggregates = useJson<Aggregate[]>('aggregates.json')
+  const meta = useJson<{ updated: string }>('meta.json')
 
   // Which economies to show: the chosen countries plus the group's aggregate, if there is one.
   // Brazil is only a fallback for a bare page (no countries, no group).
@@ -64,6 +66,17 @@ export default function IndicatorsPage() {
         <h1>{title}</h1>
         <p className="muted">{t.indicators.subtitle}</p>
       </header>
+
+      <PageIntro
+        id="indicators"
+        lead={t.intro.indicators.lead(indicators.data.length)}
+        facts={[
+          { label: t.intro.source, value: t.intro.indicators.source },
+          { label: t.intro.aggregates, value: t.intro.indicators.aggregates },
+          ...(meta.data ? [{ label: t.intro.updated, value: t.intro.monthly(formatDate(meta.data.updated)) }] : []),
+          { label: t.intro.note, value: t.intro.indicators.note },
+        ]}
+      />
 
       <GeoFilter countries={countries.data} colors={COLORS} />
 
