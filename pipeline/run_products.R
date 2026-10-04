@@ -16,6 +16,16 @@ stopifnot(
   "hs_chapters.csv: chapters must be two digits" = all(grepl("^\\d{2}$", chapters$chapter))
 )
 
+# Nothing to do when the newest release on CEPII's page is already on the site
+# (the GitHub job checks every month; BACI changes once a year). FORCE=true rebuilds anyway.
+published <- file.path(PATH_OUT, "trade_products", "index.json")
+newest <- tryCatch(baci_latest_version(), error = function(e) NA_character_)
+if (!is.na(newest) && file.exists(published) && Sys.getenv("FORCE") != "true" &&
+    identical(jsonlite::read_json(published)$version, newest)) {
+  message("BACI ", newest, " is already on the site. Nothing to do.")
+  quit(save = "no", status = 0)
+}
+
 message("1/3 BACI file")
 baci <- baci_zip()
 

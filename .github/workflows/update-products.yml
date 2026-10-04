@@ -1,0 +1,83 @@
+name: Update products (BACI)
+
+# CEPII publishes a new BACI release once a year, in January. This job checks every month
+# (cheap: one web page); run_products.R stops right away if the release is already on the site.
+# When there is a new one, it downloads ~2.4 GB and rebuilds trade_products/ (~15 minutes).
+on:
+  schedule:
+    - cron: '0 6 15 * *'     # 06:00 UTC on the 15th of every month (after the monthly update on the 10th)
+  workflow_dispatch:          # "Run workflow" button on GitHub
+    inputs:
+      force:
+        description: 'Rebuild even if this BACI release is already on the site'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write             # allows this job to push the new data
+
+concurrency:
+  group: data-updates         # never at the same time as another data job
+  cancel-in-progress: false
+
+jobs:
+  products:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v5
+
+      # Same setup as update-data.yml: renv installs every package in renv.lock,
+      # and some of them (sf, geobr…) need these system libraries
+      - name: Install system libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev \
+            libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.6.1"
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-renv@v2
+        with:
+          working-directory: pipeline
+
+      - name: Products by country (CEPII BACI)
+        working-directory: pipeline
+        env:
+          FORCE: ${{ inputs.force }}
+        run: Rscript run_products.R
+
+      - name: Data quality tests
+        working-directory: pipeline
+        run: Rscript -e 'testthat::test_dir("tests/testthat", stop_on_failure = TRUE)'
+
+      # Make sure the website still builds with the new data before publishing it
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Build website
+        working-directory: web
+        run: |
+          npm ci
+          npx vitest run
+          npm run build
+
+      # Commit only if the JSON files changed (most months: nothing to commit)
+      - name: Commit new data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/public/data/trade_products
+          if git diff --staged --quiet; then
+            echo "No new BACI release."
+          else
+            git commit -m "data: BACI products update ($(date +%Y-%m))"
+            git pull --rebase
+            git push
+          fi
