@@ -412,6 +412,9 @@ export const en: Messages = {
     },
     milNote: 'Source: SIPRI, via the World Bank. Arms in SIPRI “trend-indicator values” (TIV), which measure the volume of arms transferred, not their price.',
     seeOnMap: 'See on the map →',
+    views: { ranking: 'Ranking', evolution: 'Over time' },
+    pickCountries: (max) => `Countries in the chart (up to ${max}):`,
+    pickNone: 'Pick at least one country above.',
 
     histTitle: (from) => `History since ${from}`,
     histSubtitle: 'How the number of conflicts and the violence changed over time',

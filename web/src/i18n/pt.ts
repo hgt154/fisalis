@@ -410,6 +410,9 @@ export const pt = {
     },
     milNote: 'Fonte: SIPRI, por meio do Banco Mundial. Armas em “valores indicadores de tendência” (TIV) do SIPRI, que medem o volume de armas transferidas, não o seu preço.',
     seeOnMap: 'Ver no mapa →',
+    views: { ranking: 'Ranking', evolution: 'Evolução' },
+    pickCountries: (max: number) => `Países no gráfico (até ${max}):`,
+    pickNone: 'Escolha pelo menos um país acima.',
 
     histTitle: (from: number) => `Histórico desde ${from}`,
     histSubtitle: 'Como o número de conflitos e a violência mudaram ao longo do tempo',

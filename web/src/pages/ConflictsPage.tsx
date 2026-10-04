@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router'
 import type { Topology } from 'topojson-specification'
 import BarList from '../components/BarList'
 import ConflictTable from '../components/conflicts/ConflictTable'
+import MilitaryEvolution from '../components/conflicts/MilitaryEvolution'
 import MapLegend from '../components/MapLegend'
 import PageIntro from '../components/PageIntro'
 import StackedBars from '../components/StackedBars'
@@ -64,6 +65,7 @@ export default function ConflictsPage() {
   }
 
   const [metric, setMetric] = useState<MilitaryCode>('MS.MIL.XPND.CD')
+  const [milView, setMilView] = useState<'ranking' | 'evolution'>('ranking')
   const [showAllActive, setShowAllActive] = useState(false)
   const [filter, setFilter] = useState<ConflictFilter>({ query: '', type: '', activeOnly: false })
   const [historyLimit, setHistoryLimit] = useState(HISTORY_PAGE)
@@ -251,11 +253,24 @@ export default function ConflictsPage() {
         title={cf.milTitle}
         subtitle={cf.milSubtitle(TOP)}
         actions={
-          <Toggle label={cf.metric} value={metric} onChange={setMetric}
-            options={MILITARY.map((code) => ({ value: code, label: cf.metrics[code] }))} />
+          <>
+            <Toggle label={cf.metric} value={metric} onChange={setMetric}
+              options={MILITARY.map((code) => ({ value: code, label: cf.metrics[code] }))} />
+            <Toggle label={t.common.view} value={milView} onChange={setMilView}
+              options={[{ value: 'ranking', label: cf.views.ranking }, { value: 'evolution', label: cf.views.evolution }]} />
+          </>
         }
       >
-        {military.length > 0 ? (
+        {milView === 'evolution' && military.length > 0 ? (
+          <MilitaryEvolution
+            key={metric}   // a new measure starts again from its own top 5
+            code={metric}
+            ranking={military.map((r) => r.iso3)}
+            nameOf={nameOf}
+            format={formatMetric}
+            formatAxis={(v) => (meta?.format === 'percent' ? formatValue(v, 'percent') : meta?.format === 'currency' ? formatUsdShort(v, 0) : formatShort(v, 0))}
+          />
+        ) : military.length > 0 ? (
           <BarList
             format={formatMetric}
             items={military.map((r) => ({ label: nameOf(r.iso3), value: r.value, color: 'var(--cf-internationalized)', note: String(r.year) }))}
