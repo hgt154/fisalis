@@ -8,6 +8,7 @@ source("R/build.R")
 source("R/validate_catalog.R")      # stops early if the catalog is broken
 source("R/aggregates.R")
 source("R/world_trade.R")
+source("R/conflicts.R")
 
 message("1/5 Reading catalog")
 ind    <- read_csv(file.path(PATH_CONFIG, "indicators.csv"),       show_col_types = FALSE)
@@ -34,11 +35,14 @@ group_data <- aggregate_groups(data |> filter(iso3 %in% countries$iso3), members
 aggregates <- bind_rows(describe_official(aggregates), group_meta(members))
 data_out   <- bind_rows(data, group_data |> select(iso3, year, value, code))
 
-message("5/6 World trade (IMF)")
+message("5/7 World trade (IMF)")
 world_raw <- fetch_world_trade(countries$iso3)
 write_world_trade(build_world_trade(world_raw, countries$iso3))
 
-message("6/6 Writing JSON to ", PATH_OUT)
+message("6/7 Armed conflicts (UCDP)")
+write_conflicts(build_conflicts(fetch_conflicts(), countries$iso3))
+
+message("7/7 Writing JSON to ", PATH_OUT)
 write_outputs(countries, aggregates, latest, data_out, ind_meta, map_summary)
 
 message("Done.")

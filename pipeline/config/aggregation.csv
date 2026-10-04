@@ -128,3 +128,7 @@ BX.TRF.PWKR.DT.GD.ZS,gdp,GDP-weighted average
 DT.TDS.DECT.EX.ZS,none,needs exports as weight
 GC.TAX.TOTL.GD.ZS,gdp,GDP-weighted average
 NE.EXP.GNFS.ZS,gdp,GDP-weighted average
+MS.MIL.XPND.CD,sum,total of members
+MS.MIL.TOTL.P1,sum,total of members
+MS.MIL.MPRT.KD,sum,total of members
+MS.MIL.XPRT.KD,sum,total of members

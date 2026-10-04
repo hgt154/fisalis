@@ -128,3 +128,7 @@ BX.TRF.PWKR.DT.GD.ZS,Remessas pessoais recebidas (% do PIB),"Personal remittance
 DT.TDS.DECT.EX.ZS,Serviço da dívida total (% das exportações e renda primária),"Total debt service (% of exports of goods, services and primary income)",%,percent,FALSE,
 GC.TAX.TOTL.GD.ZS,Receita tributária (% do PIB),Tax revenue (% of GDP),%,percent,,
 NE.EXP.GNFS.ZS,Exportações de bens e serviços (% do PIB),Exports of goods and services (% of GDP),%,percent,,
+MS.MIL.XPND.CD,Despesas militares (US$ correntes),Military expenditure (current US$),US$,currency,,
+MS.MIL.TOTL.P1,"Pessoal das forças armadas, total","Armed forces personnel, total",people,compact,,
+MS.MIL.MPRT.KD,Importações de armas (indicador de tendência do SIPRI),Arms imports (SIPRI trend-indicator values),TIV,compact,,"SIPRI trend-indicator values measure the volume of arms transfers, not their price"
+MS.MIL.XPRT.KD,Exportações de armas (indicador de tendência do SIPRI),Arms exports (SIPRI trend-indicator values),TIV,compact,,"SIPRI trend-indicator values measure the volume of arms transfers, not their price"
