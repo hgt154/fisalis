@@ -3,6 +3,11 @@ import type { Messages } from './pt'
 // Same keys as pt.ts. The type annotation makes TypeScript check that nothing is missing.
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`
 
+// 1 -> "1st", 2 -> "2nd", 3 -> "3rd", 11 -> "11th", 22 -> "22nd"
+const SUFFIX: Record<string, string> = { one: 'st', two: 'nd', few: 'rd', other: 'th' }
+const ordinalRules = new Intl.PluralRules('en', { type: 'ordinal' })
+const ordinal = (n: number) => `${n}${SUFFIX[ordinalRules.select(n)]}`
+
 export const en: Messages = {
   common: {
     loading: 'Loading…',
@@ -280,6 +285,30 @@ export const en: Messages = {
       top10: { export: 'Ten biggest importers', import: 'Ten biggest exporters', corrente: 'Ten biggest by total trade' },
       note: 'Values come from what each country’s trading partners report (mirror data) and may differ slightly from the country’s own figures.',
     },
+  },
+
+  worldProducts: {
+    title: 'Exported and imported products',
+    subtitle: (year) => `By Harmonized System (HS) chapter, ${year} · colored by product group`,
+    legendNote: 'Share of each group in exports',
+    basketTitle: 'How the basket changed',
+    basketSubtitle: (what, from, to) => `Share of each group ${what}, ${from}–${to}`,
+    ofExports: 'in exports',
+    ofImports: 'in imports',
+    concentrationTitle: 'Export concentration',
+    concentrationShort: 'Concentration',
+    levels: {
+      diversified: 'Diversified',
+      moderate: 'Moderately concentrated',
+      concentrated: 'Concentrated',
+      high: 'Highly concentrated',
+    },
+    rank: (position, total) => `${ordinal(position)} most concentrated of ${total} economies`,
+    concentrationNote:
+      'Herfindahl index of exports across HS headings (4 digits): 0 = exports spread over many products; 1 = a single product. Arco’s bands: below 0.05, diversified; 0.05 to 0.15, moderately concentrated; 0.15 to 0.40, concentrated; above 0.40, highly concentrated.',
+    sourceNote: (version, year) =>
+      `Source: CEPII, BACI (HS 1992), release ${version}. ${year} is the latest year published: BACI reconciles what exporters and importers report to the UN and comes out once a year, in January.`,
+    noData: 'There is no product data for this economy.',
   },
 
   theories: {

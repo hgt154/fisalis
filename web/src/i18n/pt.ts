@@ -285,6 +285,30 @@ export const pt = {
     },
   },
 
+  worldProducts: {
+    title: 'Produtos exportados e importados',
+    subtitle: (year: number) => `Por capítulo do Sistema Harmonizado (SH), ${year} · cor por grupo de produtos`,
+    legendNote: 'Participação de cada grupo nas exportações',
+    basketTitle: 'Como a pauta mudou',
+    basketSubtitle: (what: string, from: number, to: number) => `Participação de cada grupo ${what}, ${from}–${to}`,
+    ofExports: 'nas exportações',
+    ofImports: 'nas importações',
+    concentrationTitle: 'Concentração das exportações',
+    concentrationShort: 'Concentração',
+    levels: {
+      diversified: 'Diversificada',
+      moderate: 'Moderadamente concentrada',
+      concentrated: 'Concentrada',
+      high: 'Muito concentrada',
+    },
+    rank: (position: number, total: number) => `${position}ª mais concentrada entre ${total} economias`,
+    concentrationNote:
+      'Índice de Herfindahl das exportações por posição do SH (4 dígitos): 0 = exportações espalhadas por muitos produtos; 1 = um único produto. Faixas usadas pelo Arco: abaixo de 0,05, diversificada; 0,05 a 0,15, moderadamente concentrada; 0,15 a 0,40, concentrada; acima de 0,40, muito concentrada.',
+    sourceNote: (version: string, year: number) =>
+      `Fonte: CEPII, BACI (SH 1992), versão ${version}. ${year} é o ano mais recente publicado: o BACI concilia o que exportadores e importadores declaram à ONU e sai uma vez por ano, em janeiro.`,
+    noData: 'Não há dados por produto para esta economia.',
+  },
+
   theories: {
     kicker: 'Teorias',
     title: 'Uma biblioteca das Relações Internacionais',

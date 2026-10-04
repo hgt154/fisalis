@@ -7,6 +7,7 @@ import PartnersSection from '../components/trade/PartnersSection'
 import Section from '../components/trade/Section'
 import SummaryCards from '../components/trade/SummaryCards'
 import TradeTabs from '../components/trade/TradeTabs'
+import WorldProductsSection from '../components/trade/WorldProductsSection'
 import { useLang } from '../i18n/context'
 import { useJson } from '../lib/data'
 import { formatDate } from '../lib/format'
@@ -18,9 +19,10 @@ import {
   WORLD, annualSeries, monthlySeries, pickPeriod, worldPartners, worldPeriods, worldSummary,
   type WorldTradeFile, type WorldTradeIndex,
 } from '../lib/worldTrade'
+import type { ProductsFile, ProductsIndex } from '../lib/worldProducts'
 import './TradePage.css'
 
-const ANCHORS = ['resumo', 'serie', 'parceiros'] as const
+const ANCHORS = ['resumo', 'serie', 'parceiros', 'produtos'] as const
 
 // /comercio/mundo?pais=DEU — any economy's trade with the world, from the IMF
 export default function WorldTradePage() {
@@ -36,6 +38,11 @@ export default function WorldTradePage() {
   const known = index.data?.economies.some((e) => e.iso3 === iso) ?? false
   const file = useJson<WorldTradeFile>(known ? `trade_world/${iso}.json` : null)
   const world = useMemo(() => (worldTopo.data ? toFeatures(worldTopo.data) : []), [worldTopo.data])
+
+  // Products (CEPII BACI, yearly): a separate index, since a few economies are only in one source
+  const productsIndex = useJson<ProductsIndex>('trade_products/index.json')
+  const hasProducts = productsIndex.data?.economies.some((e) => e.iso3 === iso) ?? false
+  const products = useJson<ProductsFile>(hasProducts ? `trade_products/${iso}.json` : null)
 
   // Names: our country list first, then the extra names the pipeline adds (e.g. Taiwan), then the code
   const byIso = useMemo(() => new Map((countries.data ?? []).map((c) => [c.iso3, c])), [countries.data])
@@ -137,6 +144,10 @@ export default function WorldTradePage() {
         <Section id="parceiros" title={tr.partners}>
           <p className="muted">{wt.noPartners}</p>
         </Section>
+      )}
+
+      {productsIndex.data && !products.loading && (
+        <WorldProductsSection index={productsIndex.data} file={products.data} iso3={iso} />
       )}
     </>
   )

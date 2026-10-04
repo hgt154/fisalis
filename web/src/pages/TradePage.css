@@ -89,3 +89,23 @@
 .world-picker label { font-size: 13px; color: var(--color-text-muted); }
 .world-picker select { width: 300px; max-width: 100%; }
 .world-note { margin: 0 0 var(--space-lg); }
+
+/* ---------- World tab: products ---------- */
+.trade-legend-note { margin: -8px 0 14px; font-size: 12px; }
+.products-history { margin-top: var(--space-lg); }
+.products-subhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 10px 24px; margin-bottom: 12px; }
+.products-subhead h3 { margin: 0; }
+.products-subhead p { margin: 4px 0 0; font-size: 13px; }
+.products-subhead .seg { margin: 0 !important; }
+.concentration-card {
+  padding: 16px 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+.concentration-card p { margin: 0; }
+.concentration-value { font-family: var(--font-heading); font-size: 40px; font-weight: 500; line-height: 1.1; margin-top: 6px !important; }
+.concentration-level { font-size: 15px; }
+.concentration-rank { font-size: 13px; margin: 2px 0 14px !important; }
+.spark-years { display: flex; justify-content: space-between; font-size: 11px; margin: 2px 0 12px !important; }
+.concentration-note { font-size: 12px; line-height: 1.5; }

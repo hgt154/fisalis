@@ -79,6 +79,17 @@
   --sector-extractive: var(--ambar);
   --sector-manufacturing: var(--concreto-escuro);
   --sector-other: var(--concreto-claro);
+
+  /* Product groups (World tab, BACI): nine colors that stay apart in a treemap */
+  --hs-agri: var(--broto);
+  --hs-minerals: var(--ambar);
+  --hs-chemicals: #5f7f94;
+  --hs-materials: #c9a77a;
+  --hs-textiles: #c48f9c;
+  --hs-metals: var(--jacaranda);
+  --hs-machinery: var(--folha);
+  --hs-vehicles: var(--concreto-escuro);
+  --hs-other: var(--concreto-claro);
 }
 
 /* Dark theme: <html data-theme="dark"> (set by the theme button) */
@@ -122,5 +133,10 @@
   --flow-total: #a9c98a;
   --flow-balance: #d98a66;
   --sector-manufacturing: #6b675f;
+  --hs-chemicals: #6f93ab;
+  --hs-metals: #b0643f;
+  --hs-machinery: #4f8a5e;
+  --hs-vehicles: #6b675f;
+  --hs-other: #8a857b;
   color-scheme: dark;
 }
