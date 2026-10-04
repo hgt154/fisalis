@@ -11,6 +11,7 @@ const LINKS = [
   { to: '/mapa', key: 'map' },
   { to: '/indicadores', key: 'indicators' },
   { to: '/comercio', key: 'trade' },
+  { to: '/conflitos', key: 'conflicts' },
   { to: '/teorias', key: 'theories' },
   { to: '/noticias', key: 'news' },
 ] as const

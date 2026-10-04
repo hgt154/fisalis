@@ -183,9 +183,10 @@ build_conflicts <- function(raw, valid_iso3, min_conflicts = 200) {
       start        = as.character(min(as.Date(start_date), na.rm = TRUE)),
       first_year   = min(year),
       last_year    = max(year),
-      years        = list(year),
-      intensity    = list(intensity_level),
-      deaths       = list(best),                         # NA before 1989
+      # I() keeps a one-year conflict as a list in the JSON ([2025], not 2025)
+      years        = list(I(year)),
+      intensity    = list(I(intensity_level)),
+      deaths       = list(I(best)),                      # NA before 1989
       deaths_total = if (all(is.na(best))) NA_real_ else sum(best, na.rm = TRUE),
       wars         = sum(intensity_level == 2),
       .groups = "drop"

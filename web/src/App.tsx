@@ -5,6 +5,7 @@ import MapPage from './pages/MapPage'
 import CountryPage from './pages/CountryPage'
 import IndicatorsPage from './pages/IndicatorsPage'
 import TradePage from './pages/TradePage'
+import ConflictsPage from './pages/ConflictsPage'
 import WorldTradePage from './pages/WorldTradePage'
 import TheoriesPage from './pages/TheoriesPage'
 import TheoryPage from './pages/TheoryPage'
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="indicadores" element={<IndicatorsPage />} />
         <Route path="comercio" element={<TradePage />} />
         <Route path="comercio/mundo" element={<WorldTradePage />} />
+        <Route path="conflitos" element={<ConflictsPage />} />
         <Route path="teorias" element={<TheoriesPage />} />
         <Route path="teorias/:slug" element={<TheoryPage />} />
         <Route path="noticias" element={<NewsPage />} />

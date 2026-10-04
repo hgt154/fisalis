@@ -57,8 +57,8 @@ valid <- c("RUS", "UKR", "SDN", "USA")
 test_that("each conflict gets its timeline, deaths, type and every country involved", {
   cf <- build_conflicts(raw, valid, min_conflicts = 1)
   ru <- cf$conflicts[cf$conflicts$conflict_id == 1, ]
-  expect_equal(ru$years[[1]], c(2022, 2023, 2024))
-  expect_equal(ru$intensity[[1]], c(1, 2, 2))
+  expect_equal(as.numeric(ru$years[[1]]), c(2022, 2023, 2024))
+  expect_equal(as.numeric(ru$intensity[[1]]), c(1, 2, 2))
   expect_equal(ru$deaths_total, 110500)
   expect_equal(ru$type, "interstate")
   expect_equal(ru$incompat, "territory")
@@ -105,4 +105,15 @@ test_that("every country involved gets a file, supporters included", {
   write_conflicts(build_conflicts(raw, valid, min_conflicts = 1))
   files <- list.files(file.path(PATH_OUT, "conflicts", "countries"))
   expect_setequal(files, c("RUS.json", "UKR.json", "SDN.json", "USA.json"))
+})
+
+test_that("a conflict that lasted one year is still written as lists", {
+  one <- raw
+  one$acd <- raw$acd[raw$acd$conflict_id == 2 & raw$acd$year == 2024, ] |> dplyr::bind_rows(raw$acd[raw$acd$conflict_id == 1, ])
+  PATH_OUT <<- tempfile()
+  write_conflicts(build_conflicts(one, valid, min_conflicts = 1))
+  json <- jsonlite::read_json(file.path(PATH_OUT, "conflicts", "conflicts.json"))
+  sudan <- Filter(\(x) x$conflict_id == 2, json)[[1]]
+  expect_true(is.list(sudan$years) && length(sudan$years) == 1)
+  expect_true(is.list(sudan$deaths))
 })

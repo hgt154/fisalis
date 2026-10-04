@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router'
+import CountryConflicts from '../components/conflicts/CountryConflicts'
 import IndicatorPanel from '../components/IndicatorPanel'
 import PageIntro from '../components/PageIntro'
 import { useLang } from '../i18n/context'
@@ -97,6 +98,15 @@ export default function CountryPage() {
         economies={[{ iso3, name, color: 'var(--series-1)', series: series.data }]}
         loading={series.loading}
         actions={<Link className="btn btn-ghost" to={`/indicadores?paises=${iso3}`}>{c.compare}</Link>}
+      />
+
+      <CountryConflicts
+        key={iso3}
+        iso3={iso3}
+        nameOf={(code) => {
+          const other = countries.data?.find((x) => x.iso3 === code)
+          return other ? countryName(other, lang) : code
+        }}
       />
     </>
   )

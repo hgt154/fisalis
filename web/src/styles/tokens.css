@@ -90,6 +90,20 @@
   --hs-machinery: var(--folha);
   --hs-vehicles: var(--concreto-escuro);
   --hs-other: var(--concreto-claro);
+
+  /* Conflicts (UCDP): types of conflict, kinds of violence, and a sand -> rust scale for deaths */
+  --cf-intrastate: var(--ambar);
+  --cf-internationalized: var(--jacaranda);
+  --cf-interstate: #4e2a2f;
+  --cf-extrasystemic: var(--concreto);
+  --cf-sb: var(--jacaranda);
+  --cf-ns: var(--ambar);
+  --cf-os: #5f7f94;
+  --war-1: #efe2c8;
+  --war-2: #e3c08a;
+  --war-3: #cf9150;
+  --war-4: #ad5f33;
+  --war-5: #7a3520;
 }
 
 /* Dark theme: <html data-theme="dark"> (set by the theme button) */
@@ -138,5 +152,17 @@
   --hs-machinery: #4f8a5e;
   --hs-vehicles: #6b675f;
   --hs-other: #8a857b;
+  --cf-intrastate: #e0a84f;
+  --cf-internationalized: #d98a66;
+  --cf-interstate: #c98b93;
+  --cf-extrasystemic: #8a857b;
+  --cf-sb: #d98a66;
+  --cf-ns: #e0a84f;
+  --cf-os: #8fb3cc;
+  --war-1: #3b3127;
+  --war-2: #5e4630;
+  --war-3: #8a5a36;
+  --war-4: #b8703f;
+  --war-5: #e39a62;
   color-scheme: dark;
 }

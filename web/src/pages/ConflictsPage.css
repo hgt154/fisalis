@@ -1,0 +1,91 @@
+/* ---------- Conflicts page (most layout comes from TradePage.css) ---------- */
+.conflicts-now { margin-top: var(--space-lg); }
+.conflicts-subhead { margin: var(--space-lg) 0 12px; }
+.conflicts-chart-title { margin: 0 0 8px; font-size: 20px; }
+.conflicts-more { margin-top: 10px; }
+
+.prelim-badge {
+  padding: 4px 10px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cf-sb);
+  border: 1px solid currentColor;
+  border-radius: var(--radius);
+}
+
+/* Table of conflicts */
+.conflict-table-wrap { overflow-x: auto; }
+.conflict-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.conflict-table th {
+  padding: 8px 10px 8px 0;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border-strong);
+}
+.conflict-table td { padding: 10px 10px 10px 0; vertical-align: top; border-bottom: 1px solid var(--color-border); }
+.conflict-table .num { text-align: right; white-space: nowrap; }
+.conflict-name { display: block; font-weight: 500; }
+.conflict-sides, .conflict-incompat { display: block; font-size: 12.5px; line-height: 1.45; }
+.conflict-years-count { display: block; font-size: 12px; }
+.type-dot { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 1px; }
+.intensity-tag { font-size: 12.5px; white-space: nowrap; }
+.intensity-tag.war { color: var(--cf-sb); font-weight: 600; }
+.role-tag {
+  display: inline-block;
+  padding: 1px 7px;
+  font-size: 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+}
+.role-tag.role-location { border-color: var(--cf-sb); color: var(--cf-sb); }
+
+/* Search and filters for the history list */
+.conflicts-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 12px; }
+.conflicts-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 340px;
+  max-width: 100%;
+  min-height: 36px;
+  padding: 0 10px;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+}
+.conflicts-search:focus-within { border-color: var(--color-accent); }
+.conflicts-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 0;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+.conflicts-filters select { width: 260px; max-width: 100%; }
+.conflicts-check { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }
+
+/* UCDP definitions */
+.conflicts-defs { margin-top: var(--space-lg); padding: 14px 0; border-top: 1px solid var(--color-border); }
+.conflicts-defs summary { cursor: pointer; }
+.conflicts-defs dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px 32px; margin: 14px 0; }
+.conflicts-defs dt { font-weight: 600; font-size: 14px; }
+.conflicts-defs dd { margin: 4px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--color-text-muted); }
+
+/* Country profile section */
+.country-conflicts { margin-top: var(--space-xl); }
+
+/* Phones: the table keeps its columns and scrolls sideways inside its box */
+@media (max-width: 700px) {
+  .conflict-table { min-width: 620px; font-size: 13px; }
+  .conflict-table td:first-child { width: 42%; }
+}
+.country-conflicts-chart { margin-bottom: var(--space-lg); }
