@@ -1,0 +1,97 @@
+chapter,group,name_en,name_pt
+01,agri,Live animals,Animais vivos
+02,agri,Meat,Carnes
+03,agri,Fish and seafood,Peixes e frutos do mar
+04,agri,"Dairy, eggs and honey","Laticínios, ovos e mel"
+05,agri,Other animal products,Outros produtos de origem animal
+06,agri,Live plants and flowers,Plantas vivas e flores
+07,agri,Vegetables,Hortaliças
+08,agri,Fruit and nuts,Frutas e castanhas
+09,agri,"Coffee, tea and spices","Café, chá e especiarias"
+10,agri,Cereals,Cereais
+11,agri,Milling products,Produtos da moagem
+12,agri,Oilseeds (incl. soybeans),Oleaginosas (inclui soja)
+13,agri,Plant extracts and resins,"Gomas, resinas e extratos vegetais"
+14,agri,Other vegetable products,Outros produtos vegetais
+15,agri,Animal and vegetable oils,Óleos e gorduras
+16,agri,Meat and fish preparations,Preparações de carne e peixe
+17,agri,Sugar,Açúcares
+18,agri,Cocoa,Cacau
+19,agri,Cereal and bakery preparations,Preparações de cereais e padaria
+20,agri,Vegetable and fruit preparations,Preparações de hortaliças e frutas
+21,agri,Other food preparations,Outras preparações alimentícias
+22,agri,Beverages,Bebidas
+23,agri,Food residues and animal feed,Resíduos alimentares e rações
+24,agri,Tobacco,Tabaco
+25,minerals,"Salt, stone and cement","Sal, pedras e cimento"
+26,minerals,Ores,Minérios
+27,minerals,Fuels and oil,Combustíveis e petróleo
+28,chemicals,Inorganic chemicals,Químicos inorgânicos
+29,chemicals,Organic chemicals,Químicos orgânicos
+30,chemicals,Pharmaceuticals,Produtos farmacêuticos
+31,chemicals,Fertilizers,Fertilizantes
+32,chemicals,"Dyes, paints and inks","Corantes, tintas e vernizes"
+33,chemicals,Perfumes and cosmetics,Perfumaria e cosméticos
+34,chemicals,Soaps and cleaning products,Sabões e produtos de limpeza
+35,chemicals,"Proteins, starches and glues","Proteínas, amidos e colas"
+36,chemicals,Explosives and matches,Explosivos e fósforos
+37,chemicals,Photographic goods,Produtos fotográficos
+38,chemicals,Other chemical products,Outros produtos químicos
+39,chemicals,Plastics,Plásticos
+40,chemicals,Rubber,Borracha
+41,materials,Hides and leather,Peles e couros
+42,materials,Leather goods and bags,Artigos de couro e bolsas
+43,materials,Furs,Peles com pelo
+44,materials,Wood,Madeira
+45,materials,Cork,Cortiça
+46,materials,Basketwork,Cestaria
+47,materials,Wood pulp,Celulose
+48,materials,Paper and paperboard,Papel e cartão
+49,materials,Books and printed matter,Livros e impressos
+50,textiles,Silk,Seda
+51,textiles,Wool,Lã
+52,textiles,Cotton,Algodão
+53,textiles,Other vegetable fibres,Outras fibras vegetais
+54,textiles,Synthetic filaments,Filamentos sintéticos
+55,textiles,Synthetic staple fibres,Fibras sintéticas
+56,textiles,"Wadding, felt and ropes","Pastas, feltros e cordas"
+57,textiles,Carpets,Tapetes
+58,textiles,Special fabrics,Tecidos especiais
+59,textiles,Technical fabrics,Tecidos técnicos
+60,textiles,Knitted fabrics,Tecidos de malha
+61,textiles,Knitted clothing,Vestuário de malha
+62,textiles,Woven clothing,Vestuário (exceto malha)
+63,textiles,Other textile articles,Outros artigos têxteis
+64,textiles,Footwear,Calçados
+65,textiles,Headwear,Chapéus
+66,textiles,Umbrellas and walking sticks,Guarda-chuvas e bengalas
+67,textiles,Feathers and artificial flowers,Penas e flores artificiais
+68,metals,Stone and cement articles,Obras de pedra e cimento
+69,metals,Ceramics,Cerâmica
+70,metals,Glass,Vidro
+71,metals,"Gold, gems and jewellery","Ouro, pedras preciosas e joias"
+72,metals,Iron and steel,Ferro e aço
+73,metals,Iron and steel articles,Obras de ferro e aço
+74,metals,Copper,Cobre
+75,metals,Nickel,Níquel
+76,metals,Aluminium,Alumínio
+78,metals,Lead,Chumbo
+79,metals,Zinc,Zinco
+80,metals,Tin,Estanho
+81,metals,Other base metals,Outros metais comuns
+82,metals,Tools and cutlery,Ferramentas e cutelaria
+83,metals,Other metal articles,Outras obras de metal
+84,machinery,Machinery,Máquinas e equipamentos
+85,machinery,Electrical and electronic equipment,Equipamentos elétricos e eletrônicos
+86,vehicles,Railway equipment,Material ferroviário
+87,vehicles,Vehicles and parts,Veículos e autopeças
+88,vehicles,Aircraft,Aeronaves
+89,vehicles,Ships and boats,Embarcações
+90,machinery,"Optical, medical and precision instruments","Instrumentos ópticos, médicos e de precisão"
+91,machinery,Clocks and watches,Relógios
+92,machinery,Musical instruments,Instrumentos musicais
+93,other,Arms and ammunition,Armas e munições
+94,other,Furniture and lighting,Móveis e iluminação
+95,other,Toys and sports goods,Brinquedos e artigos esportivos
+96,other,Miscellaneous manufactures,Manufaturas diversas
+97,other,Works of art and antiques,Obras de arte e antiguidades

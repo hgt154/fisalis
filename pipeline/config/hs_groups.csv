@@ -1,0 +1,10 @@
+group,order,name_en,name_pt
+agri,1,Agriculture and food,Agropecuária e alimentos
+minerals,2,Minerals and fuels,Minerais e combustíveis
+chemicals,3,Chemicals and plastics,Químicos e plásticos
+materials,4,"Wood, paper and leather","Madeira, papel e couro"
+textiles,5,Textiles and footwear,Têxteis e calçados
+metals,6,"Metals, stone and glass","Metais, pedras e vidro"
+machinery,7,Machinery and electronics,Máquinas e eletrônicos
+vehicles,8,Vehicles and transport,Veículos e transporte
+other,9,Other manufactures,Outras manufaturas
