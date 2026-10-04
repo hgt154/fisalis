@@ -9,24 +9,33 @@ import Section from './Section'
 type Mode = 'expimp' | 'corrente' | 'saldo'
 
 interface Props {
-  total: SeriesTotalRow[]
-  isic: SeriesIsicRow[]
-  sectorCodes: Map<string, string> // section name -> code (A, B, C...), for colors
+  total: SeriesTotalRow[]                // monthly rows (may be empty: some economies only publish yearly data)
+  annual?: SeriesTotalRow[]              // official yearly totals ("2025"); used instead of adding up the months
+  isic?: SeriesIsicRow[]                 // sector breakdown (Brazil tab only)
+  sectorCodes?: Map<string, string>      // section name -> code (A, B, C...), for colors
+  sourceNote?: string                    // line under the chart (defaults to the Comex Stat note)
+  subtitle?: (what: string, freq: string, range: string) => string   // defaults to the Comex Stat wording (US$ FOB)
 }
 
-export default function HistorySection({ total, isic, sectorCodes }: Props) {
+export default function HistorySection({ total, annual, isic, sectorCodes = new Map(), sourceNote, subtitle }: Props) {
   const { t, lang } = useLang()
   const tr = t.trade
   const [aggregation, setAggregation] = useState<'total' | 'isic'>('total')
-  const [freq, setFreq] = useState<Frequency>('monthly')
+  const [chosenFreq, setFreq] = useState<Frequency>('monthly')
+  const hasMonthly = total.length > 0
+  const freq: Frequency = hasMonthly ? chosenFreq : 'annual'
   const [mode, setMode] = useState<Mode>('expimp')
   const [flow, setFlow] = useState<Flow>('export')
   const [type, setType] = useState<'line' | 'bar'>('line')
 
-  const monthly = (pick: (r: SeriesTotalRow) => number) => total.map((r) => ({ date: r.date, value: pick(r) }))
+  // Yearly view: the official yearly totals when we have them, otherwise the months added up
+  const useAnnual = freq === 'annual' && annual !== undefined && annual.length > 0
+  const rows = useAnnual ? annual : total
+  const series = (pick: (r: SeriesTotalRow) => number) =>
+    useAnnual ? rows.map((r) => ({ date: r.date, value: pick(r) })) : resample(rows.map((r) => ({ date: r.date, value: pick(r) })), freq)
 
   let lines: Line[]
-  if (aggregation === 'isic') {
+  if (aggregation === 'isic' && isic) {
     const sections = [...new Set(isic.map((r) => r.section))]
     lines = sections.map((section) => ({
       name: section,   // sector names come from Comex Stat (Portuguese)
@@ -35,25 +44,28 @@ export default function HistorySection({ total, isic, sectorCodes }: Props) {
     }))
   } else if (mode === 'expimp') {
     lines = [
-      { name: tr.exports, color: 'var(--flow-export)', points: resample(monthly((r) => r.export), freq) },
-      { name: tr.imports, color: 'var(--flow-import)', points: resample(monthly((r) => r.import), freq) },
+      { name: tr.exports, color: 'var(--flow-export)', points: series((r) => r.export) },
+      { name: tr.imports, color: 'var(--flow-import)', points: series((r) => r.import) },
     ]
   } else if (mode === 'corrente') {
-    lines = [{ name: tr.totalTrade, color: 'var(--flow-total)', points: resample(monthly((r) => r.export + r.import), freq) }]
+    lines = [{ name: tr.totalTrade, color: 'var(--flow-total)', points: series((r) => r.export + r.import) }]
   } else {
-    lines = [{ name: tr.balance, color: 'var(--flow-balance)', points: resample(monthly((r) => r.export - r.import), freq) }]
+    lines = [{ name: tr.balance, color: 'var(--flow-balance)', points: series((r) => r.export - r.import) }]
   }
 
-  const first = total[0]?.date
-  const last = total.at(-1)?.date
+  const first = rows[0]?.date
+  const last = rows.at(-1)?.date
   const what = aggregation === 'isic' ? tr.whatSector(FLOW_LABELS[flow][lang]) : tr.whatTotal
-  const range = first && last ? `${formatDate(first)} – ${formatDate(last)}` : ''
+  const asDate = (d: string) => (d.length === 4 ? d : formatDate(d))
+  const range = first && last ? `${asDate(first)} – ${asDate(last)}` : ''
+  const freqOptions = hasMonthly
+    ? [{ value: 'monthly' as const, label: tr.monthly }, { value: 'annual' as const, label: tr.annual }, { value: 'ytd' as const, label: tr.ytd }]
+    : [{ value: 'annual' as const, label: tr.annual }]
 
   return (
-    <Section id="serie" title={tr.history} subtitle={tr.historySubtitle(what, tr.freqWords[freq], range)}>
+    <Section id="serie" title={tr.history} subtitle={(subtitle ?? tr.historySubtitle)(what, tr.freqWords[freq], range)}>
       <div className="trade-controls">
-        <Toggle label={tr.frequency} value={freq} onChange={setFreq}
-          options={[{ value: 'monthly', label: tr.monthly }, { value: 'annual', label: tr.annual }, { value: 'ytd', label: tr.ytd }]} />
+        <Toggle label={tr.frequency} value={freq} onChange={setFreq} options={freqOptions} />
         {aggregation === 'total' ? (
           <Toggle label={tr.series} value={mode} onChange={setMode}
             options={[{ value: 'expimp', label: tr.expImp }, { value: 'corrente', label: tr.total }, { value: 'saldo', label: tr.balance }]} />
@@ -63,14 +75,16 @@ export default function HistorySection({ total, isic, sectorCodes }: Props) {
         )}
         <Toggle label={tr.chartType} value={type} onChange={setType}
           options={[{ value: 'line', label: tr.line }, { value: 'bar', label: tr.bar }]} />
-        <select aria-label={tr.breakdown} value={aggregation} onChange={(e) => setAggregation(e.target.value as 'total' | 'isic')}>
-          <option value="total">{tr.breakdownTotal}</option>
-          <option value="isic">{tr.bySector}</option>
-        </select>
+        {isic && (
+          <select aria-label={tr.breakdown} value={aggregation} onChange={(e) => setAggregation(e.target.value as 'total' | 'isic')}>
+            <option value="total">{tr.breakdownTotal}</option>
+            <option value="isic">{tr.bySector}</option>
+          </select>
+        )}
       </div>
 
       <TimeChart lines={lines} type={type} format={(v) => formatUsdShort(v, 2)} formatAxis={formatShort} dashed={[tr.imports]} />
-      <p className="trade-source muted">{tr.sourceNote}</p>
+      <p className="trade-source muted">{sourceNote ?? tr.sourceNote}</p>
     </Section>
   )
 }

@@ -13,7 +13,18 @@ import Treemap from '../Treemap'
 import WorldMap from '../WorldMap'
 import Section from './Section'
 
+// Wording for the section. By default it reads from one country's point of view
+// ("Destino das exportações"); the World view passes its own ("Quem mais compra").
+export interface PartnerLabels {
+  title: string
+  flows: Record<FlowOrTotal, string>      // the three buttons
+  subtitle: Record<FlowOrTotal, string>   // line under the title
+  top10: Record<FlowOrTotal, string>      // heading of the ranking
+  note?: string                           // optional line under the chart
+}
+
 interface Props {
+  labels?: PartnerLabels
   partners: PartnerRow[]
   period: PeriodKey
   periodName: string        // "Agosto 2026" / "August 2026"
@@ -22,7 +33,7 @@ interface Props {
 
 const pct = (share: number) => formatValue(share * 100, 'percent')
 
-export default function PartnersSection({ partners, period, periodName, world }: Props) {
+export default function PartnersSection({ labels, partners, period, periodName, world }: Props) {
   const { t, lang } = useLang()
   const tr = t.trade
   const [flow, setFlow] = useState<FlowOrTotal>('export')
@@ -33,7 +44,13 @@ export default function PartnersSection({ partners, period, periodName, world }:
   const scale = useMemo(() => scaleQuantile<string>().domain(rows.map((r) => r.value)).range(SEQUENTIAL), [rows])
   const continents = useMemo(() => continentShares(rows), [rows])
 
-  const flows = (['export', 'import', 'corrente'] as const).map((f) => ({ value: f, label: FLOW_LABELS[f][lang] }))
+  const text: PartnerLabels = labels ?? {
+    title: tr.partners,
+    flows: { export: FLOW_LABELS.export[lang], import: FLOW_LABELS.import[lang], corrente: FLOW_LABELS.corrente[lang] },
+    subtitle: tr.partnersSubtitle,
+    top10: tr.top10,
+  }
+  const flows = (['export', 'import', 'corrente'] as const).map((f) => ({ value: f, label: text.flows[f] }))
   const tooltip = (r: PartnerRow) => [
     tr.value(formatUsdShort(r.value, 2)),
     tr.change(formatChange(r.var_pct)),
@@ -44,8 +61,8 @@ export default function PartnersSection({ partners, period, periodName, world }:
   return (
     <Section
       id="parceiros"
-      title={tr.partners}
-      subtitle={`${tr.partnersSubtitle[flow]}, ${tr.inSentence(periodName)} · ${tr.groupedByContinent}`}
+      title={text.title}
+      subtitle={`${text.subtitle[flow]}, ${tr.inSentence(periodName)} · ${tr.groupedByContinent}`}
       actions={
         <>
           <Toggle label={t.common.flow} value={flow} onChange={setFlow} options={flows} />
@@ -98,13 +115,14 @@ export default function PartnersSection({ partners, period, periodName, world }:
         </div>
 
         <div>
-          <p className="kicker">{tr.top10[flow]}</p>
+          <p className="kicker">{text.top10[flow]}</p>
           <BarList
             format={(v) => formatUsdShort(v)}
             items={rows.slice(0, 10).map((r) => ({ label: r.country, value: r.value, color: continentColor(r.continent), note: pct(r.share) }))}
           />
         </div>
       </div>
+      {text.note && <p className="trade-source muted">{text.note}</p>}
     </Section>
   )
 }

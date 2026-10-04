@@ -24,6 +24,7 @@ export default function Footer() {
           <span className="kicker">{t.footer.sources}</span>
           <span>{t.footer.worldBank} · <span className="muted">CC BY 4.0</span></span>
           <span>Comex Stat · MDIC</span>
+          <span>{t.footer.imf} · <span className="muted">IMTS</span></span>
           <span>Natural Earth · <span className="muted">{t.footer.publicDomain}</span></span>
         </div>
         <div className="footer-col num">

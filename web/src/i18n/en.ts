@@ -35,6 +35,7 @@ export const en: Messages = {
     tagline: 'Open data for the study of International Relations. An independent, non-profit project.',
     sources: 'Data sources',
     worldBank: 'World Bank — WDI',
+    imf: 'IMF',
     publicDomain: 'public domain',
     updates: 'Updates',
     indicators: (date) => `Indicators: ${date}`,
@@ -247,6 +248,38 @@ export const en: Messages = {
     metric: 'Metric',
     weight: 'Weight (kg)',
     namesNote: 'Country, state and product names come from Comex Stat in Portuguese.',
+  },
+
+  tradeTabs: {
+    label: 'Foreign trade scope',
+    brazil: 'Brazil',
+    world: 'World',
+  },
+
+  worldTrade: {
+    worldTitle: 'World trade',
+    source: 'IMF · International Trade in Goods (IMTS)',
+    economy: 'Economy',
+    world: 'World (total)',
+    summaryNote: 'Exports FOB and imports CIF, in current US dollars',
+    historySubtitle: (what, freq, range) => `${what}, ${freq} values in US$, ${range}`,
+    sourceNote: 'Source: IMF, International Trade in Goods (IMTS). Exports FOB; imports CIF (including freight and insurance). Current US dollars.',
+    noMonthly: 'This economy only reports yearly data to the IMF.',
+    noPartners: 'There is no data by partner country for this economy.',
+    notFound: (code) => `There is no IMF data for “${code}”.`,
+    brazilNote: 'Brazil’s figures in this tab come from the IMF and differ slightly from the Brazil tab (Comex Stat): here imports include freight and insurance (CIF), and the two sources revise their data at different times.',
+    loading: 'Loading IMF data…',
+    worldPartners: {
+      title: 'Who buys and who sells',
+      flows: { export: 'Who buys', import: 'Who sells', corrente: 'Total trade' },
+      subtitle: {
+        export: 'The world’s biggest buyers: each country’s imports',
+        import: 'The world’s biggest sellers: each country’s exports',
+        corrente: 'Who trades the most: each country’s exports + imports',
+      },
+      top10: { export: 'Ten biggest importers', import: 'Ten biggest exporters', corrente: 'Ten biggest by total trade' },
+      note: 'Values come from what each country’s trading partners report (mirror data) and may differ slightly from the country’s own figures.',
+    },
   },
 
   theories: {

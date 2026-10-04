@@ -36,6 +36,7 @@ export const pt = {
     tagline: 'Dados abertos para o estudo das Relações Internacionais. Um projeto independente, sem fins lucrativos.',
     sources: 'Fontes de dados',
     worldBank: 'Banco Mundial — WDI',
+    imf: 'FMI',
     publicDomain: 'domínio público',
     updates: 'Atualização',
     indicators: (date: string) => `Indicadores: ${date}`,
@@ -250,6 +251,38 @@ export const pt = {
     metric: 'Métrica',
     weight: 'Peso (kg)',
     namesNote: '',
+  },
+
+  tradeTabs: {
+    label: 'Escopo do comércio exterior',
+    brazil: 'Brasil',
+    world: 'Mundo',
+  },
+
+  worldTrade: {
+    worldTitle: 'O comércio mundial',
+    source: 'FMI · International Trade in Goods (IMTS)',
+    economy: 'Economia',
+    world: 'Mundo (total)',
+    summaryNote: 'Exportações FOB e importações CIF, em dólares correntes',
+    historySubtitle: (what: string, freq: string, range: string) => `${what}, valores ${freq} em US$, ${range}`,
+    sourceNote: 'Fonte: FMI, International Trade in Goods (IMTS). Exportações FOB; importações CIF (com frete e seguro). Dólares correntes.',
+    noMonthly: 'Esta economia só envia dados anuais ao FMI.',
+    noPartners: 'Não há dados por país parceiro para esta economia.',
+    notFound: (code: string) => `Não há dados do FMI para “${code}”.`,
+    brazilNote: 'Os números do Brasil nesta aba vêm do FMI e diferem um pouco dos da aba Brasil (Comex Stat): aqui as importações incluem frete e seguro (CIF), e as duas fontes revisam os dados em datas diferentes.',
+    loading: 'Carregando dados do FMI…',
+    worldPartners: {
+      title: 'Quem compra e quem vende',
+      flows: { export: 'Quem compra', import: 'Quem vende', corrente: 'Comércio total' },
+      subtitle: {
+        export: 'Quem mais compra no mundo: as importações de cada país',
+        import: 'Quem mais vende no mundo: as exportações de cada país',
+        corrente: 'Quem mais comercia: exportações + importações de cada país',
+      },
+      top10: { export: 'Dez maiores importadores', import: 'Dez maiores exportadores', corrente: 'Dez maiores em comércio total' },
+      note: 'Os valores vêm do que os parceiros de cada país declaram (dados espelho) e podem diferir um pouco do que o próprio país informa.',
+    },
   },
 
   theories: {

@@ -165,6 +165,8 @@ body { overflow-x: clip; }
 }
 .tab:hover { color: var(--color-text); }
 .tab[aria-selected='true'] { color: var(--color-text); border-bottom-color: var(--color-accent); }
+a.tab { text-decoration: none; }
+a.tab[aria-current='page'] { color: var(--color-text); border-bottom-color: var(--color-accent); }
 
 /* ---------- Page heading: kicker, title, one line of context ---------- */
 .page-head { display: flex; flex-direction: column; gap: 6px; padding: 8px 0 24px; }

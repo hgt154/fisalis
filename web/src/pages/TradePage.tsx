@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useSearchParams } from 'react-router'
 import type { Topology } from 'topojson-specification'
 import Toggle from '../components/Toggle'
+import TradeTabs from '../components/trade/TradeTabs'
 import HistorySection from '../components/trade/HistorySection'
 import PartnersSection from '../components/trade/PartnersSection'
 import ProductSeriesSection from '../components/trade/ProductSeriesSection'
@@ -46,20 +47,23 @@ export default function TradePage() {
   )
 
   const head = (
-    <header className="trade-head">
-      <div className="page-head">
-        <span className="kicker">{tr.kicker}</span>
-        <h1>{tr.title}</h1>
-        <p className="muted">
-          {tr.source}
-          {meta.data && tr.dataUntil(formatDate(meta.data.latest))}
-        </p>
-        {tr.namesNote && <p className="muted trade-names-note">{tr.namesNote}</p>}
-      </div>
-      <nav className="trade-anchors" aria-label={tr.sectionsNav}>
-        {ANCHORS.map((id) => <a key={id} href={`#${id}`}>{tr.anchors[id]}</a>)}
-      </nav>
-    </header>
+    <>
+      <TradeTabs />
+      <header className="trade-head">
+        <div className="page-head">
+          <span className="kicker">{tr.kicker}</span>
+          <h1>{tr.title}</h1>
+          <p className="muted">
+            {tr.source}
+            {meta.data && tr.dataUntil(formatDate(meta.data.latest))}
+          </p>
+          {tr.namesNote && <p className="muted trade-names-note">{tr.namesNote}</p>}
+        </div>
+        <nav className="trade-anchors" aria-label={tr.sectionsNav}>
+          {ANCHORS.map((id) => <a key={id} href={`#${id}`}>{tr.anchors[id]}</a>)}
+        </nav>
+      </header>
+    </>
   )
 
   const all = [meta, summary, seriesTotal, seriesIsic, partners, states, products, productSeries]

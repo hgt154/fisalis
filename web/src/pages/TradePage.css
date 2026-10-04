@@ -81,3 +81,11 @@
 }
 
 .trade-names-note { margin: -16px 0 24px; font-size: 12px; }
+
+/* ---------- Brasil | Mundo tabs and the World tab ---------- */
+.trade-tabs { margin: 0 0 var(--space-md); }
+.trade-tabs .tab { font-size: 15px; }
+.world-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: -8px 0 24px; }
+.world-picker label { font-size: 13px; color: var(--color-text-muted); }
+.world-picker select { width: 300px; max-width: 100%; }
+.world-note { margin: 0 0 var(--space-lg); }
