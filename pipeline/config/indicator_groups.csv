@@ -161,3 +161,25 @@ MS.MIL.XPND.CD,theme,"Fragility, Conflict and Violence",4
 MS.MIL.TOTL.P1,theme,"Fragility, Conflict and Violence",5
 MS.MIL.MPRT.KD,theme,"Fragility, Conflict and Violence",6
 MS.MIL.XPRT.KD,theme,"Fragility, Conflict and Violence",7
+FR.INR.RINR,overview,Economic,6
+FR.INR.RINR,theme,"Finance, Competitiveness & Innovation",5
+FR.INR.LEND,theme,"Finance, Competitiveness & Innovation",6
+VC.IHR.PSRC.FE.P5,theme,"Fragility, Conflict and Violence",4
+VC.IHR.PSRC.MA.P5,theme,"Fragility, Conflict and Violence",5
+SM.POP.RHCR.EO,theme,"Fragility, Conflict and Violence",6
+VC.IDP.NWCV,theme,"Fragility, Conflict and Violence",7
+VC.IHR.PSRC.FE.P5,sdg,"SDG 16 - Peace, Justice and Strong Institutions",6
+VC.IHR.PSRC.MA.P5,sdg,"SDG 16 - Peace, Justice and Strong Institutions",7
+SG.VAW.1549.ZS,theme,Gender,5
+SG.VAW.1549.ZS,sdg,SDG 5 - Gender Equality,4
+SE.XPD.TOTL.GD.ZS,theme,Education,4
+SE.PRM.CMPT.ZS,theme,Education,5
+SE.SEC.ENRR,theme,Education,6
+SE.TER.ENRR,theme,Education,7
+SE.PRM.UNER.ZS,theme,Education,8
+SE.LPV.PRIM,theme,Education,9
+SE.PRM.ENRL.TC.ZS,theme,Education,10
+SE.TER.CUAT.BA.ZS,theme,Education,11
+SE.PRM.CMPT.ZS,sdg,SDG 4 - Quality Education,6
+SE.PRM.UNER.ZS,sdg,SDG 4 - Quality Education,7
+SE.LPV.PRIM,sdg,SDG 4 - Quality Education,8

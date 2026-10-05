@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { activeGroup, aggregateFor, buildSections, countriesToShow, countIndicators, groupId, groupLabel, searchSections } from './indicators'
+import { activeGroup, aggregateFor, buildSections, countriesToShow, countIndicators, groupId, groupLabel, initial, searchSections } from './indicators'
 import type { IndicatorMeta } from './types'
 
 const make = (code: string, groups: IndicatorMeta['groups']): IndicatorMeta => ({
@@ -119,5 +119,32 @@ describe('searchSections', () => {
   })
   it('returns everything for an empty search', () => {
     expect(searchSections(sections, '  ')).toBe(sections)
+  })
+})
+
+describe('the "all" tab', () => {
+  const list = [
+    { ...make('X1', [{ view: 'theme', group: 'Education', order: 1 }]), name_pt: 'Taxa de alfabetização', name_en: 'Literacy rate' },
+    { ...make('X2', [{ view: 'overview', group: 'Economic', order: 1 }]), name_pt: 'Água potável', name_en: 'Drinking water' },
+    { ...make('X3', [{ view: 'sdg', group: 'SDG 4 - Quality Education', order: 1 }]), name_pt: 'Alunos por professor', name_en: 'Pupil-teacher ratio' },
+  ]
+  it('lists every indicator once, by letter, in the reader\'s language', () => {
+    expect(buildSections(list, 'all', 'pt').map((s) => [s.group, s.items.map((i) => i.code)])).toEqual([
+      ['A', ['X2', 'X3']], ['T', ['X1']],
+    ])
+    expect(buildSections(list, 'all', 'en').map((s) => s.group)).toEqual(['D', 'L', 'P'])
+  })
+  it('puts names that do not start with a letter under #', () => {
+    expect(initial('2030 target')).toBe('#')
+    expect(initial('Índice')).toBe('I')
+  })
+  it('search also matches the names of the groups, in both languages', () => {
+    const all = buildSections(list, 'all', 'pt')
+    expect(countIndicators(searchSections(all, 'educação'))).toBe(2)   // Education theme + SDG 4
+    expect(countIndicators(searchSections(all, 'economic'))).toBe(1)
+    expect(countIndicators(searchSections(all, 'agua'))).toBe(1)
+  })
+  it('labels a letter section with the letter itself', () => {
+    expect(groupLabel('all', 'A', 'en')).toEqual({ label: 'A', kicker: null, color: null })
   })
 })

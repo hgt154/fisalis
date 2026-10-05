@@ -1,12 +1,14 @@
 import type { GeoFilters } from './filters'
 import type { Aggregate, Bilingual, IndicatorGroup, IndicatorMeta, Lang } from './types'
 
-export type View = IndicatorGroup['view']
+// The three ways the catalog groups indicators, plus "all": every indicator once, A to Z
+export type View = IndicatorGroup['view'] | 'all'
 
 export const VIEWS: { value: View; label: Bilingual }[] = [
   { value: 'overview', label: { pt: 'Visão geral', en: 'Overview' } },
   { value: 'theme', label: { pt: 'Por tema', en: 'By theme' } },
   { value: 'sdg', label: { pt: 'Por ODS', en: 'By SDG' } },
+  { value: 'all', label: { pt: 'Todos (A–Z)', en: 'All (A–Z)' } },
 ]
 
 export interface Section {
@@ -27,8 +29,32 @@ function groupRank(view: View, group: string): number {
   return 0
 }
 
+// Name of an indicator in the reader's language
+const nameIn = (item: IndicatorMeta, lang: Lang) => (lang === 'pt' ? item.name_pt : item.name_en)
+
+// "Água potável..." -> "A"; names that start with a number or symbol go under "#"
+export function initial(name: string): string {
+  const first = fold(name.trim()).charAt(0).toUpperCase()
+  return /[A-Z]/.test(first) ? first : '#'
+}
+
+// The "all" tab: every indicator once, alphabetical in the reader's language, one section per letter
+function alphabeticalSections(indicators: IndicatorMeta[], lang: Lang): Section[] {
+  const sorted = [...indicators].sort((a, b) => nameIn(a, lang).localeCompare(nameIn(b, lang), lang))
+  const byLetter = new Map<string, IndicatorMeta[]>()
+  for (const item of sorted) {
+    const letter = initial(nameIn(item, lang))
+    byLetter.set(letter, [...(byLetter.get(letter) ?? []), item])
+  }
+  return [...byLetter.entries()]
+    .map(([group, items]) => ({ group, items }))
+    .sort((a, b) => (a.group === '#' ? -1 : b.group === '#' ? 1 : a.group.localeCompare(b.group)))
+}
+
 // indicators.json -> the sections of one tab, each with its indicators in order
-export function buildSections(indicators: IndicatorMeta[], view: View): Section[] {
+export function buildSections(indicators: IndicatorMeta[], view: View, lang: Lang = 'pt'): Section[] {
+  if (view === 'all') return alphabeticalSections(indicators, lang)
+
   const byGroup = new Map<string, { item: IndicatorMeta; order: number }[]>()
 
   for (const item of indicators) {
@@ -138,6 +164,7 @@ export interface GroupLabel {
 // "SDG 1 - No Poverty" -> { label: 'Erradicação da pobreza', kicker: 'ODS 1', color: '#e5243b' }
 // In English the catalog's own names are used (they are already English).
 export function groupLabel(view: View, group: string, lang: Lang = 'pt'): GroupLabel {
+  if (view === 'all') return { label: group, kicker: null, color: null }   // a letter
   if (view === 'sdg') {
     const n = Number(group.match(/\d+/)?.[0])
     const sdg = SDGS[n - 1]
@@ -160,7 +187,15 @@ export function groupId(group: string): string {
 // Lowercase without accents, so "educacao" finds "Educação" and "co2" finds "CO2"
 export const fold = (text: string) => text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
 
-// Keep only indicators whose name (Portuguese or English) or code contains every word of the search.
+// Everything a search looks at for one indicator: its names, its code and the names of the
+// groups it belongs to, in both languages (so "educação" also finds "Taxa de alfabetização",
+// which sits in the Education theme and in SDG 4)
+export function searchText(i: IndicatorMeta): string {
+  const groups = i.groups.flatMap((g) => [g.group, groupLabel(g.view, g.group, 'pt').label, groupLabel(g.view, g.group, 'en').label])
+  return fold([i.name_pt, i.name_en, i.code, ...groups].join(' '))
+}
+
+// Keep only indicators whose search text contains every word of the search.
 // Sections left empty are dropped.
 export function searchSections(sections: Section[], query: string): Section[] {
   const words = fold(query).split(/\s+/).filter(Boolean)
@@ -169,7 +204,7 @@ export function searchSections(sections: Section[], query: string): Section[] {
     .map((s) => ({
       ...s,
       items: s.items.filter((i) => {
-        const text = fold([i.name_pt, i.name_en, i.code].join(' '))
+        const text = searchText(i)
         return words.every((w) => text.includes(w))
       }),
     }))

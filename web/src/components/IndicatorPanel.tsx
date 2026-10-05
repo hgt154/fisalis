@@ -24,15 +24,15 @@ export default function IndicatorPanel({ indicators, economies, loading = false,
   const topic = params.get('grupo')
   const query = params.get('busca') ?? ''
 
-  const sections = useMemo(() => buildSections(indicators, view), [indicators, view])
-  const byTopic = topic ? sections.filter((s) => s.group === topic) : sections
+  const sections = useMemo(() => buildSections(indicators, view, lang), [indicators, view, lang])
+  const byTopic = topic && view !== 'all' ? sections.filter((s) => s.group === topic) : sections
   const visible = searchSections(byTopic, query)
 
   // While searching: how many matches the other tabs have (a search for "HIV" finds nothing
   // in the overview, but the reader should see that "By theme" has it)
   const elsewhere = query.trim()
     ? VIEWS.filter((v) => v.value !== view)
-        .map((v) => ({ ...v, count: countIndicators(searchSections(buildSections(indicators, v.value), query)) }))
+        .map((v) => ({ ...v, count: countIndicators(searchSections(buildSections(indicators, v.value, lang), query)) }))
         .filter((v) => v.count > 0)
     : []
 
@@ -90,7 +90,7 @@ export default function IndicatorPanel({ indicators, economies, loading = false,
             </ul>
           )}
           {actions}
-          <select
+          {view !== 'all' && <select
             aria-label={t.panel.topic}
             value={topic ?? ''}
             onChange={(e) => setParam({ grupo: e.target.value || null })}
@@ -100,7 +100,7 @@ export default function IndicatorPanel({ indicators, economies, loading = false,
               const { label, kicker } = groupLabel(view, s.group, lang)
               return <option key={s.group} value={s.group}>{kicker ? `${kicker} · ${label}` : label}</option>
             })}
-          </select>
+          </select>}
         </div>
       </div>
 
@@ -123,8 +123,8 @@ export default function IndicatorPanel({ indicators, economies, loading = false,
       )}
 
       <div className="ind-layout">
-        <nav className="ind-index" aria-label={t.panel.inThisPanel}>
-          <p className="kicker">{view === 'sdg' ? t.panel.goals : t.panel.inThisPanel}</p>
+        <nav className={`ind-index${view === 'all' ? ' ind-index-az' : ''}`} aria-label={t.panel.inThisPanel}>
+          <p className="kicker">{view === 'sdg' ? t.panel.goals : view === 'all' ? t.panel.az : t.panel.inThisPanel}</p>
           <ul>
             {visible.map((s) => {
               const { label, kicker, color } = groupLabel(view, s.group, lang)

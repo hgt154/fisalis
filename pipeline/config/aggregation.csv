@@ -132,3 +132,18 @@ MS.MIL.XPND.CD,sum,total of members
 MS.MIL.TOTL.P1,sum,total of members
 MS.MIL.MPRT.KD,sum,total of members
 MS.MIL.XPRT.KD,sum,total of members
+FR.INR.RINR,gdp,GDP-weighted average
+FR.INR.LEND,gdp,GDP-weighted average
+VC.IHR.PSRC.FE.P5,pop,population-weighted average
+VC.IHR.PSRC.MA.P5,pop,population-weighted average
+SM.POP.RHCR.EO,sum,total of the members
+VC.IDP.NWCV,sum,total of the members
+SG.VAW.1549.ZS,none,survey years differ by country
+SE.XPD.TOTL.GD.ZS,gdp,GDP-weighted average
+SE.PRM.CMPT.ZS,pop,population-weighted average
+SE.SEC.ENRR,pop,population-weighted average
+SE.TER.ENRR,pop,population-weighted average
+SE.PRM.UNER.ZS,pop,population-weighted average
+SE.LPV.PRIM,none,survey years differ by country
+SE.PRM.ENRL.TC.ZS,none,needs the number of pupils as weight
+SE.TER.CUAT.BA.ZS,pop,population-weighted average

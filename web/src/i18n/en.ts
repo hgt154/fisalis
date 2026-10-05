@@ -133,6 +133,7 @@ export const en: Messages = {
     noResults: (query) => `No indicator in this tab for “${query}”.`,
     alsoIn: 'Also in:',
     clearSearch: 'Clear search',
+    az: 'A to Z',
   },
 
   country: {

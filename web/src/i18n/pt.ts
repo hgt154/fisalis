@@ -129,6 +129,7 @@ export const pt = {
     noResults: (query: string) => `Nenhum indicador nesta aba para “${query}”.`,
     alsoIn: 'Também em:',
     clearSearch: 'Limpar busca',
+    az: 'De A a Z',
   },
 
   country: {

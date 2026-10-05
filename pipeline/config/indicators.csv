@@ -132,3 +132,18 @@ MS.MIL.XPND.CD,Despesas militares (US$ correntes),Military expenditure (current 
 MS.MIL.TOTL.P1,"Pessoal das forças armadas, total","Armed forces personnel, total",people,compact,,
 MS.MIL.MPRT.KD,Importações de armas (indicador de tendência do SIPRI),Arms imports (SIPRI trend-indicator values),TIV,compact,,"SIPRI trend-indicator values measure the volume of arms transfers, not their price"
 MS.MIL.XPRT.KD,Exportações de armas (indicador de tendência do SIPRI),Arms exports (SIPRI trend-indicator values),TIV,compact,,"SIPRI trend-indicator values measure the volume of arms transfers, not their price"
+FR.INR.RINR,Taxa de juros real (%),Real interest rate (%),%,percent,,Lending rate adjusted for inflation (GDP deflator); can be negative
+FR.INR.LEND,Taxa de juros de empréstimos (%),Lending interest rate (%),%,percent,,Rate banks charge on short- and medium-term loans; definitions vary by country
+VC.IHR.PSRC.FE.P5,"Homicídios intencionais, mulheres (por 100 mil mulheres)","Intentional homicides, female (per 100,000 female)",per 100k,number,FALSE,
+VC.IHR.PSRC.MA.P5,"Homicídios intencionais, homens (por 100 mil homens)","Intentional homicides, male (per 100,000 male)",per 100k,number,FALSE,
+SM.POP.RHCR.EO,Refugiados por país de origem (mandato do ACNUR),Refugees under the mandate of the UNHCR by country or territory of origin,people,compact,FALSE,
+VC.IDP.NWCV,"Deslocados internos, novos deslocamentos por conflito e violência (número de casos)","Internally displaced persons, new displacement associated with conflict and violence (number of cases)",cases,compact,FALSE,
+SG.VAW.1549.ZS,"Mulheres que sofreram violência física e/ou sexual do parceiro nos últimos 12 meses (% das que já tiveram parceiro, 15 a 49 anos)",Proportion of women subjected to physical and/or sexual violence in the last 12 months (% of ever-partnered women ages 15-49),%,percent,FALSE,Survey-based; only a few years per country
+SE.XPD.TOTL.GD.ZS,Gasto público em educação (% do PIB),"Government expenditure on education, total (% of GDP)",%,percent,,
+SE.PRM.CMPT.ZS,"Taxa de conclusão do ensino fundamental I, total (%)","Primary completion rate, total (% of relevant age group)",%,percent,TRUE,Gross ratio; can exceed 100%
+SE.SEC.ENRR,"Matrícula escolar, ensino fundamental II e médio (% bruto)","School enrollment, secondary (% gross)",%,percent,,Gross ratio; can exceed 100%
+SE.TER.ENRR,"Matrícula escolar, ensino superior (% bruto)","School enrollment, tertiary (% gross)",%,percent,,Gross ratio; can exceed 100%
+SE.PRM.UNER.ZS,Crianças fora da escola (% da idade do ensino fundamental I),Children out of school (% of primary school age),%,percent,FALSE,
+SE.LPV.PRIM,Pobreza de aprendizagem: crianças que não leem com proficiência mínima ao fim do ensino fundamental I (%),Learning poverty: Share of Children at the End-of-Primary age below minimum reading proficiency adjusted by Out-of-School Children (%),%,percent,FALSE,Counts children out of school as not reading; only a few years per country
+SE.PRM.ENRL.TC.ZS,"Alunos por professor, ensino fundamental I","Pupil-teacher ratio, primary",ratio,number,FALSE,
+SE.TER.CUAT.BA.ZS,Adultos com pelo menos graduação (% da população com 25 anos ou mais),"Educational attainment, at least Bachelor's or equivalent, population 25+, total (%) (cumulative)",%,percent,TRUE,
