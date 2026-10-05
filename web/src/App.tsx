@@ -9,6 +9,8 @@ import ConflictsPage from './pages/ConflictsPage'
 import WorldTradePage from './pages/WorldTradePage'
 import TheoriesPage from './pages/TheoriesPage'
 import TheoryPage from './pages/TheoryPage'
+import HistoryPage from './pages/HistoryPage'
+import RulerPage from './pages/RulerPage'
 import NewsPage from './pages/NewsPage'
 import NotFoundPage from './pages/NotFoundPage'
 
@@ -25,6 +27,8 @@ export default function App() {
         <Route path="conflitos" element={<ConflictsPage />} />
         <Route path="teorias" element={<TheoriesPage />} />
         <Route path="teorias/:slug" element={<TheoryPage />} />
+        <Route path="historia" element={<HistoryPage />} />
+        <Route path="historia/:iso3/:slug" element={<RulerPage />} />
         <Route path="noticias" element={<NewsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

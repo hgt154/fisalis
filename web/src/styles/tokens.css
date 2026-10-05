@@ -104,6 +104,13 @@
   --war-3: #cf9150;
   --war-4: #ad5f33;
   --war-5: #7a3520;
+
+  /* History: kind of government in the timeline */
+  --hist-democracy: var(--folha);
+  --hist-restricted: var(--ambar);
+  --hist-military: #4e2a2f;
+  --hist-authoritarian: var(--jacaranda);
+  --hist-transition: var(--concreto);
 }
 
 /* Dark theme: <html data-theme="dark"> (set by the theme button) */
@@ -164,5 +171,10 @@
   --war-3: #8a5a36;
   --war-4: #b8703f;
   --war-5: #e39a62;
+  --hist-democracy: #9cc36a;
+  --hist-restricted: #e0a84f;
+  --hist-military: #c98b93;
+  --hist-authoritarian: #d98a66;
+  --hist-transition: #8a857b;
   color-scheme: dark;
 }

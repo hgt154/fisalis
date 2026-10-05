@@ -13,6 +13,7 @@ const LINKS = [
   { to: '/comercio', key: 'trade' },
   { to: '/conflitos', key: 'conflicts' },
   { to: '/teorias', key: 'theories' },
+  { to: '/historia', key: 'history' },
   { to: '/noticias', key: 'news' },
 ] as const
 

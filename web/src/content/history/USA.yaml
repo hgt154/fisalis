@@ -1,0 +1,166 @@
+# United States: presidents in office from 1945 on (same fields as BRA.yaml).
+
+eras:
+  - { from: 1933, to: 1945, name: { en: "New Deal and Second World War", pt: "New Deal e Segunda Guerra" } }
+  - { from: 1945, to: 1991, name: { en: "Cold War", pt: "Guerra Fria" } }
+  - { from: 1991, to: 2001, name: { en: "Post-Cold War", pt: "Pós-Guerra Fria" } }
+  - { from: 2001, to: null, name: { en: "After 9/11", pt: "Pós-11 de Setembro" } }
+
+rulers:
+  - slug: roosevelt-1933
+    name: Franklin D. Roosevelt
+    party: Democratic
+    start: "1933-03-04"
+    end: "1945-04-12"
+    access: elected
+    regime: democracy
+    note: >-
+      Elected four times. The New Deal in response to the Great Depression; led the country through the Second World War and shaped the post-war order (Atlantic Charter, Bretton Woods, Yalta, the United Nations). Died in office.
+
+  - slug: truman-1945
+    name: Harry S. Truman
+    party: Democratic
+    start: "1945-04-12"
+    end: "1953-01-20"
+    access: succession
+    regime: democracy
+
+  - slug: eisenhower-1953
+    name: Dwight D. Eisenhower
+    party: Republican
+    start: "1953-01-20"
+    end: "1961-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      Korean armistice, the "New Look" and massive retaliation; covert operations in Iran (1953) and Guatemala (1954); the Interstate Highway System and the first steps of desegregation. Warned of the "military-industrial complex".
+
+  - slug: kennedy-1961
+    name: John F. Kennedy
+    party: Democratic
+    start: "1961-01-20"
+    end: "1963-11-22"
+    access: elected
+    regime: democracy
+    note: >-
+      Bay of Pigs, the Berlin crisis and the Cuban Missile Crisis (1962); the Alliance for Progress with Latin America; the Partial Test Ban Treaty. Assassinated in Dallas.
+
+  - slug: johnson-1963
+    name: Lyndon B. Johnson
+    party: Democratic
+    start: "1963-11-22"
+    end: "1969-01-20"
+    access: succession
+    regime: democracy
+    note: >-
+      Civil Rights Act (1964), Voting Rights Act (1965) and the "Great Society" (Medicare, Medicaid); escalation of the Vietnam War after the Gulf of Tonkin resolution.
+
+  - slug: nixon-1969
+    name: Richard Nixon
+    party: Republican
+    start: "1969-01-20"
+    end: "1974-08-09"
+    access: elected
+    regime: democracy
+    note: >-
+      Détente with the Soviet Union (SALT I), opening to China (1972) and the end of dollar–gold convertibility (1971); withdrawal from Vietnam. Resigned over the Watergate scandal.
+
+  - slug: ford-1974
+    name: Gerald Ford
+    party: Republican
+    start: "1974-08-09"
+    end: "1977-01-20"
+    access: succession
+    regime: democracy
+    note: >-
+      The only president never elected as president or vice-president. Pardoned Nixon; fall of Saigon (1975); signed the Helsinki Final Act.
+
+  - slug: carter-1977
+    name: Jimmy Carter
+    party: Democratic
+    start: "1977-01-20"
+    end: "1981-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      Human rights in foreign policy, the Panama Canal treaties and the Camp David Accords; inflation and the oil shock; the Iran hostage crisis and the Soviet invasion of Afghanistan.
+
+  - slug: reagan-1981
+    name: Ronald Reagan
+    party: Republican
+    start: "1981-01-20"
+    end: "1989-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      Tax cuts, deregulation and a military build-up; support for anti-communist forces in Central America and Afghanistan; the Iran–Contra affair; the INF Treaty with Gorbachev (1987).
+
+  - slug: bush-1989
+    name: George H. W. Bush
+    party: Republican
+    start: "1989-01-20"
+    end: "1993-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      End of the Cold War, German reunification and the dissolution of the Soviet Union; invasion of Panama (1989) and the Gulf War (1991); NAFTA signed.
+
+  - slug: clinton-1993
+    name: Bill Clinton
+    party: Democratic
+    start: "1993-01-20"
+    end: "2001-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      Economic expansion and federal budget surpluses; NAFTA in force and the WTO created; NATO enlargement and interventions in Bosnia and Kosovo. Impeached by the House and acquitted by the Senate.
+
+  - slug: bush-2001
+    name: George W. Bush
+    party: Republican
+    start: "2001-01-20"
+    end: "2009-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      The September 11 attacks and the "war on terror": wars in Afghanistan (2001) and Iraq (2003). The 2008 financial crisis.
+
+  - slug: obama-2009
+    name: Barack Obama
+    party: Democratic
+    start: "2009-01-20"
+    end: "2017-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      Response to the Great Recession and the Affordable Care Act; the "pivot to Asia", the Iran nuclear deal (2015), the opening to Cuba and the Paris Agreement.
+
+  - slug: trump-2017
+    name: Donald Trump
+    party: Republican
+    start: "2017-01-20"
+    end: "2021-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      "America First": tariffs and a trade war with China, withdrawal from the Paris Agreement and the Iran deal, NAFTA replaced by the USMCA; the COVID-19 pandemic. Impeached twice and acquitted.
+
+  - slug: biden-2021
+    name: Joe Biden
+    party: Democratic
+    start: "2021-01-20"
+    end: "2025-01-20"
+    access: elected
+    regime: democracy
+    note: >-
+      Withdrawal from Afghanistan; support for Ukraine after the Russian invasion; industrial policy (Inflation Reduction Act, CHIPS Act) and the post-pandemic inflation.
+
+  - slug: trump-2025
+    name: Donald Trump
+    party: Republican
+    start: "2025-01-20"
+    end: null
+    access: elected
+    regime: democracy
+    note: >-
+      Second, non-consecutive term. Broad tariffs on most trading partners, cuts to the federal government and foreign aid, and stricter immigration enforcement.

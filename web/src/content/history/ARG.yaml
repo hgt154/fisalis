@@ -1,0 +1,301 @@
+# Argentina: heads of state in office from 1945 on (same fields as BRA.yaml).
+# Officers who held power for only a few days between two governments are left out
+# (e.g. the juntas of June 1970 and March 1976, Liendo and Lacoste in 1981, Saint Jean in 1982).
+
+eras:
+  - { from: 1943, to: 1946, name: { en: "Revolution of 1943", pt: "Revolução de 1943" } }
+  - { from: 1946, to: 1955, name: { en: "First Peronism", pt: "Primeiro peronismo" } }
+  - { from: 1955, to: 1966, name: { en: "Proscription of Peronism", pt: "Proscrição do peronismo" } }
+  - { from: 1966, to: 1973, name: { en: "Argentine Revolution", pt: "Revolução Argentina" } }
+  - { from: 1973, to: 1976, name: { en: "Return of Peronism", pt: "Retorno do peronismo" } }
+  - { from: 1976, to: 1983, name: { en: "National Reorganization Process", pt: "Processo de Reorganização Nacional" } }
+  - { from: 1983, to: null, name: { en: "Democracy since 1983", pt: "Democracia desde 1983" } }
+
+rulers:
+  - slug: farrell-1944
+    name: Edelmiro J. Farrell
+    start: "1944-02-25"
+    end: "1946-06-04"
+    access: coup
+    regime: military
+    note: >-
+      Last president of the regime born of the 1943 coup, with Juan Perón as vice-president and labor secretary. Declared war on Germany and Japan in March 1945; called the 1946 elections.
+
+  - slug: peron-1946
+    name: Juan Domingo Perón
+    party: Peronist
+    start: "1946-06-04"
+    end: "1955-09-21"
+    access: elected
+    regime: democracy
+
+  - slug: lonardi-1955
+    name: Eduardo Lonardi
+    start: "1955-09-23"
+    end: "1955-11-13"
+    access: coup
+    regime: military
+    note: >-
+      Led the "Liberating Revolution" that overthrew Perón; replaced within two months by the harder-line faction of the armed forces.
+
+  - slug: aramburu-1955
+    name: Pedro Eugenio Aramburu
+    start: "1955-11-13"
+    end: "1958-05-01"
+    access: coup
+    regime: military
+    note: >-
+      Banned Peronism and repealed the 1949 Constitution; executions after the failed 1956 uprising. Argentina joined the IMF and the World Bank (1956). Called elections in 1958.
+
+  - slug: frondizi-1958
+    name: Arturo Frondizi
+    party: UCRI
+    start: "1958-05-01"
+    end: "1962-03-29"
+    access: elected
+    regime: restricted
+    note: >-
+      Elected with Peronist votes while Peronism was banned. "Developmentalism" and foreign oil contracts; deposed when Peronist candidates won the 1962 provincial elections.
+
+  - slug: guido-1962
+    name: José María Guido
+    party: UCRI
+    start: "1962-03-29"
+    end: "1963-10-12"
+    access: interim
+    regime: restricted
+    note: >-
+      Provisional president of the Senate, sworn in after Frondizi's overthrow and ruling under military supervision; clashes between army factions (azules and colorados).
+
+  - slug: illia-1963
+    name: Arturo Illia
+    party: UCRP
+    start: "1963-10-12"
+    end: "1966-06-28"
+    access: elected
+    regime: restricted
+    note: >-
+      Annulled the foreign oil contracts and passed a law on medicines; growth recovered. Deposed by the 1966 coup.
+
+  - slug: ongania-1966
+    name: Juan Carlos Onganía
+    start: "1966-06-29"
+    end: "1970-06-08"
+    access: coup
+    regime: military
+    note: >-
+      The "Argentine Revolution": Congress and parties dissolved, universities taken over ("Night of the Long Batons"). The 1969 Cordobazo revolt weakened his rule.
+
+  - slug: levingston-1970
+    name: Roberto M. Levingston
+    start: "1970-06-18"
+    end: "1971-03-23"
+    access: military
+    regime: military
+    note: >-
+      Little-known general chosen by the junta; removed after nine months.
+
+  - slug: lanusse-1971
+    name: Alejandro Agustín Lanusse
+    start: "1971-03-26"
+    end: "1973-05-25"
+    access: military
+    regime: military
+    note: >-
+      Negotiated the military's exit (the "Great National Agreement") and the 1973 elections, with Peronism allowed but Perón himself barred from running.
+
+  - slug: campora-1973
+    name: Héctor J. Cámpora
+    party: FREJULI (Peronist)
+    start: "1973-05-25"
+    end: "1973-07-13"
+    access: elected
+    regime: democracy
+    note: >-
+      Elected as Perón's stand-in; amnesty for political prisoners. Resigned so that new elections could bring Perón back.
+
+  - slug: lastiri-1973
+    name: Raúl Lastiri
+    party: Peronist
+    start: "1973-07-13"
+    end: "1973-10-12"
+    access: interim
+    regime: democracy
+    note: >-
+      President of the Chamber of Deputies; called the September 1973 elections won by Perón.
+
+  - slug: peron-1973
+    name: Juan Domingo Perón
+    party: Peronist
+    start: "1973-10-12"
+    end: "1974-07-01"
+    access: elected
+    regime: democracy
+    note: >-
+      Third presidency, after 18 years of exile, with his wife Isabel as vice-president. Social Pact on wages and prices; open conflict between the Peronist left and right. Died in office.
+
+  - slug: isabel-peron-1974
+    name: Isabel Martínez de Perón
+    party: Peronist
+    start: "1974-07-01"
+    end: "1976-03-24"
+    access: succession
+    regime: democracy
+    note: >-
+      First woman head of state in the Americas. Political violence (the Triple A and guerrilla groups), the 1975 "Rodrigazo" price shock; deposed by the 1976 coup.
+
+  - slug: videla-1976
+    name: Jorge Rafael Videla
+    start: "1976-03-29"
+    end: "1981-03-29"
+    access: coup
+    regime: military
+    note: >-
+      The "National Reorganization Process": state terrorism and forced disappearances; Martínez de Hoz's liberal economic program. Hosted the 1978 World Cup; near-war with Chile over the Beagle Channel (1978).
+
+  - slug: viola-1981
+    name: Roberto Viola
+    start: "1981-03-29"
+    end: "1981-12-11"
+    access: military
+    regime: military
+    note: >-
+      Took over amid a financial crisis; removed by the junta after nine months.
+
+  - slug: galtieri-1981
+    name: Leopoldo Galtieri
+    start: "1981-12-22"
+    end: "1982-06-18"
+    access: military
+    regime: military
+    note: >-
+      Ordered the occupation of the Falklands/Malvinas in April 1982; resigned after the defeat by the United Kingdom.
+
+  - slug: bignone-1982
+    name: Reynaldo Bignone
+    start: "1982-07-01"
+    end: "1983-12-10"
+    access: military
+    regime: military
+    note: >-
+      Last president of the military regime; negotiated the transition and called the 1983 elections.
+
+  - slug: alfonsin-1983
+    name: Raúl Alfonsín
+    party: UCR
+    start: "1983-12-10"
+    end: "1989-07-08"
+    access: elected
+    regime: democracy
+    note: >-
+      The CONADEP truth commission and the Trial of the Juntas; the Austral Plan and later hyperinflation. Rapprochement with Brazil (Iguaçu Declaration, 1985). Handed over power early.
+
+  - slug: menem-1989
+    name: Carlos Menem
+    party: Peronist
+    start: "1989-07-08"
+    end: "1999-12-10"
+    access: elected
+    regime: democracy
+    note: >-
+      Two terms. Convertibility (one peso = one dollar) and privatizations; pardons for the military. Mercosur, "carnal relations" with the United States and status as a major non-NATO ally.
+
+  - slug: de-la-rua-1999
+    name: Fernando de la Rúa
+    party: Alianza (UCR)
+    start: "1999-12-10"
+    end: "2001-12-21"
+    access: elected
+    regime: democracy
+    note: >-
+      Recession and the 2001 crisis: bank deposit freeze ("corralito"), protests and deaths; resigned in December 2001.
+
+  - slug: puerta-2001
+    name: Ramón Puerta
+    party: Peronist
+    start: "2001-12-21"
+    end: "2001-12-23"
+    access: interim
+    regime: democracy
+    note: >-
+      Provisional president of the Senate for two days after de la Rúa's resignation.
+
+  - slug: rodriguez-saa-2001
+    name: Adolfo Rodríguez Saá
+    party: Peronist
+    start: "2001-12-23"
+    end: "2001-12-30"
+    access: indirect
+    regime: democracy
+    note: >-
+      Chosen by Congress; announced the suspension of payments on the public debt. Resigned after a week.
+
+  - slug: camano-2001
+    name: Eduardo Camaño
+    party: Peronist
+    start: "2001-12-31"
+    end: "2002-01-02"
+    access: interim
+    regime: democracy
+    note: >-
+      President of the Chamber of Deputies, caretaker until Congress chose a new president.
+
+  - slug: duhalde-2002
+    name: Eduardo Duhalde
+    party: Peronist
+    start: "2002-01-02"
+    end: "2003-05-25"
+    access: indirect
+    regime: democracy
+    note: >-
+      Chosen by Congress. Ended convertibility and devalued the peso ("pesification"); called early elections.
+
+  - slug: nestor-kirchner-2003
+    name: Néstor Kirchner
+    party: Peronist (FpV)
+    start: "2003-05-25"
+    end: "2007-12-10"
+    access: elected
+    regime: democracy
+    note: >-
+      Fast recovery after the crisis; debt restructuring (2005) and early repayment to the IMF. Amnesty laws annulled and trials for crimes of the dictatorship reopened.
+
+  - slug: cristina-kirchner-2007
+    name: Cristina Fernández de Kirchner
+    party: Peronist (FpV)
+    start: "2007-12-10"
+    end: "2015-12-10"
+    access: elected
+    regime: democracy
+    note: >-
+      Two terms. Conflict with farmers over export taxes (2008), nationalization of pensions and of YPF; capital controls and rising inflation; litigation with holdout creditors.
+
+  - slug: macri-2015
+    name: Mauricio Macri
+    party: PRO (Cambiemos)
+    start: "2015-12-10"
+    end: "2019-12-10"
+    access: elected
+    regime: democracy
+    note: >-
+      Lifted capital controls and settled with holdout creditors; the 2018 currency crisis and the largest loan in IMF history. Mercosur–EU agreement concluded in 2019.
+
+  - slug: alberto-fernandez-2019
+    name: Alberto Fernández
+    party: Peronist (Frente de Todos)
+    start: "2019-12-10"
+    end: "2023-12-10"
+    access: elected
+    regime: democracy
+    note: >-
+      COVID-19 pandemic, debt restructuring with private creditors and a new IMF program (2022); year-on-year inflation above 150% by late 2023.
+
+  - slug: milei-2023
+    name: Javier Milei
+    party: La Libertad Avanza
+    start: "2023-12-10"
+    end: null
+    access: elected
+    regime: democracy
+    note: >-
+      Libertarian economist. Sharp fiscal adjustment and deregulation; inflation fell steeply in 2024. Close alignment with the United States and Israel.

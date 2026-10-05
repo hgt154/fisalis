@@ -1,0 +1,276 @@
+# Brazil: heads of state in office from 1945 on.
+# One entry per continuous period in office. The article text, when written,
+# lives in content/history/<lang>/BRA/<slug>.md
+#
+# access: how they reached office
+#   elected | indirect (chosen by Congress or an electoral college) | succession (vice-president or
+#   line of succession) | interim (caretaker) | coup (took power by force) | military (chosen by the armed forces)
+# regime: the kind of government
+#   democracy | restricted (elections with the main political force banned) | military | authoritarian | transition
+
+eras:
+  - { from: 1930, to: 1945, name: { en: "Vargas Era", pt: "Era Vargas" } }
+  - { from: 1946, to: 1964, name: { en: "Fourth Republic", pt: "República de 1946" } }
+  - { from: 1964, to: 1985, name: { en: "Military regime", pt: "Regime militar" } }
+  - { from: 1985, to: null, name: { en: "New Republic", pt: "Nova República" } }
+
+rulers:
+  - slug: vargas-1930
+    name: Getúlio Vargas
+    start: "1930-11-03"
+    end: "1945-10-29"
+    access: coup
+    regime: authoritarian
+    note: >-
+      Came to power with the Revolution of 1930; ruled provisionally, then constitutionally from 1934 and by decree under the Estado Novo (1937–1945). Deposed by the army in October 1945.
+
+  - slug: linhares-1945
+    name: José Linhares
+    start: "1945-10-29"
+    end: "1946-01-31"
+    access: interim
+    regime: transition
+    note: >-
+      President of the Supreme Federal Court, handed the presidency after Vargas was deposed. Oversaw the December 1945 elections.
+
+  - slug: dutra-1946
+    name: Eurico Gaspar Dutra
+    party: PSD
+    start: "1946-01-31"
+    end: "1951-01-31"
+    access: elected
+    regime: democracy
+    note: >-
+      General and former war minister. The 1946 Constitution was adopted, the Communist Party banned (1947) and relations with the Soviet Union broken; close alignment with the United States.
+
+  - slug: vargas-1951
+    name: Getúlio Vargas
+    party: PTB
+    start: "1951-01-31"
+    end: "1954-08-24"
+    access: elected
+    regime: democracy
+
+  - slug: cafe-filho-1954
+    name: Café Filho
+    party: PSP
+    start: "1954-08-24"
+    end: "1955-11-08"
+    access: succession
+    regime: democracy
+    note: >-
+      Vice-president who took office after Vargas's suicide. Left office on health grounds in November 1955, amid tension over the inauguration of the president-elect.
+
+  - slug: luz-1955
+    name: Carlos Luz
+    party: PSD
+    start: "1955-11-08"
+    end: "1955-11-11"
+    access: interim
+    regime: democracy
+    note: >-
+      President of the Chamber of Deputies. Removed after three days by the "preventive counter-coup" of Marshal Henrique Lott, who acted to guarantee the inauguration of Kubitschek.
+
+  - slug: ramos-1955
+    name: Nereu Ramos
+    party: PSD
+    start: "1955-11-11"
+    end: "1956-01-31"
+    access: interim
+    regime: democracy
+    note: >-
+      Vice-president of the Senate. Governed under a state of siege until handing over to Kubitschek.
+
+  - slug: kubitschek-1956
+    name: Juscelino Kubitschek
+    party: PSD
+    start: "1956-01-31"
+    end: "1961-01-31"
+    access: elected
+    regime: democracy
+    note: >-
+      The Targets Plan ("fifty years in five") of industrialization, foreign investment in the car industry and the building of Brasília. Proposed Operation Pan-America (1958) to the United States.
+
+  - slug: quadros-1961
+    name: Jânio Quadros
+    party: PTN
+    start: "1961-01-31"
+    end: "1961-08-25"
+    access: elected
+    regime: democracy
+    note: >-
+      Elected with UDN support on an anti-corruption platform. Launched the Independent Foreign Policy; resigned after seven months.
+
+  - slug: mazzilli-1961
+    name: Ranieri Mazzilli
+    party: PSD
+    start: "1961-08-25"
+    end: "1961-09-07"
+    access: interim
+    regime: democracy
+    note: >-
+      President of the Chamber of Deputies during the crisis over the military veto on Vice-President Goulart, resolved by the adoption of a parliamentary system.
+
+  - slug: goulart-1961
+    name: João Goulart
+    party: PTB
+    start: "1961-09-07"
+    end: "1964-04-02"
+    access: succession
+    regime: democracy
+    note: >-
+      Took office under a parliamentary system, restored to full powers by the January 1963 plebiscite. Pushed for "basic reforms" (land, tax, banking); deposed by the military coup of March–April 1964.
+
+  - slug: mazzilli-1964
+    name: Ranieri Mazzilli
+    party: PSD
+    start: "1964-04-02"
+    end: "1964-04-15"
+    access: interim
+    regime: military
+    note: >-
+      Sworn in by Congress after the coup while power lay with the self-styled Supreme Revolutionary Command, which issued the first Institutional Act.
+
+  - slug: castelo-branco-1964
+    name: Humberto Castelo Branco
+    start: "1964-04-15"
+    end: "1967-03-15"
+    access: military
+    regime: military
+    note: >-
+      First military president, chosen by Congress under the first Institutional Act. Political parties were abolished (two-party system of ARENA and MDB) and the economy stabilized (PAEG).
+
+  - slug: costa-e-silva-1967
+    name: Artur da Costa e Silva
+    start: "1967-03-15"
+    end: "1969-08-31"
+    access: military
+    regime: military
+    note: >-
+      Under the 1967 Constitution. Issued Institutional Act No. 5 (December 1968), closing Congress and suspending habeas corpus for political crimes. Incapacitated by a stroke in August 1969.
+
+  - slug: junta-1969
+    name: Military junta (Lyra Tavares, Rademaker, Souza e Mello)
+    start: "1969-08-31"
+    end: "1969-10-30"
+    access: military
+    regime: military
+    note: >-
+      The three service ministers ruled instead of the civilian vice-president, Pedro Aleixo. Issued the 1969 constitutional amendment.
+
+  - slug: medici-1969
+    name: Emílio Garrastazu Médici
+    start: "1969-10-30"
+    end: "1974-03-15"
+    access: military
+    regime: military
+    note: >-
+      The years of the "economic miracle", with very fast growth, and of the harshest repression of the regime.
+
+  - slug: geisel-1974
+    name: Ernesto Geisel
+    start: "1974-03-15"
+    end: "1979-03-15"
+    access: military
+    regime: military
+    note: >-
+      Began the "slow, gradual and safe" political opening. The Second National Development Plan (II PND) and the "responsible pragmatism" foreign policy, including the 1975 nuclear agreement with West Germany.
+
+  - slug: figueiredo-1979
+    name: João Figueiredo
+    start: "1979-03-15"
+    end: "1985-03-15"
+    access: military
+    regime: military
+    note: >-
+      Amnesty law (1979) and the return to a multiparty system; debt crisis and high inflation. The "Diretas Já" campaign of 1984.
+
+  - slug: sarney-1985
+    name: José Sarney
+    party: PMDB
+    start: "1985-03-15"
+    end: "1990-03-15"
+    access: succession
+    regime: democracy
+    note: >-
+      Vice-president-elect who took office when Tancredo Neves, chosen by the electoral college, fell ill before the inauguration. The 1988 Constitution, the Cruzado Plan and rapprochement with Argentina.
+
+  - slug: collor-1990
+    name: Fernando Collor
+    party: PRN
+    start: "1990-03-15"
+    end: "1992-10-02"
+    access: elected
+    regime: democracy
+    note: >-
+      First directly elected president since 1960. Trade liberalization and the freezing of savings (Collor Plan); Mercosur created (1991). Removed by impeachment proceedings.
+
+  - slug: itamar-1992
+    name: Itamar Franco
+    party: PMDB
+    start: "1992-10-02"
+    end: "1995-01-01"
+    access: succession
+    regime: democracy
+    note: >-
+      Vice-president who took over during Collor's impeachment. The Real Plan (1994) ended decades of high inflation.
+
+  - slug: fhc-1995
+    name: Fernando Henrique Cardoso
+    party: PSDB
+    start: "1995-01-01"
+    end: "2003-01-01"
+    access: elected
+    regime: democracy
+    note: >-
+      Two terms. Consolidation of the Real, privatizations, the 1999 devaluation and the macroeconomic "tripod". Joined the Nuclear Non-Proliferation Treaty (1998).
+
+  - slug: lula-2003
+    name: Luiz Inácio Lula da Silva
+    party: PT
+    start: "2003-01-01"
+    end: "2011-01-01"
+    access: elected
+    regime: democracy
+    note: >-
+      Two terms. Commodity-driven growth, Bolsa Família and falling poverty. An "active and assertive" foreign policy: South-South ties, IBSA, BRICS and the G20 at the WTO.
+
+  - slug: dilma-2011
+    name: Dilma Rousseff
+    party: PT
+    start: "2011-01-01"
+    end: "2016-05-12"
+    access: elected
+    regime: democracy
+    note: >-
+      First woman president. Economic slowdown and recession from 2014; the Car Wash investigation. Suspended in May 2016 and removed by the Senate in August 2016.
+
+  - slug: temer-2016
+    name: Michel Temer
+    party: MDB
+    start: "2016-05-12"
+    end: "2019-01-01"
+    access: succession
+    regime: democracy
+    note: >-
+      Vice-president who took over during Rousseff's impeachment. Public spending cap and labor reform.
+
+  - slug: bolsonaro-2019
+    name: Jair Bolsonaro
+    party: PSL / PL
+    start: "2019-01-01"
+    end: "2023-01-01"
+    access: elected
+    regime: democracy
+    note: >-
+      Pension reform and the COVID-19 pandemic. Foreign policy close to the Trump administration at first; Brazil left CELAC (2020).
+
+  - slug: lula-2023
+    name: Luiz Inácio Lula da Silva
+    party: PT
+    start: "2023-01-01"
+    end: null
+    access: elected
+    regime: democracy
+    note: >-
+      Third term, after defeating Bolsonaro in 2022. Brazil chaired the G20 (2024) and hosted COP30 in Belém (2025).

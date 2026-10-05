@@ -1,0 +1,129 @@
+/* ---------- Country tabs ---------- */
+.hist-countries { display: flex; flex-wrap: wrap; gap: 4px 22px; padding: 18px 0 0; border-bottom: 1px solid var(--color-border); }
+.hist-country {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 0 10px;
+  font: inherit;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  color: var(--color-text-muted);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+.hist-country:hover { color: var(--color-text); }
+.hist-country[aria-pressed='true'] { color: var(--color-text); border-bottom-color: var(--color-accent); }
+.hist-soon { font-family: var(--font-body); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted); }
+
+/* ---------- Timeline band ---------- */
+.hist-timeline-wrap { padding: 24px 0 4px; }
+.hist-timeline { margin: 0; }
+.hist-eras, .hist-band, .hist-ticks { position: relative; }
+.hist-eras { height: 22px; }
+.hist-era {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  padding: 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--color-text-muted);
+  border-left: 1px solid var(--color-border-strong);
+}
+.hist-band { height: 34px; background: var(--color-border); }
+.hist-seg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  box-shadow: inset -1px 0 0 var(--color-bg);   /* thin gap between governments */
+  transition: filter 0.15s;
+}
+.hist-seg:hover, .hist-seg:focus-visible { filter: brightness(1.25); outline: none; }
+.hist-seg.current { top: -5px; bottom: -5px; box-shadow: 0 0 0 2px var(--color-text); z-index: 1; }
+.hist-ticks { height: 20px; font-size: 11px; color: var(--color-text-muted); }
+.hist-ticks span { position: absolute; top: 4px; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+.hist-ticks span::before { content: ''; position: absolute; top: -4px; left: 50%; height: 4px; border-left: 1px solid var(--color-border-strong); }
+.hist-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; font-size: 12.5px; }
+.hist-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.hist-legend i, .hist-badges i, .ruler-kicker i { display: inline-block; width: 10px; height: 10px; border-radius: 1px; }
+.hist-regime-note { margin: 6px 0 0; font-size: 12px; }
+
+/* ---------- List ---------- */
+.hist-list { list-style: none; margin: 0; padding: 0; }
+.hist-list > li {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) 90px;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.hist-years { padding-top: 6px; font-size: 12.5px; color: var(--color-text-muted); }
+.hist-list h2 { font-size: 26px; margin: 0 0 6px; }
+.hist-list h2 a { color: var(--color-text); text-decoration: none; }
+.hist-list h2 a:hover { color: var(--color-accent); }
+.hist-party { font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--color-text-muted); }
+.hist-list p { margin: 0 0 10px; font-size: 14px; }
+.hist-list .no-text p, .hist-card.no-text p { color: var(--color-text-muted); }
+.hist-duration { padding-top: 8px; font-size: 12.5px; text-align: right; }
+
+.hist-badges { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.hist-badges .tag { gap: 6px; }
+.hist-badges .tag-muted { background: none; color: var(--color-text-muted); border: 1px dashed var(--color-border-strong); }
+
+.theory-card.hist-card { border-top-width: 4px; border-top-style: solid; }
+
+/* ---------- A government's page ---------- */
+.ruler-kicker { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; }
+.ruler-timeline { padding: 20px 0 0; }
+.ruler-timeline .hist-legend { display: none; }
+.ruler-section { margin-top: 40px; padding-top: 16px; border-top: 1.5px solid var(--color-text); scroll-margin-top: var(--space-md); }
+.ruler-section h2 { font-size: 24px; margin: 0 0 14px; }
+.ruler .theory-main > .note:first-child { margin-top: 0; }
+.ruler > .theory-fallback { margin-bottom: 20px; }
+
+.term-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 0; }
+.term-tiles > div { padding: 12px 14px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); }
+.term-tiles dt { font-size: 12px; color: var(--color-text-muted); }
+.term-tiles dd { margin: 0; }
+.term-tiles dd.num { font-family: var(--font-heading); font-size: 30px; line-height: 1.2; }
+.term-tiles dd.muted { font-size: 11.5px; }
+.term-chart { margin: 20px 0 0; }
+.term-chart figcaption { margin-bottom: 6px; }
+.term-chart svg { display: block; overflow: visible; }
+.term-chart .bar { fill: var(--color-border-strong); }
+.term-chart .bar.in-term { fill: var(--color-accent); }
+.term-chart .grid { stroke: var(--color-border); }
+.term-chart .axis-zero { stroke: var(--color-text-muted); }
+.term-chart .tick { font-size: 10.5px; fill: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.term-note { margin: 12px 0 0; font-size: 12px; }
+
+.term-conflicts ul { list-style: none; margin: 0; padding: 0; }
+.term-conflicts li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--color-border); font-size: 14px; }
+.term-conflicts li .muted { font-size: 12.5px; }
+.term-conflict-dot { flex: none; width: 10px; height: 10px; margin-top: 6px; border-radius: 50%; }
+
+.ruler-dates { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+.ruler-dates li { display: grid; grid-template-columns: 92px 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--color-border); }
+.ruler-dates time { color: var(--color-text-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+.ruler-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 40px; }
+.ruler-pager .card { color: var(--color-text); text-decoration: none; gap: 2px; }
+.ruler-pager .card:hover { border-color: var(--color-accent); }
+.ruler-pager .card.next { text-align: right; align-items: flex-end; }
+.ruler-pager strong { font-family: var(--font-heading); font-size: 18px; }
+
+@media (prefers-reduced-motion: reduce) { .hist-seg { transition: none; } }
+
+@media (max-width: 800px) {
+  .hist-list > li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .hist-years, .hist-duration { padding: 0; text-align: left; }
+  .hist-country { font-size: 19px; }
+  .hist-era { font-size: 10px; }
+  .ruler-dates li { grid-template-columns: 80px 1fr; }
+}
