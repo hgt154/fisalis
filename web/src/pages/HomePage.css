@@ -15,7 +15,7 @@
   margin: 0;
   text-wrap: balance;
 }
-.home-lead { font-size: 18px; line-height: 1.6; max-width: 580px; margin: 0; text-wrap: pretty; }
+.home-lead { font-size: 18px; line-height: 1.6; max-width: 580px; margin: 0; text-align: justify; hyphens: auto; }
 .home-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn-lg { font-size: 16px; padding: 12px 20px; }
 
@@ -48,7 +48,8 @@
 }
 .home-sections-head h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 400; margin: 0; }
 
-.home-sections { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+.home-sections { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.vao-wide { grid-column: span 2; }   /* 7 sections: 4 + 3, the last one fills the row */
 
 .vao {
   display: flex;
@@ -100,12 +101,13 @@ a.vao:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(45, 43, 4
   border-top: 1px solid var(--color-text);
 }
 .home-about h3 { font-size: 30px; font-weight: 400; margin: 0; }
-.home-about p { font-size: 15px; line-height: 1.65; margin: 0; text-wrap: pretty; }
+.home-about p { font-size: 15px; line-height: 1.65; text-align: justify; hyphens: auto; margin: 0; }
 
 /* ---------- Smaller screens ---------- */
 @media (max-width: 1100px) {
   .home-hero { grid-template-columns: 1fr; gap: 40px; }
   .home-sections { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .vao-wide { grid-column: span 3; }
   .home-about { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 700px) {
@@ -113,5 +115,6 @@ a.vao:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(45, 43, 4
   .home-stat { padding: 0 12px; }
   .home-stat-value { font-size: 30px; }
   .home-sections { grid-template-columns: 1fr; }
+  .vao-wide { grid-column: auto; }
   .home-about { grid-template-columns: 1fr; gap: 20px; }
 }

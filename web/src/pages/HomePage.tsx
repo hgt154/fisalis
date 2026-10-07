@@ -3,6 +3,7 @@ import HeroArt from '../components/HeroArt'
 import { useLang } from '../i18n/context'
 import { useJson } from '../lib/data'
 import { formatDate, formatUsdShort, formatValue } from '../lib/format'
+import { HISTORY_COUNTRIES, historyOf } from '../lib/history'
 import { theoriesFor } from '../lib/theories'
 import { periodLabel, type SummaryRow, type TradeMeta } from '../lib/trade'
 import type { IndicatorMeta, Series } from '../lib/types'
@@ -24,12 +25,18 @@ export default function HomePage() {
   const balance = summary.data?.find((r) => r.period === 'month' && r.flow === 'saldo')
   const monthPeriod = trade.data?.periods.find((p) => p.period === 'month')
 
+  // Number of governments in the History section (countries already written)
+  const governments = HISTORY_COUNTRIES.filter((c) => !c.soon)
+    .reduce((n, c) => n + (historyOf(c.iso3, lang)?.rulers.length ?? 0), 0)
+
   const sections = [
     { to: '/mapa', n: '01', color: 'var(--mata)', ...h.sections.map },
     { to: '/indicadores', n: '02', color: 'var(--folha)', ...h.sections.indicators, text: h.sections.indicators.text(indicators.data?.length ?? 0) },
     { to: '/comercio', n: '03', color: 'var(--jacaranda)', ...h.sections.trade },
-    { to: '/teorias', n: '04', color: '#6f9a4a', ...h.sections.theories, text: h.sections.theories.text(theoriesFor(lang).length) },
-    { to: null, n: '05', color: 'var(--ambar)', ...h.sections.news, link: h.soon },
+    { to: '/conflitos', n: '04', color: 'var(--hist-military)', ...h.sections.conflicts },
+    { to: '/teorias', n: '05', color: '#6f9a4a', ...h.sections.theories, text: h.sections.theories.text(theoriesFor(lang).length) },
+    { to: '/historia', n: '06', color: '#5f7f94', ...h.sections.history, text: h.sections.history.text(governments) },
+    { to: null, n: '07', color: 'var(--ambar)', ...h.sections.news, link: h.soon, wide: true },
   ]
 
   return (
@@ -85,7 +92,7 @@ export default function HomePage() {
         <div className="garden-line" />
       </div>
 
-      {/* ---------- Five sections ---------- */}
+      {/* ---------- The sections (the last one spans the free columns of the grid) ---------- */}
       <div className="home-sections-head">
         <h2>{h.sectionsTitle}</h2>
         <span className="muted">{h.sectionsNote}</span>
@@ -109,7 +116,7 @@ export default function HomePage() {
           )
           return s.to
             ? <Link key={s.n} to={s.to} className="vao">{body}</Link>
-            : <div key={s.n} className="vao vao-soon" aria-disabled="true">{body}</div>
+            : <div key={s.n} className={`vao vao-soon${'wide' in s ? ' vao-wide' : ''}`} aria-disabled="true">{body}</div>
         })}
       </div>
 
