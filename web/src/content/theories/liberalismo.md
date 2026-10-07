@@ -25,7 +25,7 @@ references:
 
 ## Origens
 
-Em *À paz perpétua* (1795), Kant propôs que repúblicas, ligadas por uma federação de Estados livres e pelo comércio, poderiam superar a guerra. Depois da Primeira Guerra Mundial, Woodrow Wilson levou essas ideias à Liga das Nações — e o fracasso da Liga alimentou as críticas realistas.
+Em *À paz perpétua* (1795), Kant propôs que repúblicas, ligadas por uma federação de Estados livres e pelo comércio, poderiam superar a guerra. Depois da Primeira Guerra Mundial, Woodrow Wilson levou essas ideias à Liga das Nações, e o fracasso da Liga alimentou as críticas realistas.
 
 ## Argumento central
 
@@ -33,4 +33,4 @@ O liberalismo aceita que o sistema é anárquico, mas nega que isso condene os E
 
 ## Críticas e legado
 
-Realistas respondem que instituições refletem o poder dos mais fortes e se desfazem quando os interesses mudam. Críticos do Sul Global apontam que a ordem liberal conviveu com desigualdades profundas. Mesmo assim, a arquitetura do pós-1945 — ONU, GATT/OMC, integração europeia — é em grande parte liberal.
+Realistas respondem que instituições refletem o poder dos mais fortes e se desfazem quando os interesses mudam. Críticos do Sul Global apontam que a ordem liberal conviveu com desigualdades profundas. Mesmo assim, a arquitetura do pós-1945 (ONU, GATT/OMC, integração europeia) é em grande parte liberal.

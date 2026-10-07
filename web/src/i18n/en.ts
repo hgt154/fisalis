@@ -42,7 +42,7 @@ export const en: Messages = {
   footer: {
     tagline: 'Open data for the study of International Relations. An independent, non-profit project.',
     sources: 'Data sources',
-    worldBank: 'World Bank — WDI',
+    worldBank: 'World Bank, WDI',
     imf: 'IMF',
     publicDomain: 'public domain',
     updates: 'Updates',
@@ -57,10 +57,10 @@ export const en: Messages = {
     kicker: 'Open data · International Relations',
     titleStart: 'The world in numbers, ',
     titleEm: 'for those who study it.',
-    lead: 'Arco brings together in one place the World Bank’s development indicators, an interactive world map, foreign trade for Brazil and the world, armed conflicts, a library of IR theories and the political history of each country — all filterable, citable and free.',
+    lead: 'Arco brings together in one place the World Bank’s development indicators, an interactive world map, foreign trade for Brazil and the world, armed conflicts, a library of IR theories and the political history of each country. All filterable, citable and free.',
     exploreMap: 'Explore the map →',
     seeIndicators: 'See indicators',
-    figcaption: 'Arcade, reflecting pool and garden — exposed concrete and greenery',
+    figcaption: 'Arcade, reflecting pool and garden: exposed concrete and greenery',
     heroAlt: 'Concrete arcade, reflecting pool and garden',
     worldPopulation: 'World population',
     worldBank: 'World Bank',
@@ -77,7 +77,7 @@ export const en: Messages = {
     sections: {
       map: { title: 'Map', link: 'Open the map', text: 'A world map by income group or by any indicator, with a profile for every country.' },
       indicators: { title: 'Indicators', link: 'Compare countries', text: (n) => `${n} World Bank indicators, comparable across up to four countries.` },
-      trade: { title: 'Foreign Trade', link: 'See the balance', text: 'Brazilian exports and imports by partner, state and product — and the trade of every country in the world.' },
+      trade: { title: 'Foreign Trade', link: 'See the balance', text: 'Brazilian exports and imports by partner, state and product, and the trade of every country in the world.' },
       conflicts: { title: 'Conflicts', link: 'See the conflicts', text: 'Armed conflicts since 1946 (UCDP), today’s wars, and military spending and arms trade by country.' },
       theories: { title: 'Theories', link: 'Read the theories', text: (n) => `A library of ${n} International Relations theories, from Realism to critical approaches.` },
       history: { title: 'History', link: 'Read the history', text: (n) => `The ${n} governments of Brazil, Argentina and the United States since 1945: history, economy, politics and foreign policy.` },
@@ -245,7 +245,7 @@ export const en: Messages = {
     vsLastYear: 'vs. previous year',
 
     states: 'States',
-    statesSubtitle: (flow, period) => `Share of each state — ${flow}, ${period}`,
+    statesSubtitle: (flow, period) => `Share of each state: ${flow}, ${period}`,
     stateRanking: 'State ranking',
 
     products: 'Exported and imported products',
@@ -483,7 +483,7 @@ export const en: Messages = {
   theories: {
     kicker: 'Theories',
     title: 'A library of International Relations',
-    intro: 'From the classical traditions to critical approaches: each entry sums up the core argument, the key concepts and the reference authors — with readings to go further.',
+    intro: 'From the classical traditions to critical approaches: each entry sums up the core argument, the key concepts and the reference authors, with readings to go further.',
     searchPlaceholder: 'e.g. Waltz, Prebisch, anarchy',
     subject: 'Subject',
     all: 'All',

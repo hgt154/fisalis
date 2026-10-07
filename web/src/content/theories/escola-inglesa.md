@@ -28,8 +28,8 @@ A Escola Inglesa surgiu dos encontros do British Committee on the Theory of Inte
 
 ## Argumento central
 
-O sistema é anárquico, mas não caótico. Os Estados formam uma **sociedade anárquica**, na expressão de Hedley Bull: reconhecem-se mutuamente, seguem regras e mantêm instituições como a diplomacia, o direito internacional e as grandes potências. A ordem internacional é, assim, uma conquista social — frágil, mas real.
+O sistema é anárquico, mas não caótico. Os Estados formam uma **sociedade anárquica**, na expressão de Hedley Bull: reconhecem-se mutuamente, seguem regras e mantêm instituições como a diplomacia, o direito internacional e as grandes potências. A ordem internacional é, assim, uma conquista social, frágil, mas real.
 
 ## Críticas e legado
 
-Críticos apontam a imprecisão metodológica e o foco eurocêntrico na expansão da sociedade internacional. O debate entre **pluralistas** e **solidaristas** — sobre direitos humanos e intervenção humanitária — continua central nos estudos de ordem internacional.
+Críticos apontam a imprecisão metodológica e o foco eurocêntrico na expansão da sociedade internacional. O debate entre **pluralistas** e **solidaristas**, sobre direitos humanos e intervenção humanitária, continua central nos estudos de ordem internacional.

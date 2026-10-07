@@ -28,8 +28,8 @@ The English School grew out of the meetings of the British Committee on the Theo
 
 ## Core argument
 
-The system is anarchic, but not chaotic. States form an **anarchical society**, in Hedley Bull's phrase: they recognize one another, follow rules and maintain institutions such as diplomacy, international law and the great powers. International order is thus a social achievement — fragile, but real.
+The system is anarchic, but not chaotic. States form an **anarchical society**, in Hedley Bull's phrase: they recognize one another, follow rules and maintain institutions such as diplomacy, international law and the great powers. International order is thus a social achievement: fragile, but real.
 
 ## Critiques and legacy
 
-Critics point to its methodological vagueness and to a Eurocentric focus on the expansion of international society. The debate between **pluralists** and **solidarists** — over human rights and humanitarian intervention — remains central to the study of international order.
+Critics point to its methodological vagueness and to a Eurocentric focus on the expansion of international society. The debate between **pluralists** and **solidarists**, over human rights and humanitarian intervention, remains central to the study of international order.

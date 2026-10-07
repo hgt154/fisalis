@@ -21,7 +21,7 @@ key_concepts:
 related:
   - { slug: sistema-mundo, note: Extends the center–periphery divide to the whole world economy. }
   - { slug: teoria-critica, note: Shares the critique of structures of domination. }
-  - { slug: liberalismo, note: Its main interlocutor — and opponent — in the debate on development. }
+  - { slug: liberalismo, note: Its main interlocutor, and opponent, in the debate on development. }
 references:
   - "CARDOSO, F. H.; FALETTO, E. Dependência e desenvolvimento na América Latina: ensaio de interpretação sociológica. Rio de Janeiro: Zahar, 1970. (English edition: Dependency and Development in Latin America. Berkeley: University of California Press, 1979.)"
   - "FRANK, A. G. The development of underdevelopment. Monthly Review, v. 18, n. 4, 1966."
@@ -34,7 +34,7 @@ references:
 
 After the Second World War, economists at the UN Economic Commission for Latin America (ECLAC, or CEPAL in Spanish and Portuguese) observed that specializing in primary goods was not bringing the region closer to the industrialized countries. The prices of what the periphery sold tended to fall relative to what it bought, and productivity gains stayed concentrated in the center.
 
-From this finding, a generation of authors — many of them Brazilian — began to treat underdevelopment as the historical result of how each country was inserted into the world economy, rather than as a simple delay to be overcome with time.
+From this finding, a generation of authors, many of them Brazilian, began to treat underdevelopment as the historical result of how each country was inserted into the world economy, rather than as a simple delay to be overcome with time.
 
 ## Core argument
 
@@ -44,7 +44,7 @@ The international system is structured into a center and a periphery. Peripheral
 >
 > Editorial summary of Cardoso and Faletto's argument (1969)
 
-For International Relations, the theory shifted attention from war and the balance of power to the economic structures that shape the autonomy of states — a theme that returns in Brazilian foreign policy around the idea of development.
+For International Relations, the theory shifted attention from war and the balance of power to the economic structures that shape the autonomy of states, a theme that returns in Brazilian foreign policy around the idea of development.
 
 ## Strands
 

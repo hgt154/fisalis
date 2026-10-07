@@ -26,7 +26,7 @@ For Wallerstein, it makes no sense to study countries in isolation: the unit of 
 
 ## Hegemonies
 
-Giovanni Arrighi described the history of capitalism as a succession of cycles, each organized by a hegemonic power — Genoa, the Dutch Republic, the United Kingdom and the United States. The debate on the rise of China takes up exactly this question.
+Giovanni Arrighi described the history of capitalism as a succession of cycles, each organized by a hegemonic power: Genoa, the Dutch Republic, the United Kingdom and the United States. The debate on the rise of China takes up exactly this question.
 
 ## Critiques and legacy
 

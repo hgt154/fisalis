@@ -21,7 +21,7 @@ key_concepts:
 related:
   - { slug: sistema-mundo, note: Amplia a divisão centro-periferia para a economia-mundo. }
   - { slug: teoria-critica, note: Compartilha a crítica às estruturas de dominação. }
-  - { slug: liberalismo, note: A principal interlocutora — e adversária — no debate sobre desenvolvimento. }
+  - { slug: liberalismo, note: A principal interlocutora, e adversária, no debate sobre desenvolvimento. }
 references:
   - "CARDOSO, F. H.; FALETTO, E. Dependência e desenvolvimento na América Latina: ensaio de interpretação sociológica. Rio de Janeiro: Zahar, 1970."
   - "FRANK, A. G. The development of underdevelopment. Monthly Review, v. 18, n. 4, 1966."
@@ -34,7 +34,7 @@ references:
 
 No pós-guerra, economistas reunidos na Comissão Econômica para a América Latina (CEPAL) observaram que a especialização em bens primários não aproximava a região dos países industrializados. Os preços do que a periferia vendia tendiam a cair em relação ao que ela comprava, e os ganhos de produtividade se concentravam no centro.
 
-A partir dessa constatação, uma geração de autores — muitos deles brasileiros — passou a tratar o subdesenvolvimento como resultado histórico da forma como cada país se inseriu na economia mundial, e não como simples atraso a ser superado com o tempo.
+A partir dessa constatação, uma geração de autores, muitos deles brasileiros, passou a tratar o subdesenvolvimento como resultado histórico da forma como cada país se inseriu na economia mundial, e não como simples atraso a ser superado com o tempo.
 
 ## Argumento central
 
@@ -44,7 +44,7 @@ O sistema internacional é estruturado em centro e periferia. As economias perif
 >
 > Síntese editorial do argumento de Cardoso e Faletto (1969)
 
-Para as Relações Internacionais, a teoria deslocou a atenção da guerra e do equilíbrio de poder para as estruturas econômicas que condicionam a autonomia dos Estados — um tema que reaparece na política externa brasileira em torno da ideia de desenvolvimento.
+Para as Relações Internacionais, a teoria deslocou a atenção da guerra e do equilíbrio de poder para as estruturas econômicas que condicionam a autonomia dos Estados, um tema que reaparece na política externa brasileira em torno da ideia de desenvolvimento.
 
 ## Vertentes
 

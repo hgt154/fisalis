@@ -19,7 +19,7 @@ key_concepts:
   - { name: Self-help, description: Each state relies only on itself for its own security. }
 related:
   - { slug: neorrealismo, note: Rebuilds realism on the structure of the system rather than on human nature. }
-  - { slug: liberalismo, note: Its main interlocutor — and opponent — in the debate on cooperation. }
+  - { slug: liberalismo, note: Its main interlocutor, and opponent, in the debate on cooperation. }
   - { slug: escola-inglesa, note: Accepts anarchy but sees in it a society with rules. }
 references:
   - "CARR, E. H. The Twenty Years' Crisis, 1919–1939. London: Macmillan, 1939."
@@ -36,7 +36,7 @@ As an academic discipline, realism was born as a reaction against interwar ideal
 
 ## Core argument
 
-There is no world government. In this **anarchic** environment each state must secure its own survival, and international politics becomes a struggle for **power**. For Morgenthau, statesmen act according to the national interest defined in terms of power, and prudence — not abstract morality — is the supreme political virtue.
+There is no world government. In this **anarchic** environment each state must secure its own survival, and international politics becomes a struggle for **power**. For Morgenthau, statesmen act according to the national interest defined in terms of power, and prudence, not abstract morality, is the supreme political virtue.
 
 > Cooperation is possible, but always fragile: no state can be certain of the intentions of others.
 >
@@ -44,4 +44,4 @@ There is no world government. In this **anarchic** environment each state must s
 
 ## Critiques and legacy
 
-Liberals argue that realism underestimates institutions, trade and democracy; constructivists argue that anarchy has no fixed meaning. Even so, realism remains the starting point of almost every debate in the discipline — including those that set out to move beyond it.
+Liberals argue that realism underestimates institutions, trade and democracy; constructivists argue that anarchy has no fixed meaning. Even so, realism remains the starting point of almost every debate in the discipline, including those that set out to move beyond it.

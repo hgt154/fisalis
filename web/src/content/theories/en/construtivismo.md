@@ -4,7 +4,7 @@ subjects: [sociologica, filosofica]
 years: [1989]
 period: End of the Cold War, from 1989
 origin: United States
-summary: Shared identities and norms shape the interests of states — anarchy is what states make of it.
+summary: "Shared identities and norms shape the interests of states: anarchy is what states make of it."
 authors:
   - { name: Nicholas Onuf, years: 1941– }
   - { name: Alexander Wendt, years: 1958– }
@@ -25,7 +25,7 @@ references:
 
 ## Core argument
 
-The interests of states are neither fixed nor given by material structure: they are formed through interaction. Five hundred British nuclear weapons are less threatening to the United States than five North Korean ones, because the **identity** of the relationship changes what power means. For Wendt, anarchy can be Hobbesian, Lockean or Kantian — it depends on what states do.
+The interests of states are neither fixed nor given by material structure: they are formed through interaction. Five hundred British nuclear weapons are less threatening to the United States than five North Korean ones, because the **identity** of the relationship changes what power means. For Wendt, anarchy can be Hobbesian, Lockean or Kantian; it depends on what states do.
 
 ## Critiques and legacy
 

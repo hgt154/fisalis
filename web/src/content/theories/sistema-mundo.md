@@ -26,7 +26,7 @@ Para Wallerstein, não faz sentido estudar países isoladamente: a unidade de an
 
 ## Hegemonias
 
-Giovanni Arrighi descreveu a história do capitalismo como uma sucessão de ciclos, cada um organizado por uma potência hegemônica — Gênova, Províncias Unidas, Reino Unido e Estados Unidos. O debate sobre a ascensão da China retoma diretamente essa pergunta.
+Giovanni Arrighi descreveu a história do capitalismo como uma sucessão de ciclos, cada um organizado por uma potência hegemônica: Gênova, Províncias Unidas, Reino Unido e Estados Unidos. O debate sobre a ascensão da China retoma diretamente essa pergunta.
 
 ## Críticas e legado
 

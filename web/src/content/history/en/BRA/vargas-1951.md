@@ -1,5 +1,5 @@
 ---
-summary: Getúlio Vargas returned to power by the vote, five years after being deposed. His second presidency built the pillars of state-led development — BNDE and Petrobras — under mounting inflation, a polarized press and military pressure, and ended with his suicide in August 1954.
+summary: Getúlio Vargas returned to power by the vote, five years after being deposed. His second presidency built the pillars of state-led development, BNDE and Petrobras, under mounting inflation, a polarized press and military pressure, and ended with his suicide in August 1954.
 key_dates:
   - { date: "1950-10-03", text: "Elected president with 48.7% of the vote (PTB, with PSP support)" }
   - { date: "1951-07-19", text: "The Joint Brazil–United States Commission begins its work" }
@@ -26,11 +26,11 @@ references:
 
 ## History
 
-Deposed by the army in October 1945, Getúlio Vargas did not leave politics. Elected senator in December 1945, he spent most of the Dutra years at his ranch in São Borja, while the two parties he had helped to create — the PSD, of state machines and landowners, and the PTB, of urban workers — kept his name at the center of national life. In the October 1950 election he ran for the PTB, with the support of Adhemar de Barros's PSP in São Paulo, and won 48.7% of the vote against Brigadier Eduardo Gomes of the UDN and Cristiano Machado of the PSD.
+Deposed by the army in October 1945, Getúlio Vargas did not leave politics. Elected senator in December 1945, he spent most of the Dutra years at his ranch in São Borja, while the two parties he had helped to create (the PSD, of state machines and landowners, and the PTB, of urban workers) kept his name at the center of national life. In the October 1950 election he ran for the PTB, with the support of Adhemar de Barros's PSP in São Paulo, and won 48.7% of the vote against Brigadier Eduardo Gomes of the UDN and Cristiano Machado of the PSD.
 
 The UDN contested the result, arguing that the Constitution required an absolute majority; the Electoral Court rejected the claim. The episode set the tone for the whole term: a president elected by a wide popular vote, facing an opposition that questioned his legitimacy and a part of the officer corps that had not forgotten the Estado Novo.
 
-The government that took office on 31 January 1951 tried to reconcile two programs. One was conservative and financial — balanced budgets, credit from the United States and the World Bank. The other was nationalist and developmental — state companies, control of natural resources, higher wages. The tension between them, sharpened by rising inflation and the Cold War, runs through the next three and a half years.
+The government that took office on 31 January 1951 tried to reconcile two programs. One was conservative and financial: balanced budgets, credit from the United States and the World Bank. The other was nationalist and developmental: state companies, control of natural resources, higher wages. The tension between them, sharpened by rising inflation and the Cold War, runs through the next three and a half years.
 
 ## Economy
 
@@ -38,7 +38,7 @@ The first two years followed the plan of Finance Minister Horácio Lafer: fiscal
 
 The second pillar was oil. The government's original bill proposed a mixed company open to private capital; in Congress, under pressure from the "O petróleo é nosso" campaign and with the UDN itself taking a nationalist line, it became a state monopoly. Law 2,004 of 3 October 1953 created Petrobras. A similar project for electricity, Eletrobras, was sent to Congress in 1954 but only created in 1962.
 
-From 1952 the external situation worsened. The Korean War boom in imports exhausted reserves, commercial arrears accumulated and inflation rose. A January 1952 decree limiting the remittance of profits abroad irritated foreign investors. In 1953 Oswaldo Aranha took over the Finance Ministry and issued SUMOC Instruction 70, which replaced import licenses with currency auctions and multiple exchange rates — in practice taxing coffee exports to subsidize the import of machinery and fuel.
+From 1952 the external situation worsened. The Korean War boom in imports exhausted reserves, commercial arrears accumulated and inflation rose. A January 1952 decree limiting the remittance of profits abroad irritated foreign investors. In 1953 Oswaldo Aranha took over the Finance Ministry and issued SUMOC Instruction 70, which replaced import licenses with currency auctions and multiple exchange rates, in practice taxing coffee exports to subsidize the import of machinery and fuel.
 
 Wages became the political center of the economy. In June 1953, after a large strike in São Paulo, Vargas appointed João Goulart labor minister. Goulart's proposal to double the minimum wage prompted the Colonels' Manifesto of February 1954 and his departure; on 1 May 1954 Vargas granted the 100% increase anyway.
 
@@ -48,13 +48,13 @@ Vargas governed through a broad and unstable coalition, giving cabinet posts to 
 
 The armed forces were divided. Nationalist officers supported the oil campaign; the anti-communist "Cruzada Democrática" won the 1952 Military Club elections. The Colonels' Manifesto of 1954, protesting against low military pay and the minimum wage proposal, showed how far discontent had spread within the army.
 
-The crisis broke on 5 August 1954. Gunmen attacked Lacerda outside his home on Rua Tonelero, in Copacabana, killing Air Force Major Rubens Vaz. The Air Force ran its own inquiry — the so-called "Galeão Republic" — and traced the attack to Gregório Fortunato, head of the presidential guard. Generals and admirals demanded the president's resignation. In the early hours of 24 August, Vargas shot himself at Catete Palace. His letter — the *carta-testamento* — blamed "international groups" and their domestic allies for his fall.
+The crisis broke on 5 August 1954. Gunmen attacked Lacerda outside his home on Rua Tonelero, in Copacabana, killing Air Force Major Rubens Vaz. The Air Force ran its own inquiry, the so-called "Galeão Republic", and traced the attack to Gregório Fortunato, head of the presidential guard. Generals and admirals demanded the president's resignation. In the early hours of 24 August, Vargas shot himself at Catete Palace. His letter, the *carta-testamento*, blamed "international groups" and their domestic allies for his fall.
 
 The reaction was immediate: crowds attacked opposition newspapers and US offices, and the UDN's road to power was blocked. Vargas's death shaped the politics of the following decade, from Kubitschek's election in 1955 to the crisis of 1964.
 
 ## Foreign policy
 
-Foreign policy reflected the same dilemma between alignment and autonomy. Vargas hoped that support for the United States in the Cold War would be rewarded with development finance — a "Marshall Plan" for Latin America that never came. Brazil signed the Military Assistance Agreement with the United States in March 1952 and kept supplying strategic minerals, but refused Washington's request to send troops to Korea.
+Foreign policy reflected the same dilemma between alignment and autonomy. Vargas hoped that support for the United States in the Cold War would be rewarded with development finance: a "Marshall Plan" for Latin America that never came. Brazil signed the Military Assistance Agreement with the United States in March 1952 and kept supplying strategic minerals, but refused Washington's request to send troops to Korea.
 
 The Joint Commission was the high point of cooperation, and its end was the main disappointment. The Eisenhower administration, favoring private investment over public loans, wound it down in 1953, and much of the expected financing did not arrive. Nationalist measures such as the remittance decree and the oil monopoly, in turn, cooled relations with US investors.
 

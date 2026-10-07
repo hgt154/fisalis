@@ -16,7 +16,7 @@ key_concepts:
   - { name: Democratic peace, description: Democracies rarely, if ever, go to war with one another. }
 related:
   - { slug: realismo, note: The classic opponent in the debate on anarchy and cooperation. }
-  - { slug: construtivismo, note: Shares the idea that cooperation can deepen — but through identities. }
+  - { slug: construtivismo, note: Shares the idea that cooperation can deepen, but through identities. }
 references:
   - "DOYLE, M. W. Liberalism and World Politics. American Political Science Review, v. 80, n. 4, 1986."
   - "KANT, I. Toward Perpetual Peace. 1795."
@@ -25,7 +25,7 @@ references:
 
 ## Origins
 
-In *Toward Perpetual Peace* (1795), Kant proposed that republics, bound by a federation of free states and by trade, could overcome war. After the First World War, Woodrow Wilson took these ideas to the League of Nations — and the League's failure fed the realist critique.
+In *Toward Perpetual Peace* (1795), Kant proposed that republics, bound by a federation of free states and by trade, could overcome war. After the First World War, Woodrow Wilson took these ideas to the League of Nations, and the League's failure fed the realist critique.
 
 ## Core argument
 
@@ -33,4 +33,4 @@ Liberalism accepts that the system is anarchic but denies that this dooms states
 
 ## Critiques and legacy
 
-Realists reply that institutions reflect the power of the strongest and fall apart when interests change. Critics from the Global South point out that the liberal order coexisted with deep inequalities. Even so, the post-1945 architecture — the UN, the GATT/WTO, European integration — is largely liberal.
+Realists reply that institutions reflect the power of the strongest and fall apart when interests change. Critics from the Global South point out that the liberal order coexisted with deep inequalities. Even so, the post-1945 architecture (the UN, the GATT/WTO, European integration) is largely liberal.

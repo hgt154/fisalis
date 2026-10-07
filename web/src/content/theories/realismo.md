@@ -19,7 +19,7 @@ key_concepts:
   - { name: Autoajuda, description: Cada Estado depende apenas de si para garantir a própria segurança. }
 related:
   - { slug: neorrealismo, note: Reformula o realismo a partir da estrutura do sistema, não da natureza humana. }
-  - { slug: liberalismo, note: Principal interlocutor — e adversário — no debate sobre cooperação. }
+  - { slug: liberalismo, note: Principal interlocutor, e adversário, no debate sobre cooperação. }
   - { slug: escola-inglesa, note: Aceita a anarquia, mas vê nela uma sociedade com regras. }
 references:
   - "CARR, E. H. The Twenty Years' Crisis, 1919–1939. Londres: Macmillan, 1939."
@@ -36,7 +36,7 @@ Como disciplina acadêmica, o realismo nasce como reação ao idealismo do entre
 
 ## Argumento central
 
-Não existe governo mundial. Nesse ambiente **anárquico**, cada Estado precisa garantir sozinho sua sobrevivência, e a política internacional se torna uma disputa por **poder**. Para Morgenthau, estadistas agem de acordo com o interesse nacional definido em termos de poder, e a prudência — não a moral abstrata — é a virtude política suprema.
+Não existe governo mundial. Nesse ambiente **anárquico**, cada Estado precisa garantir sozinho sua sobrevivência, e a política internacional se torna uma disputa por **poder**. Para Morgenthau, estadistas agem de acordo com o interesse nacional definido em termos de poder, e a prudência, não a moral abstrata, é a virtude política suprema.
 
 > A cooperação é possível, mas sempre frágil: nenhum Estado pode ter certeza das intenções dos outros.
 >
@@ -44,4 +44,4 @@ Não existe governo mundial. Nesse ambiente **anárquico**, cada Estado precisa 
 
 ## Críticas e legado
 
-Liberais apontam que o realismo subestima instituições, comércio e democracia; construtivistas argumentam que a anarquia não tem um significado fixo. Ainda assim, o realismo segue sendo o ponto de partida de quase todos os debates da disciplina — inclusive dos que querem superá-lo.
+Liberais apontam que o realismo subestima instituições, comércio e democracia; construtivistas argumentam que a anarquia não tem um significado fixo. Ainda assim, o realismo segue sendo o ponto de partida de quase todos os debates da disciplina, inclusive dos que querem superá-lo.

@@ -38,7 +38,7 @@ export const pt = {
   footer: {
     tagline: 'Dados abertos para o estudo das Relações Internacionais. Um projeto independente, sem fins lucrativos.',
     sources: 'Fontes de dados',
-    worldBank: 'Banco Mundial — WDI',
+    worldBank: 'Banco Mundial, WDI',
     imf: 'FMI',
     publicDomain: 'domínio público',
     updates: 'Atualização',
@@ -53,10 +53,10 @@ export const pt = {
     kicker: 'Dados abertos · Relações Internacionais',
     titleStart: 'O mundo em números, ',
     titleEm: 'para quem estuda o mundo.',
-    lead: 'Arco reúne em uma só interface os indicadores de desenvolvimento do Banco Mundial, um mapa-múndi interativo, o comércio exterior do Brasil e do mundo, os conflitos armados, uma biblioteca de teorias de RI e a história política dos países — tudo filtrável, citável e gratuito.',
+    lead: 'Arco reúne em uma só interface os indicadores de desenvolvimento do Banco Mundial, um mapa-múndi interativo, o comércio exterior do Brasil e do mundo, os conflitos armados, uma biblioteca de teorias de RI e a história política dos países. Tudo filtrável, citável e gratuito.',
     exploreMap: 'Explorar o mapa →',
     seeIndicators: 'Ver indicadores',
-    figcaption: 'Arcada, espelho d’água e jardim — concreto aparente e vegetação',
+    figcaption: 'Arcada, espelho d’água e jardim: concreto aparente e vegetação',
     heroAlt: 'Arcada de concreto, espelho d’água e jardim',
     worldPopulation: 'População mundial',
     worldBank: 'Banco Mundial',
@@ -73,7 +73,7 @@ export const pt = {
     sections: {
       map: { title: 'Mapa', link: 'Abrir o mapa', text: 'Um mapa-múndi por grupo de renda ou por qualquer indicador, com o perfil de cada país.' },
       indicators: { title: 'Indicadores', link: 'Comparar países', text: (n: number) => `${n} indicadores do Banco Mundial, comparáveis entre até quatro países.` },
-      trade: { title: 'Comércio Exterior', link: 'Ver a balança', text: 'Exportações e importações brasileiras por parceiro, estado e produto — e o comércio de cada país do mundo.' },
+      trade: { title: 'Comércio Exterior', link: 'Ver a balança', text: 'Exportações e importações brasileiras por parceiro, estado e produto, e o comércio de cada país do mundo.' },
       conflicts: { title: 'Conflitos', link: 'Ver os conflitos', text: 'Os conflitos armados desde 1946 (UCDP), as guerras de hoje e os gastos militares e o comércio de armas de cada país.' },
       theories: { title: 'Teorias', link: 'Ler as teorias', text: (n: number) => `Uma biblioteca com ${n} teorias das Relações Internacionais, do Realismo às abordagens críticas.` },
       history: { title: 'História', link: 'Ler a história', text: (n: number) => `Os ${n} governos de Brasil, Argentina e Estados Unidos desde 1945: história, economia, política e política externa.` },
@@ -242,7 +242,7 @@ export const pt = {
     vsLastYear: 'vs. ano anterior',
 
     states: 'Estados',
-    statesSubtitle: (flow: string, period: string) => `Participação de cada UF — ${flow}, ${period}`,
+    statesSubtitle: (flow: string, period: string) => `Participação de cada UF: ${flow}, ${period}`,
     stateRanking: 'Ranking das UFs',
 
     products: 'Produtos exportados e importados',
@@ -481,7 +481,7 @@ export const pt = {
   theories: {
     kicker: 'Teorias',
     title: 'Uma biblioteca das Relações Internacionais',
-    intro: 'Das tradições clássicas às abordagens críticas: cada verbete resume o argumento central, os conceitos e os autores de referência — com leituras para ir além.',
+    intro: 'Das tradições clássicas às abordagens críticas: cada verbete resume o argumento central, os conceitos e os autores de referência, com leituras para ir além.',
     searchPlaceholder: 'Ex.: Waltz, Prebisch, anarquia',
     subject: 'Assunto',
     all: 'Todos',

@@ -10,11 +10,11 @@ authors:
   - { name: John Mearsheimer, years: 1947– }
 key_concepts:
   - { name: Structure, description: The ordering principle (anarchy) and the distribution of capabilities among units. }
-  - { name: Polarity, description: The number of great powers — unipolar, bipolar or multipolar systems. }
+  - { name: Polarity, description: "The number of great powers: unipolar, bipolar or multipolar systems." }
   - { name: Defensive and offensive realism, description: The disagreement over whether states seek enough security or as much power as possible. }
 related:
   - { slug: realismo, note: Keeps the classical premises but replaces human nature with structure. }
-  - { slug: construtivismo, note: Its most influential critique — anarchy is what states make of it. }
+  - { slug: construtivismo, note: "Its most influential critique: anarchy is what states make of it." }
 references:
   - "MEARSHEIMER, J. J. The Tragedy of Great Power Politics. New York: Norton, 2001."
   - "WALTZ, K. N. Theory of International Politics. Reading: Addison-Wesley, 1979."

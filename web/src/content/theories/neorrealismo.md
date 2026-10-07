@@ -10,11 +10,11 @@ authors:
   - { name: John Mearsheimer, years: 1947– }
 key_concepts:
   - { name: Estrutura, description: Princípio ordenador (anarquia) e distribuição de capacidades entre as unidades. }
-  - { name: Polaridade, description: Número de grandes potências — sistemas uni, bi ou multipolares. }
+  - { name: Polaridade, description: "Número de grandes potências: sistemas uni, bi ou multipolares." }
   - { name: Realismo defensivo e ofensivo, description: Divergência sobre se os Estados buscam segurança suficiente ou o máximo de poder. }
 related:
   - { slug: realismo, note: Mantém as premissas clássicas, mas troca a natureza humana pela estrutura. }
-  - { slug: construtivismo, note: Sua crítica mais influente — a anarquia é o que os Estados fazem dela. }
+  - { slug: construtivismo, note: "Sua crítica mais influente: a anarquia é o que os Estados fazem dela." }
 references:
   - "MEARSHEIMER, J. J. The Tragedy of Great Power Politics. Nova York: Norton, 2001."
   - "WALTZ, K. N. Theory of International Politics. Reading: Addison-Wesley, 1979."

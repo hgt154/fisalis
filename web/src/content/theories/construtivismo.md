@@ -4,7 +4,7 @@ subjects: [sociologica, filosofica]
 years: [1989]
 period: Fim da Guerra Fria, a partir de 1989
 origin: Estados Unidos
-summary: Identidades e normas compartilhadas moldam os interesses dos Estados — a anarquia é aquilo que os Estados fazem dela.
+summary: "Identidades e normas compartilhadas moldam os interesses dos Estados: a anarquia é aquilo que os Estados fazem dela."
 authors:
   - { name: Nicholas Onuf, years: 1941– }
   - { name: Alexander Wendt, years: 1958– }
@@ -25,7 +25,7 @@ references:
 
 ## Argumento central
 
-Os interesses dos Estados não são fixos nem dados pela estrutura material: formam-se em interação. Quinhentas armas nucleares britânicas ameaçam menos os Estados Unidos do que cinco norte-coreanas, porque a **identidade** das relações muda o significado do poder. Para Wendt, a anarquia pode ser hobbesiana, lockeana ou kantiana — depende das práticas dos Estados.
+Os interesses dos Estados não são fixos nem dados pela estrutura material: formam-se em interação. Quinhentas armas nucleares britânicas ameaçam menos os Estados Unidos do que cinco norte-coreanas, porque a **identidade** das relações muda o significado do poder. Para Wendt, a anarquia pode ser hobbesiana, lockeana ou kantiana; depende das práticas dos Estados.
 
 ## Críticas e legado
 
